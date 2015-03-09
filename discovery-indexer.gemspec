@@ -12,4 +12,13 @@ Gem::Specification.new do |s|
   s.email       = 'aalsum@stanford.edu'
   s.files        = Dir.glob("lib/*") + Dir.glob("lib/**/*") + Dir.glob("config/**/*") + Dir.glob('bin/*')
   s.require_path = 'lib'
+  
+  
+  
+  spec.add_development_dependency "rspec"
+
+  
+  
+  
+  
 end
