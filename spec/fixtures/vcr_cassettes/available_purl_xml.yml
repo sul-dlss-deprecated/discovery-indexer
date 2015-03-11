@@ -1,0 +1,104 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://purl.stanford.edu/tn629pk3948.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Tue, 10 Mar 2015 23:37:37 GMT
+      Server:
+      - Apache/2.2.15 (Red Hat)
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - '"a1aa9b5e9a2f284302dd734866accadd"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 602d241f-1ac2-4d4c-af31-4934852b48db
+      X-Runtime:
+      - '0.012119'
+      Status:
+      - '200'
+      Content-Length:
+      - '4394'
+      Content-Type:
+      - application/xml; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: "<publicObject id=\"druid:tn629pk3948\" published=\"2014-08-09T11:20:13-07:00\">\n
+        \ <identityMetadata>\n    <sourceId source=\"sul\">V0401_b1_1.01</sourceId>\n
+        \   <objectId>druid:tn629pk3948</objectId>\n    <objectCreator>DOR</objectCreator>\n
+        \   <objectLabel>Lecture 1</objectLabel>\n    <objectType>item</objectType>\n
+        \   <adminPolicy>druid:ww057vk7675</adminPolicy>\n    <otherId name=\"label\"/>\n
+        \   <otherId name=\"uuid\">08d544da-d459-11e2-8afb-0050569b3c3c</otherId>\n
+        \   <tag>Project:V0401 mccarthyism:vhs</tag>\n    <tag> Process:Content Type:Media</tag>\n
+        \   <tag> JIRA:DIGREQ-592</tag>\n    <tag> SMPL:video:ua</tag>\n    <tag>
+        Registered By:gwillard</tag>\n    <tag>Remediated By : 4.6.6.2</tag>\n  </identityMetadata>\n
+        \ <contentMetadata objectId=\"tn629pk3948\" type=\"media\">\n    <resource
+        sequence=\"1\" id=\"tn629pk3948_1\" type=\"video\">\n      <label>Tape 1</label>\n
+        \     <file id=\"tn629pk3948_sl.mp4\" mimetype=\"video/mp4\" size=\"3615267858\">\n
+        \     \n      \n    </file>\n    </resource>\n    <resource sequence=\"2\"
+        id=\"tn629pk3948_2\" type=\"image\">\n      <label>Image of media (1 of 3)</label>\n
+        \     <file id=\"tn629pk3948_img_1.jp2\" mimetype=\"image/jp2\" size=\"919945\">\n
+        \       <imageData width=\"1777\" height=\"2723\"/>\n      </file>\n    </resource>\n
+        \   <resource sequence=\"3\" id=\"tn629pk3948_3\" type=\"image\">\n      <label>Image
+        of media (2 of 3)</label>\n      <file id=\"tn629pk3948_img_2.jp2\" mimetype=\"image/jp2\"
+        size=\"719940\">\n        <imageData width=\"2560\" height=\"1475\"/>\n      </file>\n
+        \   </resource>\n    <resource sequence=\"4\" id=\"tn629pk3948_4\" type=\"image\">\n
+        \     <label>Image of media (3 of 3)</label>\n      <file id=\"tn629pk3948_img_3.jp2\"
+        mimetype=\"image/jp2\" size=\"411054\">\n        <imageData width=\"1547\"
+        height=\"1379\"/>\n      </file>\n    </resource>\n  </contentMetadata>\n
+        \ <rightsMetadata>\n    <access type=\"discover\">\n      <machine>\n        <world/>\n
+        \     </machine>\n    </access>\n    <access type=\"read\">\n      <machine>\n
+        \       <world/>\n      </machine>\n    </access>\n    <use>\n      <human
+        type=\"useAndReproduction\">Digital recordings from this collection may be
+        accessed freely. These files may not be reproduced or used for any purpose
+        without permission. For permission requests, please contact Stanford University
+        Department of Special Collections  University Archives (speccollref@stanford.edu).</human>\n
+        \   </use>\n    <use>\n      <human type=\"creativeCommons\"/>\n      <machine
+        type=\"creativeCommons\"/>\n    </use>\n  </rightsMetadata>\n  <rdf:RDF xmlns:fedora=\"info:fedora/fedora-system:def/relations-external#\"
+        xmlns:fedora-model=\"info:fedora/fedora-system:def/model#\" xmlns:hydra=\"http://projecthydra.org/ns/relations#\"
+        xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n    <rdf:Description
+        rdf:about=\"info:fedora/druid:tn629pk3948\">\n      <fedora:isMemberOf rdf:resource=\"info:fedora/druid:yk804rq1656\"/>\n
+        \     <fedora:isMemberOfCollection rdf:resource=\"info:fedora/druid:yk804rq1656\"/>\n
+        \   </rdf:Description>\n  </rdf:RDF>\n  <oai_dc:dc xmlns:dc=\"http://purl.org/dc/elements/1.1/\"
+        xmlns:srw_dc=\"info:srw/schema/1/dc-schema\" xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/
+        http://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n    <dc:identifier>V0401_b1_1.01</dc:identifier>\n
+        \   <dc:identifier>V0401</dc:identifier>\n    <dc:title>Lecture 1</dc:title>\n
+        \   <dc:date>2003-01-27</dc:date>\n    <dc:format>1 tape</dc:format>\n    <dc:format>VHS</dc:format>\n
+        \   <dc:format>video/mpeg</dc:format>\n    <dc:type>MovingImage</dc:type>\n
+        \   <dc:contributor>Frantz, Marge (Speaker)</dc:contributor>\n    <dc:subject>Anti-Communist
+        Movements--United States</dc:subject>\n    <dc:subject>McCarthy, Joseph, 1908-1957</dc:subject>\n
+        \   <dc:relation type=\"repository\">Stanford University. Libraries. Department
+        of Special Collections and University Archives http://purl.stanford.edu/tn629pk3948</dc:relation>\n
+        \   <dc:rights>Digital recordings from this collection may be accessed freely.
+        These files may not be reproduced or used for any purpose without permission.
+        For permission requests, please contact Stanford University Department of
+        Special Collections  University Archives (speccollref@stanford.edu). \n    </dc:rights>\n
+        \   <dc:language>eng</dc:language>\n    <dc:relation type=\"collection\">Marge
+        Frantz lectures on McCarthyism, 2003</dc:relation>\n  </oai_dc:dc>\n</publicObject>\n"
+    http_version: 
+  recorded_at: Tue, 10 Mar 2015 23:37:39 GMT
+recorded_with: VCR 2.9.3

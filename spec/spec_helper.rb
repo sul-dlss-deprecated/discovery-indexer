@@ -18,8 +18,17 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'bundler/setup'
 Bundler.setup
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+$LOAD_PATH.unshift(File.dirname(__FILE__))
 
+require 'webmock/rspec'
+require 'equivalent-xml'
+require 'vcr'
 require 'discovery-indexer' # and any other gems you need
+#WebMock.disable_net_connect!(allow_localhost: true)
+# whitelist codeclimate.com so test coverage can be reported
+#Rails.configuration.after(:suite) do
+#  WebMock.disable_net_connect!(:allow => 'codeclimate.com')
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

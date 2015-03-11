@@ -6,6 +6,8 @@ end
 
 group :development, :test do
   gem 'webmock'
+  gem 'rest-client'
+  gem 'yard'
 end
 
 # Dependencies are defined in dor-services.gemspec

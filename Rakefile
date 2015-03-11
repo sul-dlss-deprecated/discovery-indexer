@@ -7,7 +7,6 @@ require 'rspec/core/rake_task'
 require 'yard'
 require 'yard/rake/yardoc_task'
 
-
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -18,8 +17,6 @@ end
 
 task :default => :ci  
 
-
-
 desc "run continuous integration suite (tests, coverage, docs)" 
 task :ci => [:rspec, :doc]
 
@@ -28,9 +25,6 @@ task :spec => :rspec
 RSpec::Core::RakeTask.new(:rspec) do |spec|
   spec.rspec_opts = ["-c", "-f progress", "--tty", "-r ./spec/spec_helper.rb"]
 end
-
-
-
 
 # Use yard to build docs
 begin

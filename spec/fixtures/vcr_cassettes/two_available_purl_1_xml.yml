@@ -1,0 +1,115 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://purl.stanford.edu/ys174nw6600.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Wed, 11 Mar 2015 16:35:44 GMT
+      Server:
+      - Apache/2.2.15 (Red Hat)
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - '"cd9231ec4e540b5de021e3f0e9abe0cc"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 947a95d9-059c-41f0-aa69-6ab9acc5ffdf
+      X-Runtime:
+      - '0.009302'
+      Status:
+      - '200'
+      Content-Length:
+      - '5271'
+      Content-Type:
+      - application/xml; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: "<publicObject id=\"druid:ys174nw6600\" published=\"2014-06-30T10:17:14-07:00\">\n
+        \ <identityMetadata>\n    <sourceId source=\"sul\">SC1045_b4_4-5</sourceId>\n
+        \   <objectId>druid:ys174nw6600</objectId>\n    <objectCreator>DOR</objectCreator>\n
+        \   <objectLabel>Kant's Analysis of the Aesthetic Judgement</objectLabel>\n
+        \   <objectType>item</objectType>\n    <adminPolicy>druid:ww057vk7675</adminPolicy>\n
+        \   <otherId name=\"label\"/>\n    <otherId name=\"uuid\">15ae8182-dbbd-11e3-a0d4-0050569b3c3c</otherId>\n
+        \   <tag>Process : Content Type : File</tag>\n    <tag>Project : SC1045 kant
+        : audio cassette</tag>\n    <tag>SMPL : audio : ua</tag>\n    <tag>JIRA :
+        LEGACY-228</tag>\n    <tag>Registered By : gwillard</tag>\n    <tag>Remediated
+        By : 4.6.4</tag>\n  </identityMetadata>\n  <contentMetadata objectId=\"ys174nw6600\"
+        type=\"media\">\n    <resource sequence=\"1\" id=\"ys174nw6600_1\" type=\"audio\">\n
+        \     <label>Tape 1, Side A</label>\n      <file id=\"ys174nw6600_1_a_sl.mp3\"
+        mimetype=\"audio/mpeg\" size=\"56962090\">\n      \n      \n    </file>\n
+        \   </resource>\n    <resource sequence=\"2\" id=\"ys174nw6600_2\" type=\"audio\">\n
+        \     <label>Tape 1, Side B</label>\n      <file id=\"ys174nw6600_1_b_sl.mp3\"
+        mimetype=\"audio/mpeg\" size=\"56941192\">\n      \n      \n    </file>\n
+        \   </resource>\n    <resource sequence=\"3\" id=\"ys174nw6600_3\" type=\"audio\">\n
+        \     <label>Tape 2, Side A</label>\n      <file id=\"ys174nw6600_2_sl.mp3\"
+        mimetype=\"audio/mpeg\" size=\"16144196\">\n      \n      \n    </file>\n
+        \   </resource>\n    <resource sequence=\"4\" id=\"ys174nw6600_4\" type=\"image\">\n
+        \     <label>Image of media (1 of 4)</label>\n      <file id=\"ys174nw6600_1_img_1.jp2\"
+        mimetype=\"image/jp2\" size=\"314056\">\n        <imageData width=\"1573\"
+        height=\"1048\"/>\n      </file>\n    </resource>\n    <resource sequence=\"5\"
+        id=\"ys174nw6600_5\" type=\"image\">\n      <label>Image of media (2 of 4)</label>\n
+        \     <file id=\"ys174nw6600_1_img_2.jp2\" mimetype=\"image/jp2\" size=\"316395\">\n
+        \       <imageData width=\"1580\" height=\"1051\"/>\n      </file>\n    </resource>\n
+        \   <resource sequence=\"6\" id=\"ys174nw6600_6\" type=\"image\">\n      <label>Image
+        of media (3 of 4)</label>\n      <file id=\"ys174nw6600_2_img_1.jp2\" mimetype=\"image/jp2\"
+        size=\"317816\">\n        <imageData width=\"1565\" height=\"1066\"/>\n      </file>\n
+        \   </resource>\n    <resource sequence=\"7\" id=\"ys174nw6600_7\" type=\"image\">\n
+        \     <label>Image of media (4 of 4)</label>\n      <file id=\"ys174nw6600_2_img_2.jp2\"
+        mimetype=\"image/jp2\" size=\"321234\">\n        <imageData width=\"1591\"
+        height=\"1060\"/>\n      </file>\n    </resource>\n  </contentMetadata>\n
+        \ <rightsMetadata>\n    <copyright>\n      <human type=\"copyright\">Copyright
+        &#xA9; 1976 The Board of Trustees of the Leland Stanford Junior University.
+        All rights reserved. </human>\n    </copyright>\n    <access type=\"discover\">\n
+        \     <machine>\n        <world/>\n      </machine>\n    </access>\n    <access
+        type=\"read\">\n      <machine>\n        <world/>\n      </machine>\n    </access>\n
+        \   <use>\n      <human type=\"useAndReproduction\">Property rights reside
+        with the repository. Literary rights reside with  the creators of the documents
+        or their heirs. To obtain permission to publish or reproduce, please contact
+        the Public Services Librarian of the Dept. of Special Collections (http://library.stanford.edu/spc).</human>\n
+        \   </use>\n    <use>\n      <human type=\"creativeCommons\"/>\n      <machine
+        type=\"creativeCommons\"/>\n    </use>\n  </rightsMetadata>\n  <rdf:RDF xmlns:fedora=\"info:fedora/fedora-system:def/relations-external#\"
+        xmlns:fedora-model=\"info:fedora/fedora-system:def/model#\" xmlns:hydra=\"http://projecthydra.org/ns/relations#\"
+        xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n    <rdf:Description
+        rdf:about=\"info:fedora/druid:ys174nw6600\">\n      <fedora:isMemberOf rdf:resource=\"info:fedora/druid:zf690qk3036\"/>\n
+        \     <fedora:isMemberOfCollection rdf:resource=\"info:fedora/druid:zf690qk3036\"/>\n
+        \   </rdf:Description>\n  </rdf:RDF>\n  <oai_dc:dc xmlns:dc=\"http://purl.org/dc/elements/1.1/\"
+        xmlns:srw_dc=\"info:srw/schema/1/dc-schema\" xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/
+        http://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n    <dc:identifier>SC1045_b4_4-5</dc:identifier>\n
+        \   <dc:title>Kant's Analysis of the Aesthetic Judgement</dc:title>\n    <dc:date>1990-09-25</dc:date>\n
+        \   <dc:format>2 tapes</dc:format>\n    <dc:format>audiocassette</dc:format>\n
+        \   <dc:format>audio/mpeg</dc:format>\n    <dc:type>Sound</dc:type>\n    <dc:type>speech</dc:type>\n
+        \   <dc:type>instruction</dc:type>\n    <dc:contributor>Henrich, Dieter, 1927-
+        (Speaker)</dc:contributor>\n    <dc:description>The Kant Lectures are given
+        yearly by a distinguished philosopher.</dc:description>\n    <dc:subject>Philosophy</dc:subject>\n
+        \   <dc:subject>Stanford University. Department of Philosophy</dc:subject>\n
+        \   <dc:subject>Kant, Immanuel, 1724-1804</dc:subject>\n    <dc:relation type=\"repository\">Stanford
+        University. Libraries. Department of Special Collections and University Archives
+        SC1045 http://purl.stanford.edu/ys174nw6600</dc:relation>\n    <dc:language>eng</dc:language>\n
+        \   <dc:relation type=\"collection\">Stanford University, Department of Philosophy,
+        Immanuel Kant lectures, 1976-1996</dc:relation>\n  </oai_dc:dc>\n</publicObject>\n"
+    http_version: 
+  recorded_at: Wed, 11 Mar 2015 16:35:49 GMT
+recorded_with: VCR 2.9.3

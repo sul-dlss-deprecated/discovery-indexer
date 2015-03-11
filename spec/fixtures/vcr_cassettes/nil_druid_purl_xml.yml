@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://purl.stanford.edu/.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: ''
+    headers:
+      Date:
+      - Tue, 10 Mar 2015 22:55:26 GMT
+      Server:
+      - Apache/2.2.15 (Red Hat)
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      X-Request-Id:
+      - b92e0ef0-4430-4f61-be35-dcc4f4bc0b23
+      X-Runtime:
+      - '0.002391'
+      Content-Length:
+      - '947'
+      Status:
+      - '404'
+      Content-Type:
+      - text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n
+        \      \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n\n<html
+        xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n\n<head>\n
+        \ <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\" />\n
+        \ <title>The page you were looking for doesn't exist (404)</title>\n\t<style
+        type=\"text/css\">\n\t\tbody { background-color: #fff; color: #666; text-align:
+        center; font-family: arial, sans-serif; }\n\t\tdiv.dialog {\n\t\t\twidth:
+        25em;\n\t\t\tpadding: 0 4em;\n\t\t\tmargin: 4em auto 0 auto;\n\t\t\tborder:
+        1px solid #ccc;\n\t\t\tborder-right-color: #999;\n\t\t\tborder-bottom-color:
+        #999;\n\t\t}\n\t\th1 { font-size: 100%; color: #f00; line-height: 1.5em; }\n\t</style>\n</head>\n\n<body>\n
+        \ <!-- This file lives in public/404.html -->\n  <div class=\"dialog\">\n
+        \   <h1>The page you were looking for doesn't exist.</h1>\n    <p>You may
+        have mistyped the address or the page may have moved.</p>\n  </div>\n</body>\n</html>"
+    http_version: 
+  recorded_at: Tue, 10 Mar 2015 22:55:27 GMT
+recorded_with: VCR 2.9.3
