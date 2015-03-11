@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://purl.stanford.edu/.xml
+    uri: http://purl.stanford.edu/.mods
     body:
       encoding: US-ASCII
       string: ''
@@ -25,9 +25,9 @@ http_interactions:
       X-Powered-By:
       - Phusion Passenger (mod_rails/mod_rack) 3.0.19
       X-Request-Id:
-      - 972843aa-b8c7-4ea6-9ddb-56b8479fefd7
+      - fbaf0189-06f2-4f0f-a72d-102e007b59db
       X-Runtime:
-      - '0.002327'
+      - '0.002524'
       Content-Length:
       - '947'
       Status:
@@ -50,5 +50,5 @@ http_interactions:
         \   <h1>The page you were looking for doesn't exist.</h1>\n    <p>You may
         have mistyped the address or the page may have moved.</p>\n  </div>\n</body>\n</html>"
     http_version: 
-  recorded_at: Wed, 11 Mar 2015 20:59:33 GMT
+  recorded_at: Wed, 11 Mar 2015 20:59:32 GMT
 recorded_with: VCR 2.9.3

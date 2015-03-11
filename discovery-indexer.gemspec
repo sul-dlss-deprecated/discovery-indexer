@@ -14,12 +14,12 @@ Gem::Specification.new do |gem|
   gem.require_path = 'lib'
   
   gem.add_dependency 'nokogiri'
+  gem.add_dependency 'stanford-mods'
+  
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "webmock"
   gem.add_development_dependency "rest-client"
   gem.add_development_dependency "equivalent-xml"
   gem.add_development_dependency "vcr"
-  
-  
   
 end

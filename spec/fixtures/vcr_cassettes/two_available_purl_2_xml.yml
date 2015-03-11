@@ -19,7 +19,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Wed, 11 Mar 2015 16:36:19 GMT
+      - Wed, 11 Mar 2015 20:59:27 GMT
       Server:
       - Apache/2.2.15 (Red Hat)
       X-Powered-By:
@@ -35,9 +35,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - e4ee56cc-ddbb-4c93-8871-e7581addbfe8
+      - 4102afbd-3068-4dae-8235-8b8fc656d1ff
       X-Runtime:
-      - '0.011242'
+      - '0.064711'
       Status:
       - '200'
       Content-Length:
@@ -100,5 +100,5 @@ http_interactions:
         \   <dc:language>eng</dc:language>\n    <dc:relation type=\"collection\">Marge
         Frantz lectures on McCarthyism, 2003</dc:relation>\n  </oai_dc:dc>\n</publicObject>\n"
     http_version: 
-  recorded_at: Wed, 11 Mar 2015 16:36:24 GMT
+  recorded_at: Wed, 11 Mar 2015 20:59:33 GMT
 recorded_with: VCR 2.9.3

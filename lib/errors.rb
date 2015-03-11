@@ -7,5 +7,7 @@ module DiscoveryIndexer
     MissingIdentityMetadata = Class.new(StandardError) 
     MissingRightsMetadata = Class.new(StandardError) 
     MissingRDF = Class.new(StandardError) 
-    MissingDC = Class.new(StandardError)   end
+    MissingDC = Class.new(StandardError)
+    MissingModsPage = Class.new(StandardError)
+  end
 end

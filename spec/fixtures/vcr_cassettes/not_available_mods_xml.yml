@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://purl.stanford.edu/xx111xxx1111.xml
+    uri: http://purl.stanford.edu/xx111xxx1111.mods
     body:
       encoding: US-ASCII
       string: ''
@@ -33,9 +33,9 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 3553033c-c459-4cf7-90d0-600535340d51
+      - e88d7e85-c4af-48e5-981f-4ed9c91b0713
       X-Runtime:
-      - '0.003453'
+      - '0.004675'
       Status:
       - '404'
       Content-Length:
@@ -113,5 +113,5 @@ http_interactions:
           </body>
         </html>
     http_version: 
-  recorded_at: Wed, 11 Mar 2015 20:59:33 GMT
+  recorded_at: Wed, 11 Mar 2015 20:59:32 GMT
 recorded_with: VCR 2.9.3

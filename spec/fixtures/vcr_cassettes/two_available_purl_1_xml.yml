@@ -19,7 +19,7 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Wed, 11 Mar 2015 16:35:44 GMT
+      - Wed, 11 Mar 2015 20:59:27 GMT
       Server:
       - Apache/2.2.15 (Red Hat)
       X-Powered-By:
@@ -35,9 +35,9 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 947a95d9-059c-41f0-aa69-6ab9acc5ffdf
+      - ec78d392-eae3-40c5-8c22-b0a3930a9c6b
       X-Runtime:
-      - '0.009302'
+      - '0.009462'
       Status:
       - '200'
       Content-Length:
@@ -111,5 +111,5 @@ http_interactions:
         \   <dc:relation type=\"collection\">Stanford University, Department of Philosophy,
         Immanuel Kant lectures, 1976-1996</dc:relation>\n  </oai_dc:dc>\n</publicObject>\n"
     http_version: 
-  recorded_at: Wed, 11 Mar 2015 16:35:49 GMT
+  recorded_at: Wed, 11 Mar 2015 20:59:33 GMT
 recorded_with: VCR 2.9.3

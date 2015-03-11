@@ -19,15 +19,15 @@ http_interactions:
       message: ''
     headers:
       Date:
-      - Tue, 10 Mar 2015 22:55:26 GMT
+      - Wed, 11 Mar 2015 20:59:27 GMT
       Server:
       - Apache/2.2.15 (Red Hat)
       X-Powered-By:
       - Phusion Passenger (mod_rails/mod_rack) 3.0.19
       X-Request-Id:
-      - dc0acc14-2d35-4aa6-8f37-ed1e4f3b0655
+      - d0c2cbfe-c716-4eae-a373-cfa0a1076fc3
       X-Runtime:
-      - '0.002886'
+      - '0.002323'
       Content-Length:
       - '947'
       Status:
@@ -50,5 +50,5 @@ http_interactions:
         \   <h1>The page you were looking for doesn't exist.</h1>\n    <p>You may
         have mistyped the address or the page may have moved.</p>\n  </div>\n</body>\n</html>"
     http_version: 
-  recorded_at: Tue, 10 Mar 2015 22:55:27 GMT
+  recorded_at: Wed, 11 Mar 2015 20:59:33 GMT
 recorded_with: VCR 2.9.3

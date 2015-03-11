@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://purl.stanford.edu/tn629pk3948.mods
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Wed, 11 Mar 2015 20:59:27 GMT
+      Server:
+      - Apache/2.2.15 (Red Hat)
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - '"d6bc8bedcd68c0b7031908728de819c0"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 66d7bbd8-05b6-4f29-85aa-0ea4928d8c53
+      X-Runtime:
+      - '0.075022'
+      Status:
+      - '200'
+      Content-Length:
+      - '2975'
+      Content-Type:
+      - application/xml; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |
+        <mods:mods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mods="http://www.loc.gov/mods/v3" version="3.4" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+          <mods:identifier type="local" displayLabel="Source ID">V0401_b1_1.01</mods:identifier>
+          <mods:identifier type="local" displayLabel="Call number">V0401</mods:identifier>
+          <mods:titleInfo>
+            <mods:title>Lecture 1</mods:title>
+          </mods:titleInfo>
+          <mods:originInfo>
+            <mods:dateCreated encoding="w3cdtf" keyDate="yes">2003-01-27</mods:dateCreated>
+            <mods:placeTerm type="text">Stanford (Calif.)</mods:placeTerm>
+          </mods:originInfo>
+          <mods:physicalDescription>
+            <mods:form authority="PBCore instantiationPhysical">VHS</mods:form>
+            <mods:extent>1 tape</mods:extent>
+            <mods:reformattingQuality>access</mods:reformattingQuality>
+            <mods:internetMediaType>video/mpeg</mods:internetMediaType>
+            <mods:digitalOrigin>reformatted digital</mods:digitalOrigin>
+          </mods:physicalDescription>
+          <mods:typeOfResource>moving image</mods:typeOfResource>
+          <mods:name authority="naf" valueURI="http://id.loc.gov/authorities/names/no2005099404" type="personal">
+            <mods:namePart>Frantz, Marge</mods:namePart>
+            <mods:role>
+              <mods:roleTerm authority="marcrelator" valueURI="http://id.loc.gov/vocabulary/relators/spk" type="text">Speaker</mods:roleTerm>
+            </mods:role>
+          </mods:name>
+          <mods:subject authority="lcsh" valueURI="http://id.loc.gov/authorities/subjects/sh2008117594">
+            <mods:topic>Anti-Communist Movements--United States</mods:topic>
+          </mods:subject>
+          <mods:subject>
+            <mods:name type="personal" authority="lcsh" valueURI="http://id.loc.gov/authorities/names/n79043290">
+              <mods:namePart>McCarthy, Joseph, 1908-1957</mods:namePart>
+            </mods:name>
+          </mods:subject>
+          <mods:location>
+            <mods:physicalLocation authority="naf" valueURI="http://id.loc.gov/authorities/names/no2014019980" displayLabel="Repository" type="repository">Stanford University. Libraries. Department of Special Collections and University Archives</mods:physicalLocation>
+            <mods:url>http://purl.stanford.edu/tn629pk3948</mods:url>
+          </mods:location>
+          <mods:language>
+            <mods:languageTerm type="code" authority="iso639-2">eng</mods:languageTerm>
+          </mods:language>
+          <mods:relatedItem type="host">
+            <mods:titleInfo>
+              <mods:title>Marge Frantz lectures on McCarthyism, 2003</mods:title>
+            </mods:titleInfo>
+            <mods:identifier type="uri">http://purl.stanford.edu/yk804rq1656</mods:identifier>
+            <mods:typeOfResource collection="yes"/>
+          </mods:relatedItem>
+          <mods:accessCondition type="useAndReproduction">Digital recordings from this collection may be accessed freely. These files may not be reproduced or used for any purpose without permission. For permission requests, please contact Stanford University Department of Special Collections  University Archives (speccollref@stanford.edu).</mods:accessCondition>
+        </mods:mods>
+    http_version: 
+  recorded_at: Wed, 11 Mar 2015 20:59:32 GMT
+recorded_with: VCR 2.9.3

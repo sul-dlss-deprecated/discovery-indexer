@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://purl.stanford.edu/ys174nw6600.mods
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Wed, 11 Mar 2015 20:59:27 GMT
+      Server:
+      - Apache/2.2.15 (Red Hat)
+      X-Powered-By:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.19
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Etag:
+      - '"35c91d010f627c3e4c8986a8c03b5aab"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - e31e9ee8-ddba-4d1d-8c58-b3a028c1243f
+      X-Runtime:
+      - '0.025080'
+      Status:
+      - '200'
+      Content-Length:
+      - '4072'
+      Content-Type:
+      - application/xml; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: |
+        <mods:mods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mods="http://www.loc.gov/mods/v3" version="3.4" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+          <mods:identifier type="local" displayLabel="Source ID">SC1045_b4_4-5</mods:identifier>
+          <mods:titleInfo>
+            <mods:title>Kant's Analysis of the Aesthetic Judgement</mods:title>
+          </mods:titleInfo>
+          <mods:originInfo>
+            <mods:dateCreated encoding="w3cdtf" keyDate="yes">1990-09-25</mods:dateCreated>
+            <mods:place>
+              <mods:placeTerm type="text" authorityURI="http://id.loc.gov/authorities/names" valueURI="http://id.loc.gov/authorities/names/n50046557">Stanford (Calif.)</mods:placeTerm>
+            </mods:place>
+          </mods:originInfo>
+          <mods:physicalDescription>
+            <mods:form authority="rdacarrier">audiocassette</mods:form>
+            <mods:extent>2 tapes</mods:extent>
+            <mods:reformattingQuality>access</mods:reformattingQuality>
+            <mods:internetMediaType>audio/mpeg</mods:internetMediaType>
+            <mods:digitalOrigin>reformatted digital</mods:digitalOrigin>
+          </mods:physicalDescription>
+          <mods:typeOfResource>sound recording-nonmusical</mods:typeOfResource>
+          <mods:genre authority="marcgt">speech</mods:genre>
+          <mods:genre authority="marcgt">instruction</mods:genre>
+          <mods:name authority="naf" type="personal" valueURI="http://id.loc.gov/authorities/names/n80106679" usage="primary">
+            <mods:namePart>Henrich, Dieter, 1927-</mods:namePart>
+            <mods:role>
+              <mods:roleTerm authority="marcrelator" type="text" valueURI="http://id.loc.gov/vocabulary/relators/spk">Speaker</mods:roleTerm>
+            </mods:role>
+          </mods:name>
+          <mods:note>The Kant Lectures are given yearly by a distinguished philosopher.</mods:note>
+          <mods:subject authority="lcsh" valueURI="http://id.loc.gov/authorities/subjects/sh85100849">
+            <mods:topic>Philosophy</mods:topic>
+          </mods:subject>
+          <mods:subject authority="lcsh" valueURI="http://id.loc.gov/authorities/names/nr00000544">
+            <mods:name type="corporate">
+              <mods:namePart>Stanford University. Department of Philosophy</mods:namePart>
+            </mods:name>
+          </mods:subject>
+          <mods:subject authority="lcsh" valueURI="http://id.loc.gov/authorities/names/n79021614">
+            <mods:name type="personal">
+              <mods:namePart>Kant, Immanuel, 1724-1804</mods:namePart>
+            </mods:name>
+          </mods:subject>
+          <mods:location>
+            <mods:physicalLocation authority="naf" valueURI="http://id.loc.gov/authorities/names/no2014019980" displayLabel="Repository" type="repository">Stanford University. Libraries. Department of Special Collections and University Archives</mods:physicalLocation>
+            <mods:physicalLocation displayLabel="Collection call number">SC1045</mods:physicalLocation>
+            <mods:url>http://purl.stanford.edu/ys174nw6600</mods:url>
+          </mods:location>
+          <mods:language>
+            <mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm>
+          </mods:language>
+          <mods:recordInfo>
+            <mods:languageOfCataloging>
+              <mods:languageTerm authority="iso639-2b">eng</mods:languageTerm>
+            </mods:languageOfCataloging>
+            <mods:recordContentSource authority="marcorg">CSt</mods:recordContentSource>
+          </mods:recordInfo>
+          <mods:relatedItem type="host">
+            <mods:titleInfo>
+              <mods:title>Stanford University, Department of Philosophy, Immanuel Kant lectures, 1976-1996</mods:title>
+            </mods:titleInfo>
+            <mods:identifier type="uri">http://purl.stanford.edu/zf690qk3036</mods:identifier>
+            <mods:typeOfResource collection="yes"/>
+          </mods:relatedItem>
+          <mods:accessCondition type="useAndReproduction">Property rights reside with the repository. Literary rights reside with  the creators of the documents or their heirs. To obtain permission to publish or reproduce, please contact the Public Services Librarian of the Dept. of Special Collections (http://library.stanford.edu/spc).</mods:accessCondition>
+          <mods:accessCondition type="copyright">Copyright &#xA9; 1976 The Board of Trustees of the Leland Stanford Junior University. All rights reserved.</mods:accessCondition>
+        </mods:mods>
+    http_version: 
+  recorded_at: Wed, 11 Mar 2015 20:59:32 GMT
+recorded_with: VCR 2.9.3
