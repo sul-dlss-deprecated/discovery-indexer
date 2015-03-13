@@ -15,6 +15,8 @@ Gem::Specification.new do |gem|
   
   gem.add_dependency 'nokogiri'
   gem.add_dependency 'stanford-mods'
+  gem.add_dependency 'retries'
+  gem.add_dependency 'rsolr'
   
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "webmock"

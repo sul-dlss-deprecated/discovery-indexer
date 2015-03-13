@@ -7,6 +7,12 @@ require 'reader/purlxml_model'
 require 'reader/modsxml'
 require 'reader/modsxml_reader'
 
+require 'mapper/general_mapper'
+require 'mapper/index_mapper'
+
+require 'writer/solr_client'
+require 'writer/solr_writer'
+
 require 'errors'
 
 module DiscoveryIndexer

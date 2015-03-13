@@ -19,6 +19,14 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_rights_metadata) { "rightsMetadata" }
       allow(parser).to receive(:parse_dc) { "dc" }
       allow(parser).to receive(:parse_rdf) { "rdf" }
+      allow(parser).to receive(:parse_is_collection) { false }
+      allow(parser).to receive(:parse_collection_druids) { ["druid:ab123cd4567"]}
+      allow(parser).to receive(:parse_dor_content_type) { "image" }
+     # allow(parser).to receive(:parse_release_tags_hash) { "rdf" }
+      allow(parser).to receive(:parse_file_ids) { ["aa111aa1111_1"] }
+      allow(parser).to receive(:parse_image_ids) { ["aa111aa1111_1"] }
+      allow(parser).to receive(:parse_catkey) { "123456" }
+      allow(parser).to receive(:parse_barcode) { "123456" }
 
       model = parser.parse()
       expect(model.public_xml).to be_nil

@@ -5,28 +5,29 @@ module DiscoveryIndexer
       RDF_NAMESPACE = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
       OAI_DC_NAMESPACE = 'http://www.openarchives.org/OAI/2.0/oai_dc/'
       MODS_NAMESPACE = 'http://www.loc.gov/mods/v3'
+
       def initialize(purlxml_ng_doc)
         super
       end
-      
       
       # it parses the purlxml into a purlxml model
       # @return [PurlxmlModel] represents the purlxml as parsed based on the parser rules
       def parse()
         purlxml_model = PurlxmlModel.new
-        purlxml_model.public_xml = @purlxml_ng_doc
+        purlxml_model.public_xml        = @purlxml_ng_doc
+        purlxml_model.content_metadata  = parse_content_metadata()        
         purlxml_model.identity_metadata = parse_identity_metadata()
-        purlxml_model.rights_metadata = parse_rights_metadata()
-        purlxml_model.dc = parse_dc()
-        purlxml_model.rdf = parse_rdf()
+        purlxml_model.rights_metadata   = parse_rights_metadata()
+        purlxml_model.dc                = parse_dc()
+        purlxml_model.rdf               = parse_rdf()
+        purlxml_model.is_collection     = parse_is_collection()
+        purlxml_model.collection_druids =  parse_collection_druids()
+        purlxml_model.dor_content_type  = parse_dor_content_type()
         purlxml_model.release_tags_hash = parse_release_tags_hash()
-        
-        begin
-          purlxml_model.content_metadata = parse_content_metadata()
-        rescue
-          #We need to make a collection check
-        end
-        
+        purlxml_model.file_ids          = parse_file_ids()
+        purlxml_model.image_ids         = parse_image_ids()
+        purlxml_model.catkey            = parse_catkey()
+        purlxml_model.barcode           = parse_barcode()
         return purlxml_model
       end
       
@@ -98,6 +99,83 @@ module DiscoveryIndexer
           raise DiscoveryIndexer::Errors::MissingContentMetadata.new(@purlxml_ng_doc.inspect)
         end 
       end
+      
+      # @return true if the identityMetadata has <objectType>collection</objectType>, false otherwise
+      def parse_is_collection
+        identity_metadata  = parse_identity_metadata
+        unless identity_metadata.nil?
+          object_type_nodes = identity_metadata.xpath('./objectType')
+          return true if object_type_nodes.find_index { |n| n.text == 'collection'}
+        end
+        false
+      end
+      
+      # get the druids from isMemberOfCollection relationships in rels-ext from public_xml
+      # @return [Array<String>] the druids (e.g. ww123yy1234) this object has isMemberOfColletion relationship with, or nil if none
+      def parse_collection_druids
+        ns_hash = {'rdf' => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'fedora' => "info:fedora/fedora-system:def/relations-external#", '' => ''}
+        is_member_of_nodes ||= @purlxml_ng_doc.xpath('/publicObject/rdf:RDF/rdf:Description/fedora:isMemberOfCollection/@rdf:resource', ns_hash)
+        # from public_xml rels-ext
+        druids = []
+        is_member_of_nodes.each { |n| 
+          druids << n.value.split('druid:').last unless n.value.empty?
+        }
+        return nil if druids.empty?
+        druids
+      end
+      
+      # the value of the type attribute for a DOR object's contentMetadata
+      #  more info about these values is here:
+      #    https://consul.stanford.edu/display/chimera/DOR+content+types%2C+resource+types+and+interpretive+metadata
+      #    https://consul.stanford.edu/display/chimera/Summary+of+Content+Types%2C+Resource+Types+and+their+behaviors
+      # @return [String] 
+      def parse_dor_content_type
+        content_md = parse_content_metadata
+        dct = content_md ? content_md.xpath('@type').text : nil
+        puts " has no DOR content type (<contentMetadata> element may be missing type attribute)" if !dct || dct.empty?
+        dct
+      end
+      
+      # the @id attribute of resource/file elements that match the display_type, including extension
+      # @return [Array<String>] filenames
+      def parse_image_ids
+          ids = []
+          content_md = parse_content_metadata
+          unless content_md.nil?
+            content_md.xpath('./resource[@type="image"]/file/@id').each { |node|
+              ids << node.text if !node.text.empty?
+            }
+          return nil if ids.empty?
+          ids
+        end
+      end
+      
+      def parse_file_ids
+        ids = []
+        content_md = parse_content_metadata
+        unless content_md.nil?
+            content_md.xpath('./resource/file/@id').each { |node|
+              ids << node.text if !node.text.empty?
+            }
+          return nil if ids.empty?
+          ids
+        end 
+      end
+      
+      def parse_catkey
+        catkey = nil
+        node = @purlxml_ng_doc.xpath("/publicObject/identityMetadata/otherId[@name='catkey']") 
+        catkey = node.first.content if node && node.first
+        return catkey
+      end
+
+      def parse_barcode
+        barcode = nil
+        node = @purlxml_ng_doc.xpath("/publicObject/identityMetadata/otherId[@name='barcode']")
+        barcode = node.first.content if node && node.first
+        return barcode
+      end
+
     end
   end
 end
