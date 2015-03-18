@@ -13,8 +13,10 @@ require 'mapper/index_mapper'
 require 'writer/solr_client'
 require 'writer/solr_writer'
 
+require 'utilities/extract_sub_targets'
+
 require 'errors'
 
 module DiscoveryIndexer
-  PURL_DEFAULT = 'http://purl.stanford.edu'
+  PURL_DEFAULT = 'http://purl-test.stanford.edu'
 end
