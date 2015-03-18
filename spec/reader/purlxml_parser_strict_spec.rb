@@ -116,4 +116,36 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       expect(cm.children.empty?).to eq(true)
     end    
   end
+  
+  describe ".parse_file_ids" do
+    pending
+  end
+  
+  describe ".parse_image_ids" do
+    pending
+  end
+  
+  describe ".parse_catkey" do
+    pending
+  end
+  
+  describe ".parse_barcode" do
+    pending
+  end
+  
+  describe ".parse_label" do
+    pending
+  end
+  
+  describe ".parse_dor_content_type" do
+   pending 
+  end
+  
+  describe ".parse_collection_druids" do
+    pending
+  end
+  
+  describe ".parse_is_collection" do
+    pending
+  end
 end
