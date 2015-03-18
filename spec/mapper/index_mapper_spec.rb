@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe DiscoveryIndexer::Mapper::IndexerlMapper do
+describe DiscoveryIndexer::Mapper::IndexMapper do
       
   VCR.configure do |config|
     config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
@@ -22,7 +22,7 @@ describe DiscoveryIndexer::Mapper::IndexerlMapper do
         mods_model =  DiscoveryIndexer::InputXml::Modsxml.new(druid).load()
       end
       
-      mapper = DiscoveryIndexer::Mapper::IndexerlMapper.new(druid, mods_model, purl_model)
+      mapper = DiscoveryIndexer::Mapper::IndexMapper.new(druid, mods_model, purl_model)
       puts mapper.map
     end
   end

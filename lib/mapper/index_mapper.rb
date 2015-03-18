@@ -1,6 +1,6 @@
 module DiscoveryIndexer
   module Mapper
-    class IndexerlMapper < GeneralMapper
+    class IndexMapper < GeneralMapper
       # Create a Hash representing a Solr doc, with all MODS related fields populated.
       # @return [Hash] Hash representing the Solr document
      
