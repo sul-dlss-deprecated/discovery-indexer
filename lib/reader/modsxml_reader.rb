@@ -1,6 +1,5 @@
 require 'nokogiri'
 require 'open-uri'
-require 'rest-client'
 module DiscoveryIndexer
   module InputXml
     class ModsxmlReader

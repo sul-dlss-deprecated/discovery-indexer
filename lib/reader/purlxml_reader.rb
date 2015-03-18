@@ -1,6 +1,5 @@
 require 'nokogiri'
 require 'open-uri'
-require 'rest_client'
 module DiscoveryIndexer
   module InputXml
     class PurlxmlReader

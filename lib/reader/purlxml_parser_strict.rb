@@ -28,6 +28,7 @@ module DiscoveryIndexer
         purlxml_model.image_ids         = parse_image_ids()
         purlxml_model.catkey            = parse_catkey()
         purlxml_model.barcode           = parse_barcode()
+        purlxml_model.label             = parse_label()
         return purlxml_model
       end
       
@@ -71,33 +72,54 @@ module DiscoveryIndexer
       # @return [Nokogiri::XML::Document] the rdf for the fedora object
       # @raise [DiscoveryIndexer::Errors::MissingRDF] if there is no rdf element
       def parse_rdf
-          begin
-            ng_doc = Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/rdf:RDF', {'rdf' => RDF_NAMESPACE}).to_xml)
-            raise DiscoveryIndexer::Errors::MissingRDF.new(@purlxml_ng_doc.inspect) if !ng_doc || ng_doc.children.empty?
-            ng_doc
-          rescue
-            raise DiscoveryIndexer::Errors::MissingRDF.new(@purlxml_ng_doc.inspect)
-          end
+        begin
+          ng_doc = Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/rdf:RDF', {'rdf' => RDF_NAMESPACE}).to_xml)
+          raise DiscoveryIndexer::Errors::MissingRDF.new(@purlxml_ng_doc.inspect) if !ng_doc || ng_doc.children.empty?
+          ng_doc
+        rescue
+          raise DiscoveryIndexer::Errors::MissingRDF.new(@purlxml_ng_doc.inspect)
+        end
       end
       
       
       # extracts the release tag element for this fedora object, from the the identity metadata in purl xml
-      # @return [] the release tags for the fedora object
+      # @return [Hash] the release tags for the fedora object
       def parse_release_tags_hash
-          
+        release_tags={}
+        identity_metadata  = parse_identity_metadata
+        unless identity_metadata.nil?
+          release_elements = identity_metadata.xpath('//release')
+          release_elements.each { |n| 
+            unless n.attr("to").nil?
+              release_target = n.attr("to")
+              
+              
+              #target = release_target.split(":").first
+              #sub_target = "default"
+              #if target != release_target.split(":").last then
+              #  sub_target = release_target.split(":").last
+              #end
+              text = n.text
+              unless text.nil? 
+                release_tags[release_target]= text 
+              end
+            end
+          }
+          return release_tags
+        end
       end
  
       # extracts the contentMetadata for this fedora object, from the purl xml
       # @return [Nokogiri::XML::Document] the contentMetadata for the fedora object
       # @raise [DiscoveryIndexer::Errors::MissingContentMetadata] if there is no contentMetadata
       def parse_content_metadata
-        begin
+     #   begin
           ng_doc = Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/contentMetadata').to_xml)
-          raise DiscoveryIndexer::Errors::MissingContentMetadata.new(@purlxml_ng_doc.inspect) if !ng_doc || ng_doc.children.empty?
+      #    raise DiscoveryIndexer::Errors::MissingContentMetadata.new(@purlxml_ng_doc.inspect) if !ng_doc || ng_doc.children.empty?
           ng_doc 
-        rescue
-          raise DiscoveryIndexer::Errors::MissingContentMetadata.new(@purlxml_ng_doc.inspect)
-        end 
+      #  rescue
+      #    raise DiscoveryIndexer::Errors::MissingContentMetadata.new(@purlxml_ng_doc.inspect)
+      #  end 
       end
       
       # @return true if the identityMetadata has <objectType>collection</objectType>, false otherwise
@@ -176,6 +198,12 @@ module DiscoveryIndexer
         return barcode
       end
 
+      def parse_label
+        label = nil
+        node = @purlxml_ng_doc.xpath("/publicObject/identityMetadata/objectLabel")
+        label = node.first.content if node && node.first
+        return label
+      end
     end
   end
 end

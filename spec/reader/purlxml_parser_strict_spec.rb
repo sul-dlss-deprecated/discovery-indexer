@@ -22,11 +22,12 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_is_collection) { false }
       allow(parser).to receive(:parse_collection_druids) { ["druid:ab123cd4567"]}
       allow(parser).to receive(:parse_dor_content_type) { "image" }
-     # allow(parser).to receive(:parse_release_tags_hash) { "rdf" }
+      allow(parser).to receive(:parse_release_tags_hash) { "" }
       allow(parser).to receive(:parse_file_ids) { ["aa111aa1111_1"] }
       allow(parser).to receive(:parse_image_ids) { ["aa111aa1111_1"] }
       allow(parser).to receive(:parse_catkey) { "123456" }
       allow(parser).to receive(:parse_barcode) { "123456" }
+      allow(parser).to receive(:parse_label) { "label" }
 
       model = parser.parse()
       expect(model.public_xml).to be_nil
@@ -35,6 +36,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       expect(model.rights_metadata).to eq("rightsMetadata")
       expect(model.dc).to eq("dc")
       expect(model.rdf).to eq("rdf")
+      expect(model.label).to eq("label")
       
     end
   end
@@ -108,9 +110,10 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       expect(im).to be_equivalent_to(Nokogiri::XML(@content_metadata)) 
     end
     
-    it "should raise an error when the public xml doesn't have rights metadata" do
+    it "should return nil when the public xml doesn't have content metadata" do
       public_xml_no_content = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}</publicObject>"
-      expect{DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(public_xml_no_content).parse_content_metadata()}.to raise_error(DiscoveryIndexer::Errors::MissingContentMetadata)
+      cm = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(Nokogiri::XML(public_xml_no_content)).parse_content_metadata()
+      expect(cm.children.empty?).to eq(true)
     end    
   end
 end

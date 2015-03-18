@@ -16,6 +16,7 @@ module DiscoveryIndexer
       attr_accessor :image_ids
       attr_accessor :catkey
       attr_accessor :barcode
+      attr_accessor :label
       
     end
   end
