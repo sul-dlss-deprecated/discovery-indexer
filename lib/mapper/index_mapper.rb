@@ -4,9 +4,11 @@ module DiscoveryIndexer
       # Create a Hash representing a Solr doc, with all MODS related fields populated.
       # @return [Hash] Hash representing the Solr document
      
-      def initialize(druid, modsxml, purlxml)
-        super druid, modsxml, purlxml
+      def initialize(druid, modsxml, purlxml, collection_names={})
+        super druid, modsxml, purlxml, collection_names
       end  
+      
+      
       def map()
         solr_doc = {}
         solr_doc[:id] = @druid
@@ -107,7 +109,7 @@ module DiscoveryIndexer
       def format
         vals = @modsxml.format
         if vals.empty?
-          @logger.warn "#{@druid} has no SearchWorks format from MODS - check <typeOfResource> and other implicated MODS elements"
+          puts "#{@druid} has no SearchWorks format from MODS - check <typeOfResource> and other implicated MODS elements"
         end
         vals
       end
@@ -117,7 +119,7 @@ module DiscoveryIndexer
       def format_main_ssim
         vals = @modsxml.format_main
         if vals.empty?
-          @logger.warn "#{@druid} has no SearchWorks Resource Type from MODS - check <typeOfResource> and other implicated MODS elements"
+          puts "#{@druid} has no SearchWorks Resource Type from MODS - check <typeOfResource> and other implicated MODS elements"
         end
         vals
       end
