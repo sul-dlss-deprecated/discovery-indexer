@@ -20,7 +20,7 @@ module DiscoveryIndexer
       def self.process(solr_doc, solr_connector, max_retries, is_delete=false)
        logger  = Logger.new STDOUT
        id = solr_doc[:id]
-        
+        puts id
         handler = Proc.new do |exception, attempt_number, total_delay|
           logger.debug "#{exception.class} on attempt #{attempt_number} for #{id}"
         end
@@ -29,7 +29,7 @@ module DiscoveryIndexer
           logger.debug "Attempt #{attempt} for #{id}"
           
           if is_delete
-            solr_connector.delete(id)
+            solr_connector.delete_by_id(id)
             logger.info "Successfully deleted #{id} on attempt #{attempt}"
           else
             solr_connector.add(solr_doc)
