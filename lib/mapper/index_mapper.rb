@@ -1,14 +1,22 @@
 module DiscoveryIndexer
   module Mapper
+    
+    # This class is responsible for creating the solr_doc hash based on the input
+    # of druid_id, modsxml, purlxml, and optional hash of collection_names
     class IndexMapper < GeneralMapper
-      # Create a Hash representing a Solr doc, with all MODS related fields populated.
-      # @return [Hash] Hash representing the Solr document
-     
+      
+      # Initializes an instance from IndexMapper
+      # @param [String] druid e.g. ab123cd4567
+      # @param [Stanford::Mods::Record] modsxml represents the MODS xml for the druid
+      # @param [DiscoveryIndexer::Reader::PurlxmlModel] purlxml represents the purlxml model
+      # @param [Hash] collection_names represents a hash of collection_druid and 
+      #  collection_name !{"aa111aa1111"=>"First Collection", "bb123bb1234"=>"Second Collection"}
       def initialize(druid, modsxml, purlxml, collection_names={})
         super druid, modsxml, purlxml, collection_names
       end  
       
-      
+      # Create a Hash representing a Solr doc, with all MODS related fields populated.  
+      # @return [Hash] Hash representing the Solr document
       def map()
         solr_doc = {}
         solr_doc[:id] = @druid
@@ -23,6 +31,7 @@ module DiscoveryIndexer
         return solr_doc
       end
 
+      # @return [Hash] Hash representing the title fields
       def mods_to_title_fields
         # title fields
         doc_hash = { 
@@ -37,6 +46,7 @@ module DiscoveryIndexer
         doc_hash
       end
       
+      # @return [Hash] Hash representing the author fields
       def mods_to_author_fields
         doc_hash = { 
           # author fields
@@ -53,6 +63,7 @@ module DiscoveryIndexer
         doc_hash
       end
       
+      # @return [Hash] Hash representing the search fields
       def mods_to_subject_search_fields
         doc_hash = { 
           # subject search fields
@@ -67,6 +78,7 @@ module DiscoveryIndexer
         }
       end
       
+      # @return [Hash] Hash representing the publication fields
       def mods_to_publication_fields
         doc_hash = { 
           # publication fields
@@ -78,6 +90,7 @@ module DiscoveryIndexer
         }
       end
       
+      # @return [Hash] Hash representing the pub date
       def mods_to_pub_date
         doc_hash = {}
         pub_date_sort = @modsxml.pub_date_sort
@@ -89,6 +102,7 @@ module DiscoveryIndexer
         return doc_hash
       end    
         
+      # @return [Hash] Hash representing some fields 
       def mods_to_others
         doc_hash = { 
           :format_main_ssim => format_main_ssim,

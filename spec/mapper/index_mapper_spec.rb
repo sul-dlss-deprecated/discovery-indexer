@@ -23,7 +23,9 @@ describe DiscoveryIndexer::Mapper::IndexMapper do
       end
       
       mapper = DiscoveryIndexer::Mapper::IndexMapper.new(druid, mods_model, purl_model)
-      puts mapper.map
+      solr_doc =  mapper.map
+      expect(solr_doc[:id]).to eq("tn629pk3948")
+      expect(solr_doc[:title_245a_search]).to eq("Lecture 1")
     end
   end
 end

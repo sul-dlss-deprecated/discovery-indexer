@@ -7,12 +7,18 @@ module DiscoveryIndexer
       
       # Add the document to solr, retry if an error occurs.
       # See https://github.com/ooyala/retries for docs on with_retries.
-      # @param [Hash] doc a Hash representation of the solr document
-
+      # @param [Hash] solr_doc a Hash representation of the solr document
+      # @param [RSolr::Client] solr_connector is an open connection with the solr core
+      # @param [Integer] max_retries the maximum number of tries before fail
       def self.add(solr_doc, solr_connector, max_retries = 10)
         process(solr_doc, solr_connector, max_retries, is_delete=false)  
       end
-      
+
+      # Add the document to solr, retry if an error occurs.
+      # See https://github.com/ooyala/retries for docs on with_retries.
+      # @param [Hash] solr_doc that has only the id !{:id=>"ab123cd4567"}
+      # @param [RSolr::Client] solr_connector is an open connection with the solr core
+      # @param [Integer] max_retries the maximum number of tries before fail
       def self.delete(solr_doc, solr_connector, max_retries = 10)
         process(solr_doc, solr_connector, max_retries, is_delete=true)
       end
