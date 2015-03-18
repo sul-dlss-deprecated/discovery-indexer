@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://purl.stanford.edu/tn629pk3948.mods
+    uri: http://purl-test.stanford.edu/tn629pk3948.mods
     body:
       encoding: US-ASCII
       string: ''

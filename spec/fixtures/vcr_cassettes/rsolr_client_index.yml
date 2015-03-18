@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://127.0.0.1:8983/solr/update?wt=ruby
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><add><doc><field name="id">tn629pk3948</field><field
+        name="title_245a_search">Lecture 1</field><field name="title_245_search">Lecture
+        1.</field><field name="title_sort">Lecture 1</field><field name="title_245a_display">Lecture
+        1</field><field name="title_display">Lecture 1</field><field name="title_full_display">Lecture
+        1.</field><field name="author_7xx_search">Frantz, Marge</field><field name="author_person_facet">Frantz,
+        Marge</field><field name="author_sort"> Lecture 1</field><field name="author_person_display">Frantz,
+        Marge</field><field name="author_person_full_display">Frantz, Marge</field><field
+        name="topic_search">Anti-Communist Movements--United States</field><field
+        name="subject_other_search">McCarthy, Joseph, 1908-1957</field><field name="subject_all_search">Anti-Communist
+        Movements--United States</field><field name="subject_all_search">McCarthy,
+        Joseph, 1908-1957</field><field name="topic_facet">Anti-Communist Movements--United
+        States</field><field name="topic_facet">McCarthy, Joseph, 1908-1957</field><field
+        name="pub_date_sort">2003</field><field name="imprint_display">2003-01-27</field><field
+        name="pub_date">2003</field><field name="pub_date_display">2003-01-27</field><field
+        name="pub_year_tisim">2003</field><field name="creation_year_isi">2003</field><field
+        name="format_main_ssim">Video</field><field name="format">Video</field><field
+        name="language">English</field><field name="physical">1 tape</field><field
+        name="all_search"> V0401_b1_1.01 V0401 Lecture 1 2003-01-27 Stanford (Calif.)
+        VHS 1 tape access video/mpeg reformatted digital moving image Frantz, Marge
+        Speaker Anti-Communist Movements--United States McCarthy, Joseph, 1908-1957
+        Stanford University. Libraries. Department of Special Collections and University
+        Archives http://purl.stanford.edu/tn629pk3948 eng Marge Frantz lectures on
+        McCarthyism, 2003 http://purl.stanford.edu/yk804rq1656 Digital recordings
+        from this collection may be accessed freely. These files may not be reproduced
+        or used for any purpose without permission. For permission requests, please
+        contact Stanford University Department of Special Collections University Archives
+        (speccollref@stanford.edu). </field></doc></add>
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {'responseHeader'=>{'status'=>0,'QTime'=>72}}
+    http_version: 
+  recorded_at: Fri, 13 Mar 2015 18:35:59 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:8983/solr/update?wt=ruby
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><commit/>
+    headers:
+      Content-Type:
+      - text/xml
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {'responseHeader'=>{'status'=>0,'QTime'=>115}}
+    http_version: 
+  recorded_at: Fri, 13 Mar 2015 18:35:59 GMT
+recorded_with: VCR 2.9.3

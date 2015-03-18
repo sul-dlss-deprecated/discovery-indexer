@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://purl.stanford.edu/ys174nw6600.xml
+    uri: http://purl-test.stanford.edu/ys174nw6600.xml
     body:
       encoding: US-ASCII
       string: ''
@@ -107,7 +107,7 @@ http_interactions:
         \   <dc:subject>Stanford University. Department of Philosophy</dc:subject>\n
         \   <dc:subject>Kant, Immanuel, 1724-1804</dc:subject>\n    <dc:relation type=\"repository\">Stanford
         University. Libraries. Department of Special Collections and University Archives
-        SC1045 http://purl.stanford.edu/ys174nw6600</dc:relation>\n    <dc:language>eng</dc:language>\n
+        SC1045 http://purl-test.stanford.edu/ys174nw6600</dc:relation>\n    <dc:language>eng</dc:language>\n
         \   <dc:relation type=\"collection\">Stanford University, Department of Philosophy,
         Immanuel Kant lectures, 1976-1996</dc:relation>\n  </oai_dc:dc>\n</publicObject>\n"
     http_version: 
