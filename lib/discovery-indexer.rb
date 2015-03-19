@@ -1,3 +1,6 @@
+require 'errors'
+require 'logging'
+
 require 'reader/purlxml'
 require 'reader/purlxml_reader'
 require 'reader/purlxml_parser'
@@ -15,7 +18,6 @@ require 'writer/solr_writer'
 
 #require 'utilities/extract_sub_targets'
 
-require 'errors'
 
 module DiscoveryIndexer
   PURL_DEFAULT = 'http://purl-test.stanford.edu'

@@ -4,6 +4,7 @@ require 'rsolr'
 module DiscoveryIndexer
   module Writer
     class SolrWriter
+      include DiscoveryIndexer::Logging
       
       def process(druid, index_doc, targets, solr_targets_configs)
         @solr_targets_configs = solr_targets_configs
@@ -47,8 +48,6 @@ module DiscoveryIndexer
 
       def get_connector_for_target(solr_target)
         solr_connector = nil
-        puts solr_target
-        puts @solr_targets_configs
         if @solr_targets_configs.keys.include?(solr_target) then
           config = @solr_targets_configs[solr_target]
           solr_connector = RSolr.connect(config)
