@@ -2,3 +2,5 @@
 {<img src="https://coveralls.io/repos/sul-dlss/discovery-indexer/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/sul-dlss/discovery-indexer] 
 {<img src="https://gemnasium.com/sul-dlss/discovery-indexer.svg" alt="Dependency Status" />}[https://gemnasium.com/sul-dlss/discovery-indexer] 
 {<img src="https://badge.fury.io/rb/discovery-indexer.svg" alt="Gem Version" />}[http://badge.fury.io/rb/discovery-indexer]
+
+```n```
