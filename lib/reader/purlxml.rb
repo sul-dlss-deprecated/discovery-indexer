@@ -4,9 +4,9 @@ module DiscoveryIndexer
     # This class is the main class to access and parse the purl xml 
     #    as retrieved from PURL server
     # @example to run the code
-    # druid = "aa111aa1111"
-    # p =  DiscoveryIndexer::InputXml::Purlxml.new(druid)
-    # model =  p.load()
+    #  druid = "aa111aa1111"
+    #  p =  DiscoveryIndexer::InputXml::Purlxml.new(druid)
+    #  model =  p.load()
     # 
     class Purlxml
       

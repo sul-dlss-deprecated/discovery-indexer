@@ -113,7 +113,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     it "should return nil when the public xml doesn't have content metadata" do
       public_xml_no_content = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}</publicObject>"
       cm = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(Nokogiri::XML(public_xml_no_content)).parse_content_metadata()
-      expect(cm.children.empty?).to eq(true)
+      expect(cm).to be_nil
     end    
   end
   

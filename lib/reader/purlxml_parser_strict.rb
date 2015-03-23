@@ -34,7 +34,7 @@ module DiscoveryIndexer
       
       # extracts the identityMetadata for this fedora object, from the purl xml
       # @return [Nokogiri::XML::Document] the identityMetadata for the fedora object
-      # @raise [DiscoveryIndexer::Errors::MissingIdentityMetadata] if there is no contentMetadata
+      # @raise [DiscoveryIndexer::Errors::MissingIdentityMetadata] if there is no identity_metadata
       def parse_identity_metadata
         begin
           ng_doc = Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/identityMetadata').to_xml)
@@ -113,13 +113,9 @@ module DiscoveryIndexer
       # @return [Nokogiri::XML::Document] the contentMetadata for the fedora object
       # @raise [DiscoveryIndexer::Errors::MissingContentMetadata] if there is no contentMetadata
       def parse_content_metadata
-     #   begin
           ng_doc = Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/contentMetadata').to_xml)
-      #    raise DiscoveryIndexer::Errors::MissingContentMetadata.new(@purlxml_ng_doc.inspect) if !ng_doc || ng_doc.children.empty?
+          ng_doc = nil if !ng_doc || ng_doc.children.empty?
           ng_doc 
-      #  rescue
-      #    raise DiscoveryIndexer::Errors::MissingContentMetadata.new(@purlxml_ng_doc.inspect)
-      #  end 
       end
       
       # @return true if the identityMetadata has <objectType>collection</objectType>, false otherwise
@@ -153,18 +149,18 @@ module DiscoveryIndexer
       # @return [String] 
       def parse_dor_content_type
         content_md = parse_content_metadata
-        dct = content_md ? content_md.xpath('@type').text : nil
+        dct = content_md ? content_md.xpath('contentMetadata/@type').text : nil
         puts " has no DOR content type (<contentMetadata> element may be missing type attribute)" if !dct || dct.empty?
         dct
       end
       
-      # the @id attribute of resource/file elements that match the display_type, including extension
+      # the @id attribute of resource/file elements that match the image type, including extension
       # @return [Array<String>] filenames
       def parse_image_ids
           ids = []
           content_md = parse_content_metadata
           unless content_md.nil?
-            content_md.xpath('./resource[@type="image"]/file/@id').each { |node|
+            content_md.xpath('//resource[@type="image"]/file/@id').each { |node|
               ids << node.text if !node.text.empty?
             }
           return nil if ids.empty?
@@ -172,11 +168,13 @@ module DiscoveryIndexer
         end
       end
       
+      # the @id attribute of resource/file elements, including extension
+      # @return [Array<String>] filenames
       def parse_file_ids
         ids = []
         content_md = parse_content_metadata
         unless content_md.nil?
-            content_md.xpath('./resource/file/@id').each { |node|
+            content_md.xpath('//resource/file/@id').each { |node|
               ids << node.text if !node.text.empty?
             }
           return nil if ids.empty?
@@ -184,6 +182,7 @@ module DiscoveryIndexer
         end 
       end
       
+      # @return catkey value from the DOR identity_metadata, or nil if there is no catkey
       def parse_catkey
         catkey = nil
         node = @purlxml_ng_doc.xpath("/publicObject/identityMetadata/otherId[@name='catkey']") 
@@ -191,6 +190,7 @@ module DiscoveryIndexer
         return catkey
       end
 
+      # @return barcode value from the DOR identity_metadata, or nil if there is no barcode
       def parse_barcode
         barcode = nil
         node = @purlxml_ng_doc.xpath("/publicObject/identityMetadata/otherId[@name='barcode']")
@@ -198,6 +198,7 @@ module DiscoveryIndexer
         return barcode
       end
 
+      # @return objectLabel value from the DOR identity_metadata, or nil if there is no barcode
       def parse_label
         label = nil
         node = @purlxml_ng_doc.xpath("/publicObject/identityMetadata/objectLabel")
