@@ -71,6 +71,14 @@ module DiscoveryIndexer
       # @!attribute [rw] label
       # @return [String] the objectLabel attribute in identity_metadata
       attr_accessor :label
+ 
+      # @!attribute [rw] copyright
+      # @return [String] the copyright statement from rights metadata
+      attr_accessor :copyright
+      
+      # @!attribute [rw] use_and_reproduction
+      # @return [String] the use and reproduction statement from rights metadata
+      attr_accessor :use_and_reproduction
       
     end
   end

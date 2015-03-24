@@ -29,6 +29,8 @@ module DiscoveryIndexer
         purlxml_model.catkey            = parse_catkey()
         purlxml_model.barcode           = parse_barcode()
         purlxml_model.label             = parse_label()
+        purlxml_model.copyright         = parse_copyright()
+        purlxml_model.use_and_reproduction = parse_use_and_reproduction()
         return purlxml_model
       end
       
@@ -166,6 +168,19 @@ module DiscoveryIndexer
           return nil if ids.empty?
           ids
         end
+      end
+      
+      def parse_copyright
+        node=@purlxml_ng_doc.css('//rightsMetadata/copyright/human[type="copyright"]')
+        puts node.inspect
+        copyright_text = node.first.content if node && node.first
+        return copyright_text
+      end
+  
+      def parse_use_and_reproduction
+        node=@purlxml_ng_doc.css('//rightsMetadata/use/human[type="useAndReproduction"]')
+        use_text = node.first.content if node && node.first
+        return use_text
       end
       
       # the @id attribute of resource/file elements, including extension
