@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    discovery-indexer (0.2)
+    discovery-indexer (0.3)
       nokogiri
       retries
       rsolr

@@ -172,7 +172,6 @@ module DiscoveryIndexer
       
       def parse_copyright
         node=@purlxml_ng_doc.css('//rightsMetadata/copyright/human[type="copyright"]')
-        puts node.inspect
         copyright_text = node.first.content if node && node.first
         return copyright_text
       end
