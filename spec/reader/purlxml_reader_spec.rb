@@ -9,10 +9,10 @@ describe DiscoveryIndexer::InputXml::PurlxmlReader do
 
   describe ".read" do
     it "should read public xml for an available druid" do
-      available_expected_response =File.open('spec/fixtures/available_purl_xml_item.xml').read 
+      available_expected_response =File.open('spec/fixtures/available_purl_xml_item_2.xml').read 
        
-      VCR.use_cassette("available_purl_xml") do
-        druid = "tn629pk3948"
+      VCR.use_cassette("available_purl_xml_2") do
+        druid = "bg210vm0680"
         actual_response = DiscoveryIndexer::InputXml::PurlxmlReader.read(druid)
         expect(actual_response).to be_equivalent_to(Nokogiri::XML(available_expected_response,nil,'UTF-8'))
       end
