@@ -22,7 +22,7 @@ describe DiscoveryIndexer::Writer::SolrClient do
         mods_model =  DiscoveryIndexer::InputXml::Modsxml.new(druid).load()
       end
       
-      mapper = DiscoveryIndexer::Mapper::IndexMapper.new(druid, mods_model, purl_model)
+      mapper = DiscoveryIndexer::Mapper::GeneralMapper.new(druid, mods_model, purl_model)
       solr_doc =  mapper.map 
       
       solr_connector = nil
