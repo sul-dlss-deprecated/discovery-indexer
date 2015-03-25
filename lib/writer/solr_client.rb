@@ -11,8 +11,8 @@ module DiscoveryIndexer
       # @param [Hash] solr_doc a Hash representation of the solr document
       # @param [RSolr::Client] solr_connector is an open connection with the solr core
       # @param [Integer] max_retries the maximum number of tries before fail
-      def self.add(solr_doc, solr_connector, max_retries = 10)
-        process(solr_doc, solr_connector, max_retries, is_delete=false)  
+      def self.add(id, solr_doc, solr_connector, max_retries = 10)
+        process(id, solr_doc, solr_connector, max_retries, is_delete=false)  
       end
 
       # Add the document to solr, retry if an error occurs.
@@ -20,13 +20,11 @@ module DiscoveryIndexer
       # @param [Hash] solr_doc that has only the id !{:id=>"ab123cd4567"}
       # @param [RSolr::Client] solr_connector is an open connection with the solr core
       # @param [Integer] max_retries the maximum number of tries before fail
-      def self.delete(solr_doc, solr_connector, max_retries = 10)
-        process(solr_doc, solr_connector, max_retries, is_delete=true)
+      def self.delete(id, solr_doc, solr_connector, max_retries = 10)
+        process(id, solr_doc, solr_connector, max_retries, is_delete=true)
       end
       
-      def self.process(solr_doc, solr_connector, max_retries, is_delete=false)
-        id = solr_doc[:id]
-        puts id
+      def self.process(id, solr_doc, solr_connector, max_retries, is_delete=false)
         handler = Proc.new do |exception, attempt_number, total_delay|
           DiscoveryIndexer::Logging.logger.debug "#{exception.class} on attempt #{attempt_number} for #{id}"
         end

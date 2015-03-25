@@ -6,7 +6,7 @@ module DiscoveryIndexer
     class SolrWriter
       include DiscoveryIndexer::Logging
       
-      def process(druid, index_doc, targets, solr_targets_configs)
+      def process(id, index_doc, targets, solr_targets_configs)
         @solr_targets_configs = solr_targets_configs
         index_targets = []
         delete_targets = []
@@ -20,29 +20,29 @@ module DiscoveryIndexer
         end
         
         # get targets with true
-        solr_index_client(index_doc, index_targets)
+        solr_index_client(id, index_doc, index_targets)
         # get targets with false
-        solr_delete_client(druid, delete_targets)
+        solr_delete_client(id, delete_targets)
       end
       
-      def solr_delete_from_all(druid, solr_targets_configs)
+      def solr_delete_from_all(id, solr_targets_configs)
         # Get a list of all registered targets
         @solr_targets_configs=solr_targets_configs
         targets = @solr_targets_configs.keys()
-        solr_delete_client(druid, targets)
+        solr_delete_client(id, targets)
       end
             
-      def solr_index_client(index_doc, targets)
+      def solr_index_client(id, index_doc, targets)
         targets.each do |solr_target|
           solr_connector = get_connector_for_target(solr_target)     
-           SolrClient.add(index_doc, solr_connector)
+           SolrClient.add(id, index_doc, solr_connector)
         end          
       end
       
-      def solr_delete_client(druid, targets)
+      def solr_delete_client(id, targets)
         targets.each do |solr_target|
           solr_connector = get_connector_for_target(solr_target)     
-          SolrClient.delete({:id=>druid}, solr_connector)
+          SolrClient.delete(id,{}, solr_connector)
         end         
       end
 

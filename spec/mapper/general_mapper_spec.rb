@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe DiscoveryIndexer::Mapper::IndexMapper do
+describe DiscoveryIndexer::Mapper::GeneralMapper do
       
   VCR.configure do |config|
     config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
@@ -22,7 +22,7 @@ describe DiscoveryIndexer::Mapper::IndexMapper do
         mods_model =  DiscoveryIndexer::InputXml::Modsxml.new(druid).load()
       end
       
-      mapper = DiscoveryIndexer::Mapper::IndexMapper.new(druid, mods_model, purl_model)
+      mapper = DiscoveryIndexer::Mapper::GeneralMapper.new(druid, mods_model, purl_model)
       solr_doc =  mapper.map
       expect(solr_doc[:id]).to eq("tn629pk3948")
       expect(solr_doc[:title_245a_search]).to eq("Lecture 1")
