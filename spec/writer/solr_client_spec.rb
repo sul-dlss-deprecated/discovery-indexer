@@ -30,7 +30,7 @@ describe DiscoveryIndexer::Writer::SolrClient do
         solr_connector = RSolr.connect 'http://localhost:8983/solr/'
       end
       VCR.use_cassette('rsolr_client_index') do  
-        expect{DiscoveryIndexer::Writer::SolrClient.add(solr_doc, solr_connector)}.not_to raise_error
+        expect{DiscoveryIndexer::Writer::SolrClient.add(druid, solr_doc, solr_connector)}.not_to raise_error
       end
     end
     
@@ -45,7 +45,7 @@ describe DiscoveryIndexer::Writer::SolrClient do
         solr_connector = RSolr.connect 'http://localhost:8983/solr/'
       end
       VCR.use_cassette('rsolr_client_delete') do  
-      expect{DiscoveryIndexer::Writer::SolrClient.add({:id=>"tn629pk3948"}, solr_connector)}.not_to raise_error
+        expect{DiscoveryIndexer::Writer::SolrClient.delete("tn629pk3948",{}, solr_connector)}.not_to raise_error
       end 
     end
   end

@@ -8,5 +8,4 @@ group :development, :test do
   gem 'yard'
 end
 
-# Dependencies are defined in dor-services.gemspec
 gemspec
