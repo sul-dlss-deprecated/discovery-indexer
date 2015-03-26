@@ -31,6 +31,7 @@ module DiscoveryIndexer
         purlxml_model.label             = parse_label()
         purlxml_model.copyright         = parse_copyright()
         purlxml_model.use_and_reproduction = parse_use_and_reproduction()
+        purlxml_model.source_id  = parse_sourceid()
         return purlxml_model
       end
       
@@ -169,17 +170,17 @@ module DiscoveryIndexer
           ids
         end
       end
-      
+
+      def parse_sourceid
+        get_value(@purlxml_ng_doc.css('//identityMetadata/sourceId'))
+      end
+            
       def parse_copyright
-        node=@purlxml_ng_doc.css('//rightsMetadata/copyright/human[type="copyright"]')
-        copyright_text = node.first.content if node && node.first
-        return copyright_text
+        get_value(@purlxml_ng_doc.css('//rightsMetadata/copyright/human[type="copyright"]'))
       end
   
       def parse_use_and_reproduction
-        node=@purlxml_ng_doc.css('//rightsMetadata/use/human[type="useAndReproduction"]')
-        use_text = node.first.content if node && node.first
-        return use_text
+        get_value(@purlxml_ng_doc.css('//rightsMetadata/use/human[type="useAndReproduction"]'))
       end
       
       # the @id attribute of resource/file elements, including extension
@@ -198,27 +199,23 @@ module DiscoveryIndexer
       
       # @return catkey value from the DOR identity_metadata, or nil if there is no catkey
       def parse_catkey
-        catkey = nil
-        node = @purlxml_ng_doc.xpath("/publicObject/identityMetadata/otherId[@name='catkey']") 
-        catkey = node.first.content if node && node.first
-        return catkey
+        get_value(@purlxml_ng_doc.xpath("/publicObject/identityMetadata/otherId[@name='catkey']"))
       end
 
       # @return barcode value from the DOR identity_metadata, or nil if there is no barcode
       def parse_barcode
-        barcode = nil
-        node = @purlxml_ng_doc.xpath("/publicObject/identityMetadata/otherId[@name='barcode']")
-        barcode = node.first.content if node && node.first
-        return barcode
+        get_value(@purlxml_ng_doc.xpath("/publicObject/identityMetadata/otherId[@name='barcode']"))
       end
 
       # @return objectLabel value from the DOR identity_metadata, or nil if there is no barcode
       def parse_label
-        label = nil
-        node = @purlxml_ng_doc.xpath("/publicObject/identityMetadata/objectLabel")
-        label = node.first.content if node && node.first
-        return label
+        get_value(@purlxml_ng_doc.xpath("/publicObject/identityMetadata/objectLabel"))
       end
+      
+      def get_value(node)
+        (node && node.first) ? node.first.content : nil 
+      end
+      
     end
   end
 end

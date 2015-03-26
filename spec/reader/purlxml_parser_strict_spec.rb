@@ -30,6 +30,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_label) { "label" }
       allow(parser).to receive(:parse_copyright) { "copyright" }
       allow(parser).to receive(:parse_use_and_reproduction) { "use_and_reproduction" }
+      allow(parser).to receive(:parse_sourceid) { "sourceid" }
 
       model = parser.parse()
       expect(model.public_xml).to be_nil

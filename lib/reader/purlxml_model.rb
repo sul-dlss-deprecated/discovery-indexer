@@ -79,7 +79,11 @@ module DiscoveryIndexer
       # @!attribute [rw] use_and_reproduction
       # @return [String] the use and reproduction statement from rights metadata
       attr_accessor :use_and_reproduction
-      
+
+      # @!attribute [rw] source_id
+      # @return [String] the sourceid from identity metadata
+      attr_accessor :source_id
+            
     end
   end
 end

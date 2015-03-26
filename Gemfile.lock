@@ -1,0 +1,96 @@
+PATH
+  remote: .
+  specs:
+    discovery-indexer (0.4)
+      nokogiri
+      retries
+      rsolr
+      stanford-mods
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (4.1.10)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.1)
+      tzinfo (~> 1.1)
+    addressable (2.3.6)
+    builder (3.2.2)
+    coderay (1.1.0)
+    columnize (0.9.0)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
+    debugger (1.6.8)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.3.5)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.3.8)
+    diff-lcs (1.2.5)
+    equivalent-xml (0.5.1)
+      nokogiri (>= 1.4.3)
+    i18n (0.7.0)
+    iso-639 (0.2.5)
+    json (1.8.2)
+    method_source (0.8.2)
+    mini_portile (0.6.2)
+    minitest (5.5.1)
+    mods (2.0.2)
+      iso-639
+      nokogiri
+      nom-xml (~> 0.5.2)
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
+    nom-xml (0.5.2)
+      activesupport (>= 3.2.18)
+      i18n
+      nokogiri
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-debugger (0.2.2)
+      debugger (~> 1.3)
+      pry (~> 0.9.10)
+    retries (0.0.5)
+    rsolr (1.0.12)
+      builder (>= 2.1.2)
+    rspec (3.2.0)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+    rspec-core (3.2.2)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-mocks (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.2)
+    safe_yaml (1.0.4)
+    slop (3.6.0)
+    stanford-mods (1.1.4)
+      mods (~> 2.0.2)
+    thread_safe (0.3.5)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    vcr (2.9.3)
+    webmock (1.20.2)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+    yard (0.8.7.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  discovery-indexer!
+  equivalent-xml
+  pry-debugger (= 0.2.2)
+  rspec
+  vcr
+  webmock
+  yard
