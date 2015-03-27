@@ -8,7 +8,7 @@ describe DiscoveryIndexer::Writer::SolrClient do
     config.hook_into :webmock 
   end
   
-  describe ".process" do
+  describe ".add" do
     it "should add an item to the solr index" do
       druid = "tn629pk3948"
       
@@ -34,9 +34,21 @@ describe DiscoveryIndexer::Writer::SolrClient do
       end
     end
     
-    it "should delete an item from solr index" do
+
+  end
+  
+  describe ".process" do
+    it "should update an item that exists in solr index" do
+      solr_connector = nil
+      VCR.use_cassette('rsolr_client_config_call') do  
+        solr_connector = RSolr.connect :url=>'http://localhost:8983/solr/', :allow_update=> true
+      end
+      VCR.use_cassette('rsolr_update') do
+        DiscoveryIndexer::Writer::SolrClient.process("dw077vs7846",{:id=>"dw077vs7846",:title_display=>"New title"},solr_connector,1)
+      end
     end
   end
+  
   
   describe ".delete" do
     it "should delete an item from solr index" do      
