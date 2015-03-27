@@ -33,8 +33,6 @@ describe DiscoveryIndexer::Writer::SolrClient do
         expect{DiscoveryIndexer::Writer::SolrClient.add(druid, solr_doc, solr_connector)}.not_to raise_error
       end
     end
-    
-
   end
   
   describe ".process" do
@@ -48,7 +46,6 @@ describe DiscoveryIndexer::Writer::SolrClient do
       end
     end
   end
-  
   
   describe ".delete" do
     it "should delete an item from solr index" do      
