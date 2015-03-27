@@ -125,8 +125,8 @@ module DiscoveryIndexer
       def parse_is_collection
         identity_metadata  = parse_identity_metadata
         unless identity_metadata.nil?
-          object_type_nodes = identity_metadata.xpath('./objectType')
-          return true if object_type_nodes.find_index { |n| n.text == 'collection'}
+          object_type_nodes = identity_metadata.xpath('//objectType')
+          return true if object_type_nodes.find_index { |n| ['collection','set'].include? n.text.downcase}
         end
         false
       end
