@@ -42,7 +42,7 @@ module DiscoveryIndexer
       def solr_delete_client(id, targets)
         targets.each do |solr_target|
           solr_connector = get_connector_for_target(solr_target)     
-          SolrClient.delete(id,{}, solr_connector)
+          SolrClient.delete(id, solr_connector)
         end         
       end
 

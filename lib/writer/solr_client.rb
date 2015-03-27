@@ -8,22 +8,30 @@ module DiscoveryIndexer
 
       # Add the document to solr, retry if an error occurs.
       # See https://github.com/ooyala/retries for docs on with_retries.
-      # @param [Hash] solr_doc a Hash representation of the solr document
-      # @param [RSolr::Client] solr_connector is an open connection with the solr core
-      # @param [Integer] max_retries the maximum number of tries before fail
+      # @param id [String] the document id, usually it will be druid.
+      # @param solr_doc [Hash] a Hash representation of the solr document
+      # @param solr_connector [RSolr::Client]  is an open connection with the solr core
+      # @param max_retries [Integer] the maximum number of tries before fail
       def self.add(id, solr_doc, solr_connector, max_retries = 10)
         process(id, solr_doc, solr_connector, max_retries, is_delete=false)  
       end
 
       # Add the document to solr, retry if an error occurs.
       # See https://github.com/ooyala/retries for docs on with_retries.
-      # @param [Hash] solr_doc that has only the id !{:id=>"ab123cd4567"}
-      # @param [RSolr::Client] solr_connector is an open connection with the solr core
-      # @param [Integer] max_retries the maximum number of tries before fail
-      def self.delete(id, solr_doc, solr_connector, max_retries = 10)
-        process(id, solr_doc, solr_connector, max_retries, is_delete=true)
+      # @param id [String] the document id, usually it will be druid.
+      # @param solr_connector[RSolr::Client]  is an open connection with the solr core
+      # @param max_retries [Integer] the maximum number of tries before fail
+      def self.delete(id, solr_connector, max_retries = 10)
+        process(id, {}, solr_connector, max_retries, is_delete=true)
       end
-      
+
+      # It's an internal method that receives all the requests and deal with
+      # SOLR core. This method can call add, delete, or update
+      #
+      # @param id [String] the document id, usually it will be druid.
+      # @param solr_doc [Hash] is the solr doc in hash format 
+      # @param solr_connector [RSolr::Client]  is an open connection with the solr core
+      # @param max_retries [Integer] the maximum number of tries before fail
       def self.process(id, solr_doc, solr_connector, max_retries, is_delete=false)
         handler = Proc.new do |exception, attempt_number, total_delay|
           DiscoveryIndexer::Logging.logger.debug "#{exception.class} on attempt #{attempt_number} for #{id}"
@@ -45,19 +53,26 @@ module DiscoveryIndexer
           solr_connector.commit
         end
       end
-     
+
+      # @param solr_connector [RSolr::Client]  is an open connection with the solr core
+      # @return [Boolean] true if the solr core allowing update feature
       def self.allow_update?(solr_connector)
         return solr_connector.options.include?(:allow_update) ? solr_connector.options[:allow_update] : false
       end
-      
-      def self.doc_exists?(druid,solr_connector)
-        response=solr_connector.get 'select', :params=>{:q=>'id:"' + druid + '"'}  
+
+      # @param id [String] the document id, usually it will be druid.
+      # @param solr_connector [RSolr::Client]  is an open connection with the solr core
+      # @return [Boolean] true if the solr doc defined by this id exists
+      def self.doc_exists?(id,solr_connector)
+        response=solr_connector.get 'select', :params=>{:q=>'id:"' + id + '"'}  
         response['response']['numFound'] == 1
       end
       
+      # It is an internal method that updates the solr doc instead of adding a new one.
       def self.update_solr_doc(id,solr_doc,solr_connector)
+        # update_solr_doc can't used RSolr because updating hash doc is not supported
+        #  so we need to build the json input manually
         url="#{solr_connector.options[:url]}update?commit=true"
-        puts "#### #{url}"
         params="[{\"id\":\"#{id}\","
         solr_doc.each do |field_name,new_values|
           unless field_name == :id
@@ -69,7 +84,6 @@ module DiscoveryIndexer
         end
         params.chomp!(',')
         params+="}]"
-       #  params='[{"id":"dw077vs7846","title_variant_display":{"set":"New title"}}]'
         RestClient.post url, params,:content_type => :json, :accept=>:json
       end
       
