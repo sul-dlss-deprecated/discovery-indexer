@@ -13,7 +13,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
   
   describe ".parse" do
     it "should call all methods and fill the require fields in the model" do
-      parser = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(nil)
+      parser = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("aa111aa1111",nil)
       allow(parser).to receive(:parse_content_metadata) { "contentMetadata" }
       allow(parser).to receive(:parse_identity_metadata) { "identityMetadata" }
       allow(parser).to receive(:parse_rights_metadata) { "rightsMetadata" }
@@ -33,6 +33,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_sourceid) { "sourceid" }
 
       model = parser.parse()
+      expect(model.druid).to eq("aa111aa1111")
       expect(model.public_xml).to be_nil
       expect(model.content_metadata).to eq("contentMetadata")
       expect(model.identity_metadata).to eq("identityMetadata")
@@ -46,7 +47,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
 
   describe ".parse_identity_metadata" do
     it "should returnt the identity metadata stream for the valid public xml" do
-      im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(@available_purl_xml_ng_doc).parse_identity_metadata()
+      im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",@available_purl_xml_ng_doc).parse_identity_metadata()
       expect(im).to be_kind_of(Nokogiri::XML::Document)
       expect(im.root.name).to eql('identityMetadata')
       expect(im.root.xpath('objectId').text).to eql("druid:tn629pk3948")
@@ -55,13 +56,13 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     
     it "should raise an error when the public xml doesn't have identity metadata" do
       public_xml_no_identity = "<publicObject id='druid:aa111aa1111'>#{@content_metadata}#{@rights_metadata}</publicObject>"
-      expect{DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(public_xml_no_identity).parse_identity_metadata()}.to raise_error(DiscoveryIndexer::Errors::MissingIdentityMetadata)
+      expect{DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",public_xml_no_identity).parse_identity_metadata()}.to raise_error(DiscoveryIndexer::Errors::MissingIdentityMetadata)
     end
   end
 
   describe ".parse_rights_metadata" do
     it "should returnt the rights metadata stream for the valid public xml" do
-      im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(@available_purl_xml_ng_doc).parse_rights_metadata()
+      im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",@available_purl_xml_ng_doc).parse_rights_metadata()
       expect(im).to be_kind_of(Nokogiri::XML::Document)
       expect(im.root.name).to eql('rightsMetadata')
       expect(im).to be_equivalent_to(Nokogiri::XML(@rights_metadata)) 
@@ -69,13 +70,13 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     
     it "should raise an error when the public xml doesn't have rights metadata" do
       public_xml_no_rights = "<publicObject id='druid:aa111aa1111'>#{@content_metadata}#{@identity_metadata}</publicObject>"
-      expect{DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(public_xml_no_rights).parse_rights_metadata()}.to raise_error(DiscoveryIndexer::Errors::MissingRightsMetadata)
+      expect{DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",public_xml_no_rights).parse_rights_metadata()}.to raise_error(DiscoveryIndexer::Errors::MissingRightsMetadata)
     end    
   end
   
   describe ".parse_dc" do
     it "should returnt the dc metadata stream for the valid public xml" do
-      im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(@available_purl_xml_ng_doc).parse_dc()
+      im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",@available_purl_xml_ng_doc).parse_dc()
       expect(im).to be_kind_of(Nokogiri::XML::Document)
       expect(im.root.name).to eql('dc')
       expect(im).to be_equivalent_to(Nokogiri::XML(@dc)) 
@@ -83,13 +84,13 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     
     it "should raise an error for the metadata without dc" do
       public_xml_no_dc = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@content_metadata}</publicObject>"
-      expect{DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(public_xml_no_dc).parse_dc()}.to raise_error(DiscoveryIndexer::Errors::MissingDC)
+      expect{DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",public_xml_no_dc).parse_dc()}.to raise_error(DiscoveryIndexer::Errors::MissingDC)
     end
   end
   
   describe ".parse_rdf" do
     it "should returnt the rdf for the valid public xml" do
-      im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(@available_purl_xml_ng_doc).parse_rdf()
+      im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",@available_purl_xml_ng_doc).parse_rdf()
       expect(im).to be_kind_of(Nokogiri::XML::Document)
       expect(im.root.name).to eql('RDF')
       expect(im).to be_equivalent_to(Nokogiri::XML(@rdf)) 
@@ -97,7 +98,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     
     it "should raise an error for the metadata without dc" do
       public_xml_no_dc = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@content_metadata}</publicObject>"
-      expect{DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(public_xml_no_dc).parse_rdf()}.to raise_error(DiscoveryIndexer::Errors::MissingRDF)
+      expect{DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",public_xml_no_dc).parse_rdf()}.to raise_error(DiscoveryIndexer::Errors::MissingRDF)
     end
   end
   
@@ -107,21 +108,21 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
   
   describe ".parse_copyright" do 
     it "should parse the copyright statement correctly" do
-      copyright = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(@available_purl_xml_ng_doc).parse_copyright()
+      copyright = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",@available_purl_xml_ng_doc).parse_copyright()
       expect(copyright).to eq ("Test copyright statement. All rights reserved unless otherwise indicated.")
     end
   end
   
   describe ".parse_use_and_reproduction" do 
     it "should parse the use and reproduction statement correctly" do
-      use_and_reproduction = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(@available_purl_xml_ng_doc).parse_use_and_reproduction()
+      use_and_reproduction = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",@available_purl_xml_ng_doc).parse_use_and_reproduction()
       expect(use_and_reproduction).to eq ("Digital recordings from this collection may be accessed freely. These files may not be reproduced or used for any purpose without permission. For permission requests, please contact Stanford University Department of Special Collections  University Archives (speccollref@stanford.edu).")
     end
   end
     
   describe ".parse_content_metadata" do
     it "should returnt the content metadata stream for the valid public xml" do
-      im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(@available_purl_xml_ng_doc).parse_content_metadata()
+      im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",@available_purl_xml_ng_doc).parse_content_metadata()
       expect(im).to be_kind_of(Nokogiri::XML::Document)
       expect(im.root.name).to eql('contentMetadata')
       expect(im).to be_equivalent_to(Nokogiri::XML(@content_metadata)) 
@@ -129,7 +130,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     
     it "should return nil when the public xml doesn't have content metadata" do
       public_xml_no_content = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}</publicObject>"
-      cm = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(Nokogiri::XML(public_xml_no_content)).parse_content_metadata()
+      cm = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",Nokogiri::XML(public_xml_no_content)).parse_content_metadata()
       expect(cm).to be_nil
     end    
   end

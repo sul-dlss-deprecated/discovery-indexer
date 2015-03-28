@@ -1,19 +1,18 @@
 module DiscoveryIndexer
   module InputXml
     class PurlxmlParserStrict < PurlxmlParser
+      include DiscoveryIndexer::Logging
+
       
       RDF_NAMESPACE = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
       OAI_DC_NAMESPACE = 'http://www.openarchives.org/OAI/2.0/oai_dc/'
       MODS_NAMESPACE = 'http://www.loc.gov/mods/v3'
 
-      def initialize(purlxml_ng_doc)
-        super
-      end
-      
       # it parses the purlxml into a purlxml model
       # @return [PurlxmlModel] represents the purlxml as parsed based on the parser rules
       def parse()
         purlxml_model = PurlxmlModel.new
+        purlxml_model.druid             = @druid
         purlxml_model.public_xml        = @purlxml_ng_doc
         purlxml_model.content_metadata  = parse_content_metadata()        
         purlxml_model.identity_metadata = parse_identity_metadata()
@@ -153,7 +152,7 @@ module DiscoveryIndexer
       def parse_dor_content_type
         content_md = parse_content_metadata
         dct = content_md ? content_md.xpath('contentMetadata/@type').text : nil
-        puts " has no DOR content type (<contentMetadata> element may be missing type attribute)" if !dct || dct.empty?
+        DiscoveryIndexer::Logging.warn "#{@druid} has no DOR content type (<contentMetadata> element may be missing type attribute)" if !dct || dct.empty?
         dct
       end
       

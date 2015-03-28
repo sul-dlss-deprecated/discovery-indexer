@@ -2,6 +2,10 @@ module DiscoveryIndexer
   module InputXml
     class PurlxmlModel
       
+      #@!attribute [rw] druid
+      # @return [String] The druid value eg., ab123cd4567 
+      attr_accessor :druid      
+      
       #@!attribute [rw] public_xml
       # @return [Nokogiri::XML] The publix xml as retrieved from purl server 
       attr_accessor :public_xml

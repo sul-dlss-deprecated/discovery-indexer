@@ -25,7 +25,7 @@ module DiscoveryIndexer
           @purlxml_ng_doc = PurlxmlReader.read(@druid)
         end
         
-        purlxml_parser = PurlxmlParserStrict.new(@purlxml_ng_doc)
+        purlxml_parser = PurlxmlParserStrict.new(@druid,@purlxml_ng_doc)
         purlxml_model = purlxml_parser.parse()
         return purlxml_model
       end
