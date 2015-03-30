@@ -152,7 +152,7 @@ module DiscoveryIndexer
       def parse_dor_content_type
         content_md = parse_content_metadata
         dct = content_md ? content_md.xpath('contentMetadata/@type').text : nil
-        DiscoveryIndexer::Logging.warn "#{@druid} has no DOR content type (<contentMetadata> element may be missing type attribute)" if !dct || dct.empty?
+        DiscoveryIndexer::Logging.logger.debug "#{@druid} has no DOR content type (<contentMetadata> element may be missing type attribute)" if !dct || dct.empty?
         dct
       end
       

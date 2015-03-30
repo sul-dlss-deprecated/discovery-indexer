@@ -156,7 +156,18 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
   end
   
   describe ".parse_dor_content_type" do
-   pending 
+   it "should return valid dor content type for valid druid" do
+    content_type = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",@available_purl_xml_ng_doc).parse_dor_content_type()
+    expect(content_type).to eq("media")
+   end 
+   
+   it "should return nil dor content type if there is no content metadata" do
+     public_xml_no_content = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}</publicObject>"
+     content_type = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",Nokogiri::XML(public_xml_no_content)).parse_dor_content_type()
+     expect(content_type).to be_nil
+
+      
+   end
   end
   
   describe ".parse_collection_druids" do
