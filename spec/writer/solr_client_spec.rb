@@ -23,7 +23,7 @@ describe DiscoveryIndexer::Writer::SolrClient do
       end
       
       mapper = DiscoveryIndexer::Mapper::GeneralMapper.new(druid, mods_model, purl_model)
-      solr_doc =  mapper.map 
+      solr_doc =  mapper.convert_to_solr_doc 
       
       solr_connector = nil
       VCR.use_cassette('rsolr_client_config_call') do  

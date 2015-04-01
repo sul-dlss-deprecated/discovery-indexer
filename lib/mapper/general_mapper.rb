@@ -17,7 +17,7 @@ module DiscoveryIndexer
 
       # Create a Hash representing a Solr doc, with all MODS related fields populated.  
       # @return [Hash] Hash representing the Solr document
-      def map()
+      def convert_to_solr_doc()
         solr_doc = {}
         solr_doc[:id] = @druid
         solr_doc.update mods_to_title_fields

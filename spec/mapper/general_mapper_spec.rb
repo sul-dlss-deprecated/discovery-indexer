@@ -7,7 +7,7 @@ describe DiscoveryIndexer::Mapper::GeneralMapper do
     config.hook_into :webmock 
   end
   
-  describe '.map' do
+  describe '.convert_to_solr_doc' do
     
     it "should map mods and public xml into solr doc" do
       druid = "tn629pk3948"
@@ -23,7 +23,7 @@ describe DiscoveryIndexer::Mapper::GeneralMapper do
       end
       
       mapper = DiscoveryIndexer::Mapper::GeneralMapper.new(druid, mods_model, purl_model)
-      solr_doc =  mapper.map
+      solr_doc =  mapper.convert_to_solr_doc
       expect(solr_doc[:id]).to eq("tn629pk3948")
       expect(solr_doc[:title_245a_search]).to eq("Lecture 1")
     end
