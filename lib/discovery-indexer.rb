@@ -19,5 +19,5 @@ require 'writer/solr_writer'
 
 
 module DiscoveryIndexer
-  PURL_DEFAULT = 'http://purl-test.stanford.edu'
+  PURL_DEFAULT = 'http://purl.stanford.edu'
 end
