@@ -35,14 +35,14 @@ module DiscoveryIndexer
       def solr_index_client(id, index_doc, targets)
         targets.each do |solr_target|
           solr_connector = get_connector_for_target(solr_target)     
-           SolrClient.add(id, index_doc, solr_connector)
+          SolrClient.add(id, index_doc, solr_connector) unless solr_connector.nil?
         end          
       end
       
       def solr_delete_client(id, targets)
         targets.each do |solr_target|
           solr_connector = get_connector_for_target(solr_target)
-          SolrClient.delete(id, solr_connector)
+          SolrClient.delete(id, solr_connector) unless solr_connector.nil?
         end         
       end
 
