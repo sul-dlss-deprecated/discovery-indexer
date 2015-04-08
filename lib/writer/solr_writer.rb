@@ -41,7 +41,7 @@ module DiscoveryIndexer
       
       def solr_delete_client(id, targets)
         targets.each do |solr_target|
-          solr_connector = get_connector_for_target(solr_target)     
+          solr_connector = get_connector_for_target(solr_target)
           SolrClient.delete(id, solr_connector)
         end         
       end
@@ -50,7 +50,7 @@ module DiscoveryIndexer
         solr_connector = nil
         if @solr_targets_configs.keys.include?(solr_target) then
           config = @solr_targets_configs[solr_target]
-          solr_connector = RSolr.connect(config)
+          solr_connector = RSolr.connect(config.deep_symbolize_keys)
         end
         return solr_connector
       end
