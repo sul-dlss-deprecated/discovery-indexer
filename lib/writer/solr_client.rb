@@ -72,7 +72,13 @@ module DiscoveryIndexer
       def self.update_solr_doc(id,solr_doc,solr_connector)
         # update_solr_doc can't used RSolr because updating hash doc is not supported
         #  so we need to build the json input manually
-        url="#{solr_connector.options[:url]}update?commit=true"
+        solr_url = solr_connector.options[:url]
+        if solr_url.end_with?("/") then
+          url="#{solr_connector.options[:url]}update?commit=true"
+        else
+          url="#{solr_connector.options[:url]}/update?commit=true"
+        end
+          
         params="[{\"id\":\"#{id}\","
         solr_doc.each do |field_name,new_values|
           unless field_name == :id
