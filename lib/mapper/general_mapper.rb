@@ -20,13 +20,17 @@ module DiscoveryIndexer
       def convert_to_solr_doc()
         solr_doc = {}
         solr_doc[:id] = @druid
+        solr_doc[:druid] = @druid
         solr_doc.update mods_to_title_fields
         solr_doc.update mods_to_author_fields
         solr_doc.update mods_to_subject_search_fields
         solr_doc.update mods_to_publication_fields
         solr_doc.update mods_to_pub_date
         solr_doc.update mods_to_others
+        solr_doc.update hard_coded_fields
         
+        solr_doc[:collection] = @collection_names.nil? ? [] : @collection_names.keys
+        solr_doc[:modsxml] = @modsxml.to_xml
         solr_doc[:all_search] = @modsxml.text.gsub(/\s+/, ' ')
         return solr_doc
       end
@@ -116,6 +120,13 @@ module DiscoveryIndexer
         return doc_hash
       end
     
+      def hard_coded_fields
+        doc_hash = { 
+          :url_fulltext => "http://purl.stanford.edu/#{@druid}",
+          :access_facet => 'Online',
+          :building_facet => 'Stanford Digital Repository',
+        }
+      end
       # select one or more format values from the controlled vocabulary here:
       #   http://searchworks-solr-lb.stanford.edu:8983/solr/select?facet.field=format&rows=0&facet.sort=index
       # via stanford-mods gem
