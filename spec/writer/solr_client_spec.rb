@@ -42,7 +42,7 @@ describe DiscoveryIndexer::Writer::SolrClient do
         solr_connector = RSolr.connect :url=>'http://localhost:8983/solr/', :allow_update=> true
       end
       VCR.use_cassette('rsolr_update') do
-        DiscoveryIndexer::Writer::SolrClient.process("dw077vs7846",{:id=>"dw077vs7846",:title_display=>"New title"},solr_connector,1)
+        DiscoveryIndexer::Writer::SolrClient.process("dw077vs7846",{:id=>"dw077vs7846",:title=>"New title"},solr_connector,1)
       end
     end
   end
