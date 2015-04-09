@@ -25,7 +25,7 @@ describe DiscoveryIndexer::Mapper::GeneralMapper do
       mapper = DiscoveryIndexer::Mapper::GeneralMapper.new(druid, mods_model, purl_model)
       solr_doc =  mapper.convert_to_solr_doc
       expect(solr_doc[:id]).to eq("tn629pk3948")
-      expect(solr_doc[:title_245a_search]).to eq("Lecture 1")
+      expect(solr_doc[:title]).to eq("Lecture 1.")
     end
   end
 end
