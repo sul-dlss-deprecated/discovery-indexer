@@ -10,7 +10,6 @@ module DiscoveryIndexer
         @solr_targets_configs = solr_targets_configs
         index_targets = []
         delete_targets = []
-        puts targets
         targets.keys.each do |target| 
           if targets[target] then
             index_targets.append(target)
