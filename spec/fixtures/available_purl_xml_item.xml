@@ -87,4 +87,9 @@
     <dc:language>eng</dc:language>
     <dc:relation type="collection">Marge Frantz lectures on McCarthyism, 2003</dc:relation>
   </oai_dc:dc>
+  <ReleaseData>
+	<release to="revs_stage">true</release>
+	<release to="sw_prod">false</release>
+	<release to="sw_preview">false</release>
+  </ReleaseData>
 </publicObject>

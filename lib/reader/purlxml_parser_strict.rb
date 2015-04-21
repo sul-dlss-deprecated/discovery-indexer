@@ -84,31 +84,23 @@ module DiscoveryIndexer
       end
       
       
-      # extracts the release tag element for this fedora object, from the the identity metadata in purl xml
+      # extracts the release tag element for this fedora object, from the the ReleaseData element in purl xml
       # @return [Hash] the release tags for the fedora object
       def parse_release_tags_hash
         release_tags={}
-        identity_metadata  = parse_identity_metadata
-        unless identity_metadata.nil?
-          release_elements = identity_metadata.xpath('//release')
+        unless  @purlxml_ng_doc.nil?
+          release_elements =  @purlxml_ng_doc.xpath('//ReleaseData/release')
           release_elements.each { |n| 
             unless n.attr("to").nil?
               release_target = n.attr("to")
-              
-              
-              #target = release_target.split(":").first
-              #sub_target = "default"
-              #if target != release_target.split(":").last then
-              #  sub_target = release_target.split(":").last
-              #end
               text = n.text
               unless text.nil? 
                 release_tags[release_target]= text 
               end
             end
           }
-          return release_tags
         end
+        return release_tags
       end
  
       # extracts the contentMetadata for this fedora object, from the purl xml

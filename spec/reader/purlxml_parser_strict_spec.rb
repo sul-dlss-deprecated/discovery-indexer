@@ -103,7 +103,20 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
   end
   
   describe ".parse_release_tags_hash" do
-    pending
+    it "parses the release tags from ReleaseData in public XML" do
+      release_tags_hash = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",@available_purl_xml_ng_doc).parse_release_tags_hash()
+      expect(release_tags_hash).to eq({"revs_stage"=>"true", "sw_prod"=>"false", "sw_preview"=>"false"} )
+    end
+    it "returns empty release tags from pulic XML in the absence of ReleaseData element" do
+      reduced_purl_xml_ng = @available_purl_xml_ng_doc.clone
+      reduced_purl_xml_ng.search('//ReleaseData').remove
+      release_tags_hash = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",reduced_purl_xml_ng).parse_release_tags_hash()
+      expect(release_tags_hash).to eq({} )
+    end
+    it "returns empty release tags from nil pulic XML" do
+      release_tags_hash = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new("",nil).parse_release_tags_hash()
+      expect(release_tags_hash).to eq({} )
+    end
   end
   
   describe ".parse_copyright" do 

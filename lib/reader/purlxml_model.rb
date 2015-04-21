@@ -31,8 +31,8 @@ module DiscoveryIndexer
       attr_accessor :rdf
 
       # @!attribute [rw] release_tags_hash
-      # @return [Hash] The release_tag in hash format asextracted from public xml
-      #  identity_metadata. 
+      # @return [Hash] The release_tag in hash format as extracted from public xml
+      #  ReleaseData element. 
       # @example
       #  !{"target1"=>true, "target2"=>false}
       attr_accessor :release_tags_hash     
