@@ -95,7 +95,7 @@ module DiscoveryIndexer
               release_target = n.attr("to")
               text = n.text
               unless text.nil? 
-                release_tags[release_target]= text 
+                release_tags[release_target]= to_boolean(text) 
               end
             end
           }
@@ -207,6 +207,15 @@ module DiscoveryIndexer
         (node && node.first) ? node.first.content : nil 
       end
       
+      def to_boolean(text)
+        if text.nil? || text.empty? then
+          return false
+        elsif text.downcase.eql?("true") || text.downcase == "t" then
+          return true
+        else
+          return false
+        end
+      end    
     end
   end
 end
