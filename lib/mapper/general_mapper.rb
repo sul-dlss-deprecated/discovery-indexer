@@ -6,13 +6,13 @@ module DiscoveryIndexer
       # @param [String] druid e.g. ab123cd4567
       # @param [Stanford::Mods::Record] modsxml represents the MODS xml for the druid
       # @param [DiscoveryIndexer::Reader::PurlxmlModel] purlxml represents the purlxml model
-      # @param [Hash] collection_names represents a hash of collection_druid and 
-      #  collection_name !{"aa111aa1111"=>"First Collection", "bb123bb1234"=>"Second Collection"}
-      def initialize(druid, modsxml, purlxml, collection_names={})
+      # @param [Hash] collection_data represents a hash of collection_druid and catkey
+      # e.g. @collection_data = {'aa00bb0001'=>{:name=>'Test Collection Name',:ckey=>'000001'},'nt028fd5773'=>{:name=>'Revs Institute Archive',:ckey=>'000002'}}
+      def initialize(druid, modsxml, purlxml, collection_data={})
         @druid = druid
         @modsxml = modsxml
         @purlxml = purlxml
-        @collection_names = collection_names
+        @collection_data = collection_data
       end
 
       # Create a Hash representing a Solr doc, with all MODS related fields populated.  
