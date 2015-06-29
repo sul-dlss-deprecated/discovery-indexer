@@ -42,6 +42,11 @@ module DiscoveryIndexer
       #  content_metadata.
       attr_accessor :dor_content_type
       
+      # @!attribute [rw] dor_display_type
+      # @return [String] The displayType as extracted from public xml
+      #  identity_metadata.
+      attr_accessor :dor_display_type
+
       # @!attribute [rw] is_collection
       # @return [Boolean] true if the item type is collection in the identity_metadata
       attr_accessor :is_collection
