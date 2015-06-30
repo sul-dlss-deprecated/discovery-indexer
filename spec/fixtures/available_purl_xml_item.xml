@@ -6,6 +6,7 @@
     <objectCreator>DOR</objectCreator>
     <objectLabel>Lecture 1</objectLabel>
     <objectType>item</objectType>
+    <displayType>image</displayType>
     <adminPolicy>druid:ww057vk7675</adminPolicy>
     <otherId name="label"/>
     <otherId name="uuid">08d544da-d459-11e2-8afb-0050569b3c3c</otherId>

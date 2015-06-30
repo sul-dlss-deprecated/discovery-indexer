@@ -153,7 +153,7 @@ module DiscoveryIndexer
       # @return [String] 
       def parse_dor_display_type
         identity_md = parse_identity_metadata
-        ddt = identity_md ? identity_md.xpath('identityMetadata/displayType').text : nil
+        ddt = identity_md ? identity_md.xpath('//displayType').text : nil
         DiscoveryIndexer::Logging.logger.debug "#{@druid} has no DOR display type (<identityMetadata> element may be missing displayType tag)" if !ddt || ddt.empty?
         ddt
       end
