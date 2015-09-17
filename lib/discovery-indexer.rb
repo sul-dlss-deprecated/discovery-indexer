@@ -15,8 +15,7 @@ require 'mapper/general_mapper'
 require 'writer/solr_client'
 require 'writer/solr_writer'
 
-#require 'utilities/extract_sub_targets'
-
+# require 'utilities/extract_sub_targets'
 
 module DiscoveryIndexer
   PURL_DEFAULT = 'http://purl.stanford.edu'

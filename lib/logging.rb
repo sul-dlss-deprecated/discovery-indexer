@@ -6,11 +6,8 @@ module DiscoveryIndexer
       def logger
         @logger ||= Logger.new(STDOUT)
       end
-  
-      def logger=(logger)
-        @logger = logger
-      end
-    end
 
+      attr_writer :logger
+    end
   end
 end
