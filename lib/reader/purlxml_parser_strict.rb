@@ -152,11 +152,11 @@ module DiscoveryIndexer
         ids = []
         content_md = parse_content_metadata
         return nil if content_md.nil?
-        content_md.xpath('//resource[@type="image"]/file/@id').each do |node|
-          ids << node.text unless node.text.empty?
-        end
-        content_md.xpath('//resource[@type="page"]/file/@id').each do |node|
-          ids << node.text unless node.text.empty?
+        types_to_search=%w{image page}
+        types_to_search.each do |resource_type|
+          content_md.xpath("//resource[@type=\"#{resource_type}\"]/file/@id").each do |node|
+            ids << node.text unless node.text.empty?
+          end          
         end
         return nil if ids.empty?
         ids
@@ -179,7 +179,7 @@ module DiscoveryIndexer
       def parse_file_ids
         ids = []
         content_md = parse_content_metadata
-        return unless content_md.nil?
+        return nil if content_md.nil?
         content_md.xpath('//resource/file/@id').each do |node|
           ids << node.text unless node.text.empty?
         end
