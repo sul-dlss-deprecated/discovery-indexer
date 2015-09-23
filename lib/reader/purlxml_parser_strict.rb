@@ -154,9 +154,11 @@ module DiscoveryIndexer
         return nil if content_md.nil?
         types_to_search=%w{image page}
         types_to_search.each do |resource_type|
-          content_md.xpath("//resource[@type=\"#{resource_type}\"]/file/@id").each do |node|
-            ids << node.text unless node.text.empty?
-          end          
+          content_md.xpath("//resource[@type=\"#{resource_type}\"]/file").each do |node|
+            if node['mimetype'] == 'image/jp2'
+              ids << node['id'] unless node['id'].empty?
+            end
+          end
         end
         return nil if ids.empty?
         ids
