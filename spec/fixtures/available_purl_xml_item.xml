@@ -21,8 +21,8 @@
     <resource sequence="1" id="tn629pk3948_1" type="video">
       <label>Tape 1</label>
       <file id="tn629pk3948_sl.mp4" mimetype="video/mp4" size="3615267858">
-      
-      
+
+
     </file>
     </resource>
     <resource sequence="2" id="tn629pk3948_2" type="image">
@@ -43,9 +43,15 @@
         <imageData width="1547" height="1379"/>
       </file>
     </resource>
+    <resource sequence="5" id="tn629pk3948_5" type="page">
+      <label>Page with Media Information</label>
+      <file id="tn629pk3948_pg_1.jp2" mimetype="image/jp2" size="411054">
+        <imageData width="1547" height="1379"/>
+      </file>
+    </resource>
   </contentMetadata>
   <rightsMetadata>
-    <copyright><human type="copyright">Test copyright statement. All rights reserved unless otherwise indicated.</human></copyright>  
+    <copyright><human type="copyright">Test copyright statement. All rights reserved unless otherwise indicated.</human></copyright>
     <access type="discover">
       <machine>
         <world/>
@@ -83,7 +89,7 @@
     <dc:subject>Anti-Communist Movements--United States</dc:subject>
     <dc:subject>McCarthy, Joseph, 1908-1957</dc:subject>
     <dc:relation type="repository">Stanford University. Libraries. Department of Special Collections and University Archives http://purl.stanford.edu/tn629pk3948</dc:relation>
-    <dc:rights>Digital recordings from this collection may be accessed freely. These files may not be reproduced or used for any purpose without permission. For permission requests, please contact Stanford University Department of Special Collections  University Archives (speccollref@stanford.edu). 
+    <dc:rights>Digital recordings from this collection may be accessed freely. These files may not be reproduced or used for any purpose without permission. For permission requests, please contact Stanford University Department of Special Collections  University Archives (speccollref@stanford.edu).
     </dc:rights>
     <dc:language>eng</dc:language>
     <dc:relation type="collection">Marge Frantz lectures on McCarthyism, 2003</dc:relation>
