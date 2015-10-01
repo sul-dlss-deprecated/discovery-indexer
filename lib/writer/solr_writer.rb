@@ -5,30 +5,25 @@ module DiscoveryIndexer
   module Writer
     # Performs writes to solr client based upon true and false release flags
     class SolrWriter
+      attr_reader :solr_targets_configs
+
       include DiscoveryIndexer::Logging
 
-      def process(id, index_doc, targets, solr_targets_configs)
-        @solr_targets_configs = solr_targets_configs
-        index_targets = []
-        delete_targets = []
-        targets.keys.each do |target|
-          if targets[target]
-            index_targets.append(target)
-          else
-            delete_targets.append(target)
-          end
-        end
+      def process(id, index_doc, targets, targets_configs)
+        @solr_targets_configs = targets_configs
+        index_targets = targets.select { |_, b| b }.keys
+        delete_targets = targets.reject { |_, b| b }.keys
 
         # get targets with true
-        solr_index_client(id, index_doc, index_targets)
+        solr_index_client(id, index_doc, index_targets) if index_targets.present?
         # get targets with false
-        solr_delete_client(id, delete_targets)
+        solr_delete_client(id, delete_targets) if delete_targets.present?
       end
 
-      def solr_delete_from_all(id, solr_targets_configs)
+      def solr_delete_from_all(id, targets_configs)
         # Get a list of all registered targets
-        @solr_targets_configs = solr_targets_configs
-        targets = @solr_targets_configs.keys
+        @solr_targets_configs = targets_configs
+        targets = solr_targets_configs.keys
         solr_delete_client(id, targets)
       end
 
@@ -48,8 +43,8 @@ module DiscoveryIndexer
 
       def get_connector_for_target(solr_target)
         solr_connector = nil
-        if @solr_targets_configs.keys.include?(solr_target)
-          config = @solr_targets_configs[solr_target]
+        if solr_targets_configs.keys.include?(solr_target)
+          config = solr_targets_configs[solr_target]
           solr_connector = RSolr.connect(config.deep_symbolize_keys)
         end
         solr_connector

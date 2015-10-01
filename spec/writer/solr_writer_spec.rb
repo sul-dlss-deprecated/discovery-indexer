@@ -1,61 +1,66 @@
 require 'spec_helper'
 
 describe DiscoveryIndexer::Writer::SolrWriter do
-  VCR.configure do |config|
-    config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-    config.hook_into :webmock
+  let(:sw_connection) { { url: 'http://solr-core:8983/sw-prod/' } }
+  let(:preview_connection) { { url: 'http://solr-core:8983/sw-preview/' } }
+  let(:mix_targets) { { 'searchworks' => true, 'searchworks:preview' => false } }
+  let(:index_targets) { { 'searchworks' => true } }
+  let(:delete_targets) { { 'searchworks:preview' => false } }
+  let(:solr_doc) { { id: '123' } }
+  let(:id) { '123' }
+
+  before do
+    allow(subject).to receive(:solr_targets_configs).and_return(
+      'searchworks' => sw_connection,
+      'searchworks:preview' => preview_connection
+    )
+  end
+
+  describe '.process' do
+    it 'should create two arrays index_targets and delete_targets' do
+      expect(subject).to receive(:solr_index_client).with(id, solr_doc, ['searchworks'])
+      expect(subject).to receive(:solr_delete_client).with(id, ['searchworks:preview'])
+      subject.process(id, solr_doc, mix_targets, {})
+    end
+    it 'should not send delete messages when there are no delete targets' do
+      expect(subject).to receive(:solr_index_client).with(id, solr_doc, ['searchworks'])
+      expect(subject).not_to receive(:solr_delete_client)
+      subject.process(id, solr_doc, index_targets, {})
+    end
+    it 'should not send index messages when there are no index targets' do
+      expect(subject).not_to receive(:solr_index_client)
+      expect(subject).to receive(:solr_delete_client).with(id, ['searchworks:preview'])
+      subject.process(id, solr_doc, delete_targets, {})
+    end
   end
 
   describe '.solr_delete_client' do
-    before :all do
-      @targets_configs = { 'searchworks' => { url: 'http://solr-core:8983/sw-prod/', read_timeout: 120, open_timeout: 120 },
-                           'searchworks:preview' => { url: 'http://solr-core:8983/sw-preview/' } }
-    end
     it 'should call solr client delete method for each target' do
-      solr_writer = DiscoveryIndexer::Writer::SolrWriter.new
-      solr_writer.instance_variable_set(:@solr_targets_configs, @targets_configs)
+      expect(DiscoveryIndexer::Writer::SolrClient).to receive(:delete).with('aa111bb222', an_instance_of(RSolr::Client))
+      expect(DiscoveryIndexer::Writer::SolrClient).to receive(:delete).with('aa111bb222', an_instance_of(RSolr::Client))
+      subject.solr_delete_client('aa111bb222', ['searchworks', 'searchworks:preview'])
+    end
 
-      #   solr_writer.solr_delete_client("aa111aa1111",["searchworks1", "1searchworks:preview"])
-
-      # SolrClient.should_receive(:SolrClient.delete)
-      #  expect_any_instance_of(DiscoveryIndexer::Writer::SolrClient).to receive(DiscoveryIndexer::Writer::SolrClient.delete).with("aa111aa1111",nil).and_ret
-      # urn
+    it 'should not call solr client delete method when there is no client for the given target' do
+      expect(DiscoveryIndexer::Writer::SolrClient).not_to receive(:delete)
+      subject.solr_delete_client('aa111bb222', ['blah'])
     end
   end
 
   describe '.get_connector_for_target' do
     it 'should return a connector for a target that is avaliable in config list' do
-      solr_writer = DiscoveryIndexer::Writer::SolrWriter.new
-      targets_configs = { 'searchworks' => { url: 'http://solr-core:8983/sw-prod/' },
-                          'searchworks:preview' => { url: 'http://solr-core:8983/sw-preview/' } }
-      solr_writer.instance_variable_set(:@solr_targets_configs, targets_configs)
-
-      solr_connector = solr_writer.get_connector_for_target('searchworks')
-
+      solr_connector = subject.get_connector_for_target('searchworks')
+      expect(solr_connector).to be_a(RSolr::Client)
       expect(solr_connector.uri.to_s).to eq('http://solr-core:8983/sw-prod/')
+
+      solr_connector = subject.get_connector_for_target('searchworks:preview')
+      expect(solr_connector).to be_a(RSolr::Client)
+      expect(solr_connector.uri.to_s).to eq('http://solr-core:8983/sw-preview/')
     end
 
     it 'should return a connector for a target that is avaliable in config list' do
-      solr_writer = DiscoveryIndexer::Writer::SolrWriter.new
-      targets_configs = { 'searchworks' => { url: 'http://solr-core:8983/sw-prod/' },
-                          'searchworks:preview' => { url: 'http://solr-core:8983/sw-preview/' } }
-      solr_writer.instance_variable_set(:@solr_targets_configs, targets_configs)
-      solr_connector = solr_writer.get_connector_for_target('nothing')
-
+      solr_connector = subject.get_connector_for_target('nothing')
       expect(solr_connector).to be_nil
-    end
-
-    it 'should return a connector for a target that is avaliable in config list' do
-      solr_writer = DiscoveryIndexer::Writer::SolrWriter.new
-      targets_configs = { 'searchworks' => { url: 'http://solr-core:8983/sw-prod/', read_timeout: 120, open_timeout: 120 },
-                          'searchworks:preview' => { url: 'http://solr-core:8983/sw-preview/' } }
-      solr_writer.instance_variable_set(:@solr_targets_configs, targets_configs)
-
-      solr_connector = solr_writer.get_connector_for_target('searchworks')
-
-      expect(solr_connector.options[:url]).to eq('http://solr-core:8983/sw-prod/')
-      expect(solr_connector.options[:open_timeout]).to eq(120)
-      expect(solr_connector.options[:read_timeout]).to eq(120)
     end
   end
 end
