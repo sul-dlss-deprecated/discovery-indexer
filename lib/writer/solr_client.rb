@@ -43,15 +43,15 @@ module DiscoveryIndexer
 
           if is_delete
             DiscoveryIndexer::Logging.logger.info "Deleting #{id} on attempt #{attempt}"
-            solr_connector.delete_by_id(id)
+            solr_connector.delete_by_id(id, :add_attributes => {:commitWithin => 10000})
           elsif allow_update?(solr_connector) && doc_exists?(id, solr_connector)
             DiscoveryIndexer::Logging.logger.info "Updating #{id} on attempt #{attempt}"
             update_solr_doc(id, solr_doc, solr_connector)
           else
             DiscoveryIndexer::Logging.logger.info "Indexing #{id} on attempt #{attempt}"
-            solr_connector.add(solr_doc)
+            solr_connector.add(solr_doc, :add_attributes => {:commitWithin => 10000})
           end
-          solr_connector.commit
+          #solr_connector.commit
           DiscoveryIndexer::Logging.logger.info "Completing #{id} successfully on attempt #{attempt}"
         end
       end
