@@ -149,19 +149,9 @@ module DiscoveryIndexer
       # the @id attribute of resource/file elements that match the image type, including extension
       # @return [Array<String>] filenames
       def parse_image_ids
-        ids = []
         content_md = parse_content_metadata
         return nil if content_md.nil?
-        types_to_search=%w{image page}
-        types_to_search.each do |resource_type|
-          content_md.xpath("//resource[@type=\"#{resource_type}\"]/file").each do |node|
-            if node['mimetype'] == 'image/jp2'
-              ids << node['id'] unless node['id'].empty?
-            end
-          end
-        end
-        return nil if ids.empty?
-        ids
+        content_md.xpath('//resource[@type="page" or @type="image"]/file[@mimetype="image/jp2"]/@id').map(&:to_s)
       end
 
       def parse_sourceid

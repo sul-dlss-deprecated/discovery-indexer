@@ -21,8 +21,6 @@
     <resource sequence="1" id="tn629pk3948_1" type="video">
       <label>Tape 1</label>
       <file id="tn629pk3948_sl.mp4" mimetype="video/mp4" size="3615267858">
-
-
     </file>
     </resource>
     <resource sequence="2" id="tn629pk3948_2" type="image">
@@ -45,6 +43,9 @@
     </resource>
     <resource sequence="5" id="tn629pk3948_5" type="page">
       <label>Page with Media Information</label>
+      <file id="tn629pk3948_pg_1.pdf" mimetype="application/pdf" size="411054">
+        <imageData width="1547" height="1379"/>
+      </file>
       <file id="tn629pk3948_pg_1.jp2" mimetype="image/jp2" size="411054">
         <imageData width="1547" height="1379"/>
       </file>
