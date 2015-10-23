@@ -18,5 +18,5 @@ require 'writer/solr_writer'
 # require 'utilities/extract_sub_targets'
 
 module DiscoveryIndexer
-  PURL_DEFAULT = 'http://purl.stanford.edu'
+  PURL_DEFAULT = 'https://purl.stanford.edu'
 end

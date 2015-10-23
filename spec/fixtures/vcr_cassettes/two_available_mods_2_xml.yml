@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://purl.stanford.edu/tn629pk3948.mods
+    uri: https://purl.stanford.edu/tn629pk3948.mods
     body:
       encoding: US-ASCII
       string: ''
@@ -81,7 +81,7 @@ http_interactions:
           </mods:subject>
           <mods:location>
             <mods:physicalLocation authority="naf" valueURI="http://id.loc.gov/authorities/names/no2014019980" displayLabel="Repository" type="repository">Stanford University. Libraries. Department of Special Collections and University Archives</mods:physicalLocation>
-            <mods:url>http://purl.stanford.edu/tn629pk3948</mods:url>
+            <mods:url>https://purl.stanford.edu/tn629pk3948</mods:url>
           </mods:location>
           <mods:language>
             <mods:languageTerm type="code" authority="iso639-2">eng</mods:languageTerm>
@@ -90,7 +90,7 @@ http_interactions:
             <mods:titleInfo>
               <mods:title>Marge Frantz lectures on McCarthyism, 2003</mods:title>
             </mods:titleInfo>
-            <mods:identifier type="uri">http://purl.stanford.edu/yk804rq1656</mods:identifier>
+            <mods:identifier type="uri">https://purl.stanford.edu/yk804rq1656</mods:identifier>
             <mods:typeOfResource collection="yes"/>
           </mods:relatedItem>
           <mods:accessCondition type="useAndReproduction">Digital recordings from this collection may be accessed freely. These files may not be reproduced or used for any purpose without permission. For permission requests, please contact Stanford University Department of Special Collections  University Archives (speccollref@stanford.edu).</mods:accessCondition>

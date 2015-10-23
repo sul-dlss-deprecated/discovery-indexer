@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://purl.stanford.edu/bg210vm0680.xml
+    uri: https://purl.stanford.edu/bg210vm0680.xml
     body:
       encoding: US-ASCII
       string: ''
@@ -102,6 +102,6 @@ http_interactions:
             <release to="Robot_Testing_Feb_5_2015">true</release>
           </ReleaseDigest>
         </publicObject>
-    http_version: 
+    http_version:
   recorded_at: Tue, 24 Mar 2015 22:17:56 GMT
 recorded_with: VCR 2.9.3

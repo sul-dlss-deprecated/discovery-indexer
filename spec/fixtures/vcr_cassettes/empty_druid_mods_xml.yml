@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://purl.stanford.edu/.mods
+    uri: https://purl.stanford.edu/.mods
     body:
       encoding: US-ASCII
       string: ''
@@ -49,6 +49,6 @@ http_interactions:
         \ <!-- This file lives in public/404.html -->\n  <div class=\"dialog\">\n
         \   <h1>The page you were looking for doesn't exist.</h1>\n    <p>You may
         have mistyped the address or the page may have moved.</p>\n  </div>\n</body>\n</html>"
-    http_version: 
+    http_version:
   recorded_at: Wed, 11 Mar 2015 20:59:32 GMT
 recorded_with: VCR 2.9.3

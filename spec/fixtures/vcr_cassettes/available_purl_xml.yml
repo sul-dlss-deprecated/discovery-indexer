@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://purl.stanford.edu/tn629pk3948.xml
+    uri: https://purl.stanford.edu/tn629pk3948.xml
     body:
       encoding: US-ASCII
       string: ''
@@ -92,13 +92,13 @@ http_interactions:
         \   <dc:contributor>Frantz, Marge (Speaker)</dc:contributor>\n    <dc:subject>Anti-Communist
         Movements--United States</dc:subject>\n    <dc:subject>McCarthy, Joseph, 1908-1957</dc:subject>\n
         \   <dc:relation type=\"repository\">Stanford University. Libraries. Department
-        of Special Collections and University Archives http://purl.stanford.edu/tn629pk3948</dc:relation>\n
+        of Special Collections and University Archives https://purl.stanford.edu/tn629pk3948</dc:relation>\n
         \   <dc:rights>Digital recordings from this collection may be accessed freely.
         These files may not be reproduced or used for any purpose without permission.
         For permission requests, please contact Stanford University Department of
         Special Collections  University Archives (speccollref@stanford.edu). \n    </dc:rights>\n
         \   <dc:language>eng</dc:language>\n    <dc:relation type=\"collection\">Marge
         Frantz lectures on McCarthyism, 2003</dc:relation>\n  </oai_dc:dc>\n</publicObject>\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 11 Mar 2015 20:59:33 GMT
 recorded_with: VCR 2.9.3

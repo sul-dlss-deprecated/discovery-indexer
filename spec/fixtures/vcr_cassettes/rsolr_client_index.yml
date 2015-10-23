@@ -26,8 +26,8 @@ http_interactions:
         VHS 1 tape access video/mpeg reformatted digital moving image Frantz, Marge
         Speaker Anti-Communist Movements--United States McCarthy, Joseph, 1908-1957
         Stanford University. Libraries. Department of Special Collections and University
-        Archives http://purl.stanford.edu/tn629pk3948 eng Marge Frantz lectures on
-        McCarthyism, 2003 http://purl.stanford.edu/yk804rq1656 Digital recordings
+        Archives https://purl.stanford.edu/tn629pk3948 eng Marge Frantz lectures on
+        McCarthyism, 2003 https://purl.stanford.edu/yk804rq1656 Digital recordings
         from this collection may be accessed freely. These files may not be reproduced
         or used for any purpose without permission. For permission requests, please
         contact Stanford University Department of Special Collections University Archives
@@ -48,7 +48,7 @@ http_interactions:
       encoding: UTF-8
       string: |
         {'responseHeader'=>{'status'=>0,'QTime'=>72}}
-    http_version: 
+    http_version:
   recorded_at: Fri, 13 Mar 2015 18:35:59 GMT
 - request:
     method: post
@@ -72,6 +72,6 @@ http_interactions:
       encoding: UTF-8
       string: |
         {'responseHeader'=>{'status'=>0,'QTime'=>115}}
-    http_version: 
+    http_version:
   recorded_at: Fri, 13 Mar 2015 18:35:59 GMT
 recorded_with: VCR 2.9.3
