@@ -83,7 +83,7 @@ module DiscoveryIndexer
 
         params = "[{\"id\":\"#{id}\","
         solr_doc.each do |field_name, new_values|
-          next unless field_name == :id
+          next if field_name == :id
           params += "\"#{field_name}\":"
           new_values = [new_values] unless new_values.class == Array
           new_values = new_values.map { |s| s.to_s.gsub('\\', '\\\\\\').gsub('"', '\"').strip } # strip leading/trailing spaces and escape quotes for each value
