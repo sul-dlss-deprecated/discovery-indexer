@@ -1,45 +1,21 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: http://127.0.0.1:8983/solr/update?wt=ruby
+    method: get
+    uri: http://localhost:8983/solr/select?q=id:%22tn629pk3948%22&wt=ruby
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><add><doc><field name="id">tn629pk3948</field><field
-        name="title_245a_search">Lecture 1</field><field name="title_245_search">Lecture
-        1.</field><field name="title_sort">Lecture 1</field><field name="title_245a_display">Lecture
-        1</field><field name="title_display">Lecture 1</field><field name="title_full_display">Lecture
-        1.</field><field name="author_7xx_search">Frantz, Marge</field><field name="author_person_facet">Frantz,
-        Marge</field><field name="author_sort"> Lecture 1</field><field name="author_person_display">Frantz,
-        Marge</field><field name="author_person_full_display">Frantz, Marge</field><field
-        name="topic_search">Anti-Communist Movements--United States</field><field
-        name="subject_other_search">McCarthy, Joseph, 1908-1957</field><field name="subject_all_search">Anti-Communist
-        Movements--United States</field><field name="subject_all_search">McCarthy,
-        Joseph, 1908-1957</field><field name="topic_facet">Anti-Communist Movements--United
-        States</field><field name="topic_facet">McCarthy, Joseph, 1908-1957</field><field
-        name="pub_date_sort">2003</field><field name="imprint_display">2003-01-27</field><field
-        name="pub_date">2003</field><field name="pub_date_display">2003-01-27</field><field
-        name="pub_year_tisim">2003</field><field name="creation_year_isi">2003</field><field
-        name="format_main_ssim">Video</field><field name="format">Video</field><field
-        name="language">English</field><field name="physical">1 tape</field><field
-        name="all_search"> V0401_b1_1.01 V0401 Lecture 1 2003-01-27 Stanford (Calif.)
-        VHS 1 tape access video/mpeg reformatted digital moving image Frantz, Marge
-        Speaker Anti-Communist Movements--United States McCarthy, Joseph, 1908-1957
-        Stanford University. Libraries. Department of Special Collections and University
-        Archives https://purl.stanford.edu/tn629pk3948 eng Marge Frantz lectures on
-        McCarthyism, 2003 https://purl.stanford.edu/yk804rq1656 Digital recordings
-        from this collection may be accessed freely. These files may not be reproduced
-        or used for any purpose without permission. For permission requests, please
-        contact Stanford University Department of Special Collections University Archives
-        (speccollref@stanford.edu). </field></doc></add>
-    headers:
-      Content-Type:
-      - text/xml
+      encoding: US-ASCII
+      string: ''
+    headers: {}
   response:
     status:
       code: 200
       message: OK
     headers:
+      Last-Modified:
+      - Wed, 11 Nov 2015 00:34:07 GMT
+      Etag:
+      - '"NDg5MDAwMDAwMDAwMDAwMFNvbHI="'
       Content-Type:
       - text/plain;charset=UTF-8
       Transfer-Encoding:
@@ -47,15 +23,16 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |
-        {'responseHeader'=>{'status'=>0,'QTime'=>72}}
-    http_version:
-  recorded_at: Fri, 13 Mar 2015 18:35:59 GMT
+        {'responseHeader'=>{'status'=>0,'QTime'=>1},'response'=>{'numFound'=>0,'start'=>0,'docs'=>[]}}
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:34:15 GMT
 - request:
     method: post
-    uri: http://127.0.0.1:8983/solr/update?wt=ruby
+    uri: http://localhost:8983/solr/update?wt=ruby
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><commit/>
+      string: <?xml version="1.0" encoding="UTF-8"?><add commitWithin="10000"><doc><field
+        name="id">tn629pk3948</field><field name="title">Lecture 1.</field></doc></add>
     headers:
       Content-Type:
       - text/xml
@@ -71,7 +48,68 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |
-        {'responseHeader'=>{'status'=>0,'QTime'=>115}}
-    http_version:
-  recorded_at: Fri, 13 Mar 2015 18:35:59 GMT
+        {'responseHeader'=>{'status'=>0,'QTime'=>2}}
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:34:15 GMT
+- request:
+    method: post
+    uri: http://localhost:8983/solr/update?commit=true
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <response>
+        <lst name="responseHeader"><int name="status">0</int><int name="QTime">15</int></lst>
+        </response>
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:34:15 GMT
+- request:
+    method: get
+    uri: http://localhost:8983/solr/select?q=id:%22tn629pk3948%22&wt=ruby
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Wed, 11 Nov 2015 00:34:15 GMT
+      Etag:
+      - '"Mjg5MDAwMDAwMDAwMDAwMFNvbHI="'
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {'responseHeader'=>{'status'=>0,'QTime'=>1},'response'=>{'numFound'=>1,'start'=>0,'docs'=>[{'id'=>'tn629pk3948','title'=>'Lecture 1.','_version_'=>1517501342175723520,'timestamp'=>'2015-11-11T00:34:15.145Z'}]}}
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:34:15 GMT
 recorded_with: VCR 2.9.3

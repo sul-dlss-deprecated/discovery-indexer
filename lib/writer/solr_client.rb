@@ -70,17 +70,19 @@ module DiscoveryIndexer
         response['response']['numFound'] == 1
       end
 
+      # @param solr_connector [RSolr::Client]  is an open connection with the solr core
+      # send hard commit to solr
+      def self.commit(solr_connector)
+        RestClient.post self.solr_url(solr_connector), {},:content_type => :json, :accept=>:json
+      end
+
       # It is an internal method that updates the solr doc instead of adding a new one.
+      # @param id [String] the document id, usually it will be druid.
+      # @param solr_doc [Hash] is the solr doc in hash format
+      # @param solr_connector [RSolr::Client]  is an open connection with the solr core
       def self.update_solr_doc(id, solr_doc, solr_connector)
         # update_solr_doc can't used RSolr because updating hash doc is not supported
         #  so we need to build the json input manually
-        solr_url = solr_connector.options[:url]
-        if solr_url.end_with?('/')
-          url = "#{solr_connector.options[:url]}update?commit=true"
-        else
-          url = "#{solr_connector.options[:url]}/update?commit=true"
-        end
-
         params = "[{\"id\":\"#{id}\","
         solr_doc.each do |field_name, new_values|
           next if field_name == :id
@@ -91,8 +93,21 @@ module DiscoveryIndexer
         end
         params.chomp!(',')
         params += '}]'
-        RestClient.post url, params, content_type: :json, accept: :json
+        RestClient.post self.solr_url(solr_connector), params, content_type: :json, accept: :json
       end
+
+      # adjust the solr_url so it works with or without a trailing /
+      # @param solr_connector [RSolr::Client]  is an open connection with the solr core
+      # @return [String] the solr URL
+      def self.solr_url(solr_connector)
+        solr_url = solr_connector.options[:url]
+        if solr_url.end_with?('/')
+          "#{solr_url}update?commit=true"
+        else
+          "#{solr_url}/update?commit=true"
+        end
+      end
+
     end
   end
 end

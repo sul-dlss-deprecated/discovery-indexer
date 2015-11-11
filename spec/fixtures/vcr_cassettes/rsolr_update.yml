@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:8983/solr/select?q=id:%22dw077vs7846%22&wt=ruby
+    uri: http://localhost:8983/solr/select?q=id:%22cb077vs7846%22&wt=ruby
     body:
       encoding: US-ASCII
       string: ''
@@ -12,148 +12,10 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Content-Type:
-      - text/plain;charset=UTF-8
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eydyZXNwb25zZUhlYWRlcic9Pnsnc3RhdHVzJz0+MCwnUVRpbWUnPT42LCdw
-        YXJhbXMnPT57J3EnPT4naWQ6ImR3MDc3dnM3ODQ2IicsJ3d0Jz0+J3J1Ynkn
-        fX0sJ3Jlc3BvbnNlJz0+eydudW1Gb3VuZCc9PjEsJ3N0YXJ0Jz0+MCwnZG9j
-        cyc9Plt7J2lkJz0+J2R3MDc3dnM3ODQ2JywndGl0bGVfc29ydCc9PidXYWx0
-        ZXJzIE1zIFc3OTYgUGV0ZXIgb2YgUG9pdGllcnMgSGlzdG9yaWNhbCBnZW5l
-        YWxvZ3kgb2YgQ2hyaXN0JywndGl0bGVfMjQ1YV9kaXNwbGF5Jz0+J1dhbHRl
-        cnMgTXMuIFcuNzk2LCBQZXRlciBvZiBQb2l0aWVyc1wnIEhpc3RvcmljYWwg
-        Z2VuZWFsb2d5IG9mIENocmlzdCcsJ3RpdGxlX2Rpc3BsYXknPT4nTmV3IHRp
-        dGxlJywndGl0bGVfZnVsbF9kaXNwbGF5Jz0+J1dhbHRlcnMgTXMuIFcuNzk2
-        LCBQZXRlciBvZiBQb2l0aWVyc1wnIEhpc3RvcmljYWwgZ2VuZWFsb2d5IG9m
-        IENocmlzdC4nLCdhdXRob3JfcGVyc29uX2Rpc3BsYXknPT5bJ1BldGVyLCBv
-        ZiBQb2l0aWVycywgY2EuIDExMzAtMTIwNSddLCdhdXRob3JfcGVyc29uX2Z1
-        bGxfZGlzcGxheSc9PlsnUGV0ZXIsIG9mIFBvaXRpZXJzLCBjYS4gMTEzMC0x
-        MjA1J10sJ2ltcHJpbnRfZGlzcGxheSc9PlsnMTIwMCddLCdwdWJfZGF0ZSc9
-        PicxMjAwJywncHViX2RhdGVfZGlzcGxheSc9PicxMjAwJywnY3JlYXRpb25f
-        eWVhcl9pc2knPT4xMjAwLCdmb3JtYXRfbWFpbl9zc2ltJz0+WydBcmNoaXZl
-        L01hbnVzY3JpcHQnXSwnZm9ybWF0Jz0+WydNYW51c2NyaXB0L0FyY2hpdmUn
-        XSwnbGFuZ3VhZ2UnPT5bJ0xhdGluJ10sJ2FsbF9zZWFyY2gnPT4nIFdhbHRl
-        cnMgTXMuIFcuNzk2LCBQZXRlciBvZiBQb2l0aWVyc1wnIEhpc3RvcmljYWwg
-        Z2VuZWFsb2d5IG9mIENocmlzdCBDb21wZW5kaXVtIGhpc3RvcmlhZSBpbiBn
-        ZW5lYWxvZ2lhIENocmlzdGkgUGV0ZXIsIG9mIFBvaXRpZXJzLCBjYS4gMTEz
-        MC0xMjA1IGF1dGhvciBtaXhlZCBtYXRlcmlhbCBUaGlzIEVuZ2xpc2ggbWFu
-        dXNjcmlwdCB3YXMgY3JlYXRlZCBpbiB0aGUgZWFybHkgdGhpcnRlZW50aCBj
-        ZW50dXJ5IHNvb24gYWZ0ZXIgdGhlIGRlYXRoIG9mIGl0cyBhdXRob3IsIFBl
-        dGVyIG9mIFBvaXRpZXJzLCB0aGVvbG9naWFuIGFuZCBDaGFuY2VsbG9yIG9m
-        IHRoZSBVbml2ZXJzaXR5IG9mIFBhcmlzIGZyb20gMTE5MyB0byAxMjA1LiBJ
-        dCBpcyBhbiBlYXJseSBjb3B5IG9mIGhpcyB0ZXh0LCB0aGUgQ29tcGVuZGl1
-        bSBoaXN0b3JpYWUgaW4gZ2VuZWFsb2dpYSBDaHJpc3RpLiBJbnRlbmRlZCBh
-        cyBhIHRlYWNoaW5nIGFpZCwgdGhlIHdvcmsgcHJvdmlkZXMgYSB2aXN1YWwg
-        Z2VuZWFsb2d5IG9mIENocmlzdCBjb21wcmlzZWQgb2YgcG9ydHJhaXRzIGlu
-        IHJvdW5kZWxzLCBhY2NvbXBhbmllZCBieSBhIHRleHQgZGlzY3Vzc2luZyB0
-        aGUgaGlzdG9yaWNhbCBiYWNrZ3JvdW5kIG9mIENocmlzdFwncyBsaW5lYWdl
-        LiBJdCBhbHNvIGluY2x1ZGVzIGVwaXNvZGVzIGZyb20gYmlibGljYWwgaGlz
-        dG9yeSwgaW5jbHVkaW5nIEFkYW0gYW5kIEV2ZSwgTm9haFwncyBBcmssIHRo
-        ZSBOYXRpdml0eSwgdGhlIFZpcmdpbiBhbmQgQ2hpbGQsIHRoZSBDcnVjaWZp
-        eGlvbiwgYW5kIHRoZSBSZXN1cnJlY3Rpb24uIEVhcmx5IG1hbnVzY3JpcHRz
-        IGxpa2UgdGhpcyB0ZW5kIHRvIGJlIGluIHRoZSBmb3JtIG9mIGEgYm9vaywg
-        YW5kIG90aGVyIGV4YW1wbGVzIGNhbiBiZSBmb3VuZCBpbiBMb25kb24sIEJy
-        aXRpc2ggTGlicmFyeSBDb3R0b24gTVMgRmF1c3RpbmEgQiBWSUksIGFuZCBD
-        YW1icmlkZ2UsIENvcnB1cyBDaHJpc3RpIENvbGxlZ2UgTVMgODMuIExhdGVy
-        IG1hbnVzY3JpcHRzIG9mIHRoaXMgdGV4dCBhcmUgb2Z0ZW4gcHJlc2VudGVk
-        IGluIHJvbGwgZm9ybS4gRm9yIGZ1bGwgZGVzY3JpcHRpb24sIHNlZSBodHRw
-        Oi8vd3d3LnRoZWRpZ2l0YWx3YWx0ZXJzLm9yZy9EYXRhL1dhbHRlcnNNYW51
-        c2NyaXB0cy9odG1sL1c3OTYvZGVzY3JpcHRpb24uaHRtbCBUaGUgcHJpbWFy
-        eSBsYW5ndWFnZSBpbiB0aGlzIG1hbnVzY3JpcHQgaXMgTGF0aW4uIExhdGlu
-        IDFyIC0gNHIgQ29tcGVuZGl1bSBoaXN0b3JpYWUgaW4gZ2VuZWFsb2dpYSBD
-        aHJpc3RpIENvbXBsZXRlIHRleHQgb2YgUGV0ZXIgb2YgUG9pdGllcnNcJyB0
-        ZWFjaGluZyBtYW51YWwgb24gdGhlIGdlbmVhbG9neSBvZiBDaHJpc3QgcGFy
-        Y2htZW50IEhlYXZ5LCBjcmVhbS1jb2xvcmVkIHBhcmNobWVudCB3aXRoIGVk
-        Z2VzIGRhcmtlbmVkIGZyb20gdXNlIEZvbGlhdGlvbjogaWkrNCtpaSAzNC40
-        IHggMjQuNWNtIDI2LjkgeCAxOC41Y20gTW9kZXJuIHBhcGVyIGZseWxlYXZl
-        czsgbW9kZXJuIHBlbmNpbCBmb2xpYXRpb24gaW4gdXBwZXIgcmlnaHQgY29y
-        bmVycyBvZiByZWN0b3MgaSwgMSg0KSwgaSBOb25lIE5vbmUgMiAzIDU4IDYx
-        IFdyaXR0ZW4gc3VyZmFjZSBzaXplIHZhcmllcyBieSBwYWdlLCBzb21lIHRl
-        eHQgZXh0ZW5kcyBvdXRzaWRlIG9mIHJ1bGVkIGFyZWEgV3JpdHRlbiBpbiBH
-        b3RoaWMgYm9va2hhbmQgTmluZXRlZW50aC1jZW50dXJ5OyBjcmVhbS1jb2xv
-        cmVkIHBhcmNobWVudCBiaW5kaW5nIGJ5IFJvYmVydCBSaXZpw6hyZTsgc3Bp
-        bmUgaW5zY3JpYmVkIGluIGdvbGQgd2l0aCAiU1RFTU1BIEpFU1UgQ0hSSVNU
-        SSIgcmVmb3JtYXR0ZWQgZGlnaXRhbCBhY2Nlc3MgaW1hZ2UvanBlZyBpbWFn
-        ZS90aWZmIEdlbmVhbG9naWNhbCB0cmVlcyBsYWlkIG91dCBvdmVyIHNldmVu
-        IHBhZ2VzLCB3aXRoIHNpeCBzbWFsbCBzY2VuZXMgKDQtOCBsaW5lcykgYW5k
-        IDI4OSBwb3J0cmFpdCByb3VuZGVscyAoMy01IGxpbmVzKTsgYmx1ZSwgcmVk
-        LCBhbmQgZ3JlZW4gcGxhaW4gbGluZXMgb3IgZGVjb3JhdGl2ZSBiYW5kcyBk
-        ZWxpbmVhdGluZyBicmFuY2hlcyBvZiBnZW5lYWxvZ3k7IGVubGFyZ2VkIGlu
-        aXRpYWxzIHRocm91Z2hvdXQgKDEtNSBsaW5lcykgaW4gcmVkIGFuZCBibHVl
-        LCBzb21lIHdpdGggcGVud29yayBhY2NlbnRzOyBydWJyaWNzIGluIHJlZDsg
-        dGV4dCBpbiBibGFjayBpbmsgZm9sLiAxciBHZW5lYWxvZ3kgb2YgQ2hyaXN0
-        IGZyb20gQWRhbSB0byBUaGFyZSwgd2l0aCBBZGFtIGFuZCBFdmUgYXMgd2Vs
-        bCBhcyBOb2FoXCdzIEFyayBTbWFsbCBtaW5pYXR1cmVzLCA3LTggbGluZXM7
-        IHJvdW5kZWxzLCAzIGxpbmVzIGZvbC4gMXYgR2VuZWFsb2d5IG9mIENocmlz
-        dCBmcm9tIFRoYXJlIHRvIFphcmFtIFJvdW5kZWxzLCAzLTYgbGluZXMgZm9s
-        LiAyciBHZW5lYWxvZ3kgb2YgQ2hyaXN0IGZyb20gSmVzc2UgdG8gU2Fsb21v
-        biBSb3VuZGVscywgMy01IGxpbmVzIGZvbC4gMnYgR2VuZWFsb2d5IG9mIENo
-        cmlzdCBmcm9tIEFjaG1hcyB0byBJb3JhbSBSb3VuZGVscywgMyBsaW5lcyBm
-        b2wuIDNyIEdlbmVhbG9neSBvZiBDaHJpc3QgZnJvbSBJb2lhZGEgdG8gU2Fy
-        Z29uIFJvdW5kZWxzLCAzIGxpbmVzIGZvbC4gM3YgR2VuZWFsb2d5IG9mIENo
-        cmlzdCBmcm9tIElvc2VkZWMgdG8gWGVyc2VzIFJvdW5kZWxzLCAzIGxpbmVz
-        IGZvbC4gNHIgR2VuZWFsb2d5IG9mIENocmlzdCBmcm9tIEhlcm9kZXMgdG8g
-        VGliZXJpdXMgQ2VzYXIsIHdpdGggTmF0aXZpdHksIFZpcmdpbiBhbmQgQ2hp
-        bGQsIENydWNpZml4aW9uLCBhbmQgUmVzdXJyZWN0aW9uIFJvdW5kZWxzLCAz
-        LTUgbGluZXMgRW5nbGFuZCAxMjAwIDEyMjUgbW9ub2dyYXBoaWMgRWFybHkg
-        MTN0aCBjZW50dXJ5IENFIE1hZGUgaW4gRW5nbGFuZCwgZWFybHkgdGhpcnRl
-        ZW50aCBjZW50dXJ5IFdpbGxpYW0gU2FsbG9jaCwgT3NzaW5pbmcsIE5ldyBZ
-        b3JrOyBwdXJjaGFzZWQgYnkgdGhlIFdhbHRlcnMgQXJ0IE11c2V1bSBmcm9t
-        IGhpcyBzYWxlIGluIDE5ODEsIGNhdGFsb2cgMzc1LCBuby4gNDMgTXVzZXVt
-        IHB1cmNoYXNlLCAxOTgxIFRoZSBXYWx0ZXJzIEFydCBNdXNldW0sIDYwMCBO
-        b3J0aCBDaGFybGVzIFN0cmVldCwgQmFsdGltb3JlIE1EIDIxMjAxLiBXLjc5
-        NiBlbmcgQ1N0IFRyYW5zZm9ybWVkIGZyb20gVEVJIGZyb20gZGlnaXRhbHdh
-        bHRlcnMub3JnIHVzaW5nIGN1c3RvbSB4cXVlcnkgc2NyaXB0LiBXYWx0ZXJz
-        IE1hbnVzY3JpcHRzIGh0dHA6Ly9wdXJsLnN0YW5mb3JkLmVkdS93dzEyMXNz
-        NTAwMCBMaWNlbnNlZCBmb3IgdXNlIHVuZGVyIENyZWF0aXZlIENvbW1vbnMg
-        QXR0cmlidXRpb24tU2hhcmVBbGlrZSAzLjAgVW5wb3J0ZWQgQWNjZXNzIFJp
-        Z2h0cywgaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbGljZW5zZXMvYnkt
-        c2EvMy4wL2xlZ2FsY29kZS4gSW1hZ2VzIGFyZSBmcmVlIGZvciBhbnkgdXNl
-        LCBwcm92aWRlZCB5b3UgZm9sbG93IHRoZSB0ZXJtcyBvZiB0aGlzIGxpY2Vu
-        c2UuIFlvdSBkbyBub3QgbmVlZCB0byBhcHBseSB0byB0aGUgV2FsdGVycyBw
-        cmlvciB0byB1c2luZyB0aGUgaW1hZ2VzLiBXZSBhc2sgb25seSB0aGF0IHlv
-        dSBjaXRlIHRoZSBzb3VyY2Ugb2YgdGhlIGltYWdlcyBhcyB0aGUgV2FsdGVy
-        cyBBcnQgTXVzZXVtIChzZWUgY2l0YXRpb24gc3R5bGUgYXQgaHR0cDovL3d3
-        dy50aGVkaWdpdGFsd2FsdGVycy5vcmcvMDNfUmVhZE1lLmh0bWwpLiBBZGRp
-        dGlvbmFsbHksIHdlIHJlcXVlc3QgdGhhdCBhIGNvcHkgb2YgYW55IHdvcmsg
-        Y3JlYXRlZCB1c2luZyB0aGVzZSBtYXRlcmlhbHMgYmUgc2VudCB0byB0aGUg
-        Q3VyYXRvciBvZiBNYW51c2NyaXB0cyBhbmQgUmFyZSBCb29rcyBhdCB0aGUg
-        V2FsdGVycyBBcnQgTXVzZXVtLCA2MDAgTi4gQ2hhcmxlcyBTdHJlZXQsIEJh
-        bHRpbW9yZSwgTUQgMjEyMDEsIG1zcy1jdXJhdG9yQHRoZXdhbHRlcnMub3Jn
-        LiBBbGwgV2FsdGVycyBtYW51c2NyaXB0IGltYWdlcyBhbmQgZGVzY3JpcHRp
-        b25zIHByb3ZpZGVkIGhlcmUgYXJlIGNvcHlyaWdodGVkIMKpIFRoZSBXYWx0
-        ZXJzIEFydCBNdXNldW0uIENDIGJ5LXNhOiBBdHRyaWJ1dGlvbi1TaGFyZUFs
-        aWtlIDMuMCBVbnBvcnRlZCAnLCdsYXN0X3VwZGF0ZWQnPT4nMjAxNS0wMy0y
-        N1QwMjozMzo1OVonLCdjcmVhdGVkJz0+JzIwMTUtMDMtMjdUMDI6MzM6NTla
-        JywnX3ZlcnNpb25fJz0+MTQ5Njc2MjQ2MTQ3OTUwMTgyNH1dfX0K
-    http_version: 
-  recorded_at: Fri, 27 Mar 2015 05:27:27 GMT
-- request:
-    method: post
-    uri: http://localhost:8983/solr/update?commit=true
-    body:
-      encoding: UTF-8
-      string: '[{"id":"dw077vs7846","title_display":{"set":["New title"]}}]'
-    headers:
-      Accept:
-      - application/json
-      Accept-Encoding:
-      - gzip, deflate
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '60'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
+      Last-Modified:
+      - Wed, 11 Nov 2015 00:47:09 GMT
+      Etag:
+      - '"MjkwMDAwMDAwMDAwMDAwU29scg=="'
       Content-Type:
       - text/plain;charset=UTF-8
       Transfer-Encoding:
@@ -161,15 +23,43 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |
-        {"responseHeader":{"status":0,"QTime":140}}
+        {'responseHeader'=>{'status'=>0,'QTime'=>1},'response'=>{'numFound'=>0,'start'=>0,'docs'=>[]}}
     http_version: 
-  recorded_at: Fri, 27 Mar 2015 05:27:27 GMT
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8983/solr/select?q=id:%22cb077vs7846%22&wt=ruby
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Wed, 11 Nov 2015 00:47:09 GMT
+      Etag:
+      - '"MjkwMDAwMDAwMDAwMDAwU29scg=="'
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {'responseHeader'=>{'status'=>0,'QTime'=>1},'response'=>{'numFound'=>0,'start'=>0,'docs'=>[]}}
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
 - request:
     method: post
     uri: http://localhost:8983/solr/update?wt=ruby
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><commit/>
+      string: <?xml version="1.0" encoding="UTF-8"?><add commitWithin="10000"><doc><field
+        name="id">cb077vs7846</field><field name="score_isi">10</field><field name="title">First
+        title</field></doc></add>
     headers:
       Content-Type:
       - text/xml
@@ -185,7 +75,239 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |
-        {'responseHeader'=>{'status'=>0,'QTime'=>5}}
+        {'responseHeader'=>{'status'=>0,'QTime'=>2}}
     http_version: 
-  recorded_at: Fri, 27 Mar 2015 05:27:27 GMT
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
+- request:
+    method: post
+    uri: http://localhost:8983/solr/update?commit=true
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <response>
+        <lst name="responseHeader"><int name="status">0</int><int name="QTime">15</int></lst>
+        </response>
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8983/solr/select?q=id:%22cb077vs7846%22&wt=ruby
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Wed, 11 Nov 2015 00:47:32 GMT
+      Etag:
+      - '"NDI5MDAwMDAwMDAwMDAwMFNvbHI="'
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {'responseHeader'=>{'status'=>0,'QTime'=>0},'response'=>{'numFound'=>1,'start'=>0,'docs'=>[{'id'=>'cb077vs7846','score_isi'=>10,'title'=>'First title','_version_'=>1517502178483240960,'timestamp'=>'2015-11-11T00:47:32.71Z'}]}}
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8983/solr/select?q=id:%22cb077vs7846%22&wt=ruby
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Wed, 11 Nov 2015 00:47:32 GMT
+      Etag:
+      - '"NDI5MDAwMDAwMDAwMDAwMFNvbHI="'
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {'responseHeader'=>{'status'=>0,'QTime'=>1},'response'=>{'numFound'=>1,'start'=>0,'docs'=>[{'id'=>'cb077vs7846','score_isi'=>10,'title'=>'First title','_version_'=>1517502178483240960,'timestamp'=>'2015-11-11T00:47:32.71Z'}]}}
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8983/solr/select?q=id:%22cb077vs7846%22&wt=ruby
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Wed, 11 Nov 2015 00:47:32 GMT
+      Etag:
+      - '"NDI5MDAwMDAwMDAwMDAwMFNvbHI="'
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {'responseHeader'=>{'status'=>0,'QTime'=>0},'response'=>{'numFound'=>1,'start'=>0,'docs'=>[{'id'=>'cb077vs7846','score_isi'=>10,'title'=>'First title','_version_'=>1517502178483240960,'timestamp'=>'2015-11-11T00:47:32.71Z'}]}}
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
+- request:
+    method: post
+    uri: http://localhost:8983/solr/update?commit=true
+    body:
+      encoding: UTF-8
+      string: '[{"id":"cb077vs7846","title":{"set":["New title"]}}]'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '52'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {"responseHeader":{"status":0,"QTime":17}}
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
+- request:
+    method: post
+    uri: http://localhost:8983/solr/update?commit=true
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/xml; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <response>
+        <lst name="responseHeader"><int name="status">0</int><int name="QTime">1</int></lst>
+        </response>
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8983/solr/select?q=id:%22cb077vs7846%22&wt=ruby
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Wed, 11 Nov 2015 00:47:32 GMT
+      Etag:
+      - '"NjI5MDAwMDAwMDAwMDAwMFNvbHI="'
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {'responseHeader'=>{'status'=>0,'QTime'=>1},'response'=>{'numFound'=>1,'start'=>0,'docs'=>[{'id'=>'cb077vs7846','score_isi'=>10,'title'=>'New title','timestamp'=>'2015-11-11T00:47:32.71Z','_version_'=>1517502178555592704}]}}
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
+- request:
+    method: get
+    uri: http://localhost:8983/solr/select?q=id:%22cb077vs7846%22&wt=ruby
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Last-Modified:
+      - Wed, 11 Nov 2015 00:47:32 GMT
+      Etag:
+      - '"NjI5MDAwMDAwMDAwMDAwMFNvbHI="'
+      Content-Type:
+      - text/plain;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {'responseHeader'=>{'status'=>0,'QTime'=>1},'response'=>{'numFound'=>1,'start'=>0,'docs'=>[{'id'=>'cb077vs7846','score_isi'=>10,'title'=>'New title','timestamp'=>'2015-11-11T00:47:32.71Z','_version_'=>1517502178555592704}]}}
+    http_version: 
+  recorded_at: Wed, 11 Nov 2015 00:47:32 GMT
 recorded_with: VCR 2.9.3
