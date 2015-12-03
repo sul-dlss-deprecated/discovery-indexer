@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe DiscoveryIndexer::InputXml::ModsxmlReader do
-  VCR.configure do |config|
-    config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-    config.hook_into :webmock
-  end
-
   describe '.read' do
     it 'should read mods xml for an available druid' do
       VCR.use_cassette('available_mods_xml') do

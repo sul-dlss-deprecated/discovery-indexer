@@ -1,12 +1,6 @@
 require 'spec_helper'
 
 describe DiscoveryIndexer::Writer::SolrClient do
-  VCR.configure do |config|
-    config.allow_http_connections_when_no_cassette = true
-    config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-    config.hook_into :webmock
-  end
-
   describe '.solr_url' do
     it 'should correctly handle urls with both trailing and leading slashes' do
       connectors=[RSolr.connect(url: 'http://localhost:8983/solr/'),RSolr.connect(url: 'http://localhost:8983/solr')]

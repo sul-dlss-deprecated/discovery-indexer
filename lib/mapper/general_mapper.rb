@@ -6,7 +6,7 @@ module DiscoveryIndexer
       # @param [Stanford::Mods::Record] modsxml represents the MODS xml for the druid
       # @param [DiscoveryIndexer::Reader::PurlxmlModel] purlxml represents the purlxml model
       # @param [Hash] collection_data represents a hash of collection_druid and catkey
-      # e.g. @collection_data = {'aa00bb0001'=>{:name=>'Test Collection Name',:ckey=>'000001'},'nt028fd5773'=>{:name=>'Revs Institute Archive',:ckey=>'000002'}}
+      # collection_data = {'aa00bb0001'=>{:name=>'Test Collection Name',:ckey=>'000001'},'nt028fd5773'=>{:name=>'Revs Institute Archive',:ckey=>'000002'}}
       def initialize(druid, modsxml, purlxml, collection_data = {})
         @druid = druid
         @modsxml = modsxml
