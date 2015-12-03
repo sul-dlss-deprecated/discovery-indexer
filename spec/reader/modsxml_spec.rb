@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe DiscoveryIndexer::InputXml::Purlxml do
-  VCR.configure do |config|
-    config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-    config.hook_into :webmock
-  end
-
   describe '.load' do
     it 'should load mods xml from the purl to the stanford mods model' do
       VCR.use_cassette('available_mods_xml') do

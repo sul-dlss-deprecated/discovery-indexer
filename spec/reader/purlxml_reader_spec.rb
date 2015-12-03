@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe DiscoveryIndexer::InputXml::PurlxmlReader do
-  VCR.configure do |config|
-    config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-    config.hook_into :webmock
-  end
-
   describe '.read' do
     it 'should read public xml for an available druid' do
       available_expected_response = File.open('spec/fixtures/available_purl_xml_item_2.xml').read

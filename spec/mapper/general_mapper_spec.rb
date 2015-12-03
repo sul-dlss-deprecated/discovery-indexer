@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe DiscoveryIndexer::Mapper::GeneralMapper do
-  VCR.configure do |config|
-    config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-    config.hook_into :webmock
-  end
-
   describe '.convert_to_solr_doc' do
     it 'should map mods and public xml into solr doc' do
       druid = 'tn629pk3948'
