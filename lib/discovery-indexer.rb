@@ -12,9 +12,6 @@ require 'discovery-indexer/reader/modsxml_reader'
 
 require 'discovery-indexer/mapper/general_mapper'
 
-require 'discovery-indexer/writer/solr_client'
-require 'discovery-indexer/writer/solr_writer'
-
 # require 'utilities/extract_sub_targets'
 
 module DiscoveryIndexer
