@@ -1,6 +1,6 @@
 lib = File.expand_path('../lib/', __FILE__)
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
-require 'version'
+require 'discovery-indexer/version'
 
 Gem::Specification.new do |gem|
   gem.name        = 'discovery-indexer'
