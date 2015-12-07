@@ -1,19 +1,19 @@
-require 'errors'
-require 'logging'
+require 'discovery-indexer/errors'
+require 'discovery-indexer/logging'
 
-require 'reader/purlxml'
-require 'reader/purlxml_reader'
-require 'reader/purlxml_parser'
-require 'reader/purlxml_parser_strict'
-require 'reader/purlxml_model'
+require 'discovery-indexer/reader/purlxml'
+require 'discovery-indexer/reader/purlxml_reader'
+require 'discovery-indexer/reader/purlxml_parser'
+require 'discovery-indexer/reader/purlxml_parser_strict'
+require 'discovery-indexer/reader/purlxml_model'
 
-require 'reader/modsxml'
-require 'reader/modsxml_reader'
+require 'discovery-indexer/reader/modsxml'
+require 'discovery-indexer/reader/modsxml_reader'
 
-require 'mapper/general_mapper'
+require 'discovery-indexer/mapper/general_mapper'
 
-require 'writer/solr_client'
-require 'writer/solr_writer'
+require 'discovery-indexer/writer/solr_client'
+require 'discovery-indexer/writer/solr_writer'
 
 # require 'utilities/extract_sub_targets'
 
