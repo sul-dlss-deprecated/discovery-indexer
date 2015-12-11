@@ -42,26 +42,4 @@ describe DiscoveryIndexer::InputXml::Purlxml do
       end
     end
   end
-
-  describe '.reload' do
-    it "should reload the model even if it's loaded  before" do
-      druid = 'ys174nw6600'
-      p = DiscoveryIndexer::InputXml::Purlxml.new(druid)
-
-      VCR.use_cassette('two_available_purl_1_xml') do
-        model = p.load
-      end
-
-      VCR.use_cassette('two_available_purl_2_xml') do
-        p.instance_variable_set(:@druid, 'tn629pk3948')
-        model = p.reload
-
-        expect(model.content_metadata).to be_equivalent_to(@content_metadata)
-        expect(model.identity_metadata).to be_equivalent_to(@identity_metadata)
-        expect(model.rights_metadata).to be_equivalent_to(@rights_metadata)
-        expect(model.rdf).to be_equivalent_to(@rdf)
-        expect(model.dc).to be_equivalent_to(@dc)
-      end
-    end
-  end
 end

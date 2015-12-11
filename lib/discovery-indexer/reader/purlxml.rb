@@ -19,17 +19,7 @@ module DiscoveryIndexer
       # @return [PurlxmlModel] represents the purlxml
       def load
         @purlxml_ng_doc = PurlxmlReader.read(@druid) if @purlxml_ng_doc.nil?
-        purlxml_parser = PurlxmlParserStrict.new(@druid, @purlxml_ng_doc)
-        purlxml_model = purlxml_parser.parse
-        purlxml_model
-      end
-
-      # loads the purl xml to purlxml model for the fedora object defind in the druid
-      # it reads the purl xml from PURL server with every call
-      # @return [PurlxmlModel] represents the purlxml
-      def reload
-        @purlxml_ng_doc = PurlxmlReader.read(@druid)
-        load
+        purlxml_parser = PurlxmlParserStrict.new(@druid, @purlxml_ng_doc).parse
       end
     end
   end
