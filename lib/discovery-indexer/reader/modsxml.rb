@@ -25,15 +25,6 @@ module DiscoveryIndexer
 
         modsxml_model = Stanford::Mods::Record.new
         modsxml_model.from_nk_node(@modsxml_ng_doc)
-        modsxml_model
-      end
-
-      # loads the mods xml to stanford mods model for the fedora object defind in the druid,
-      # it reads the mods xml from PURL server with every call
-      # @return [Stanford::Mods::Record] represents the mods xml
-      def reload
-        @modsxml_ng_doc = ModsxmlReader.read(@druid)
-        load
       end
     end
   end

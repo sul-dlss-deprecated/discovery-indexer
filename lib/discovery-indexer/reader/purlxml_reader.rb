@@ -9,10 +9,8 @@ module DiscoveryIndexer
       # @raise [MissingPublicXml] if there's no purl xml available for this druid
       def self.read(druid)
         purlxml_uri = "#{DiscoveryIndexer::PURL_DEFAULT}/#{druid}.xml"
-
         begin
-          purlxml_object = Nokogiri::XML(open(purlxml_uri))
-          return purlxml_object
+          Nokogiri::XML(open(purlxml_uri))
         rescue
           raise DiscoveryIndexer::Errors::MissingPurlPage.new(purlxml_uri)
         end

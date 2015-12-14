@@ -1,11 +1,16 @@
 module DiscoveryIndexer
   module InputXml
-    class PurlxmlParserStrict < PurlxmlParser
+    class PurlxmlParserStrict
       include DiscoveryIndexer::Logging
 
       RDF_NAMESPACE = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
       OAI_DC_NAMESPACE = 'http://www.openarchives.org/OAI/2.0/oai_dc/'
       MODS_NAMESPACE = 'http://www.loc.gov/mods/v3'
+
+      def initialize(druid, purlxml_ng_doc)
+        @purlxml_ng_doc = purlxml_ng_doc
+        @druid = druid
+      end
 
       # it parses the purlxml into a purlxml model
       # @return [PurlxmlModel] represents the purlxml as parsed based on the parser rules
@@ -117,12 +122,9 @@ module DiscoveryIndexer
         ns_hash = { 'rdf' => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'fedora' => 'info:fedora/fedora-system:def/relations-external#', '' => '' }
         is_member_of_nodes ||= @purlxml_ng_doc.xpath('/publicObject/rdf:RDF/rdf:Description/fedora:isMemberOfCollection/@rdf:resource', ns_hash)
         # from public_xml rels-ext
-        druids = []
-        is_member_of_nodes.each do |n|
-          druids << n.value.split('druid:').last unless n.value.empty?
+        is_member_of_nodes.reject { |n| n.value.empty? }.map do |n|
+          n.value.split('druid:').last
         end
-        return nil if druids.empty?
-        druids
       end
 
       # the value of the type attribute for a DOR object's contentMetadata

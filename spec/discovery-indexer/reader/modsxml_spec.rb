@@ -24,23 +24,4 @@ describe DiscoveryIndexer::InputXml::Purlxml do
       end
     end
   end
-
-  describe '.reload' do
-    it "should reload the model even if it's loaded  before" do
-      druid = 'ys174nw6600'
-      modsxml = DiscoveryIndexer::InputXml::Modsxml.new(druid)
-
-      VCR.use_cassette('two_available_mods_1_xml') do
-        modsxml_model = modsxml.load
-        expect(modsxml_model.sw_full_title).to eq("Kant's Analysis of the Aesthetic Judgement.")
-      end
-
-      VCR.use_cassette('two_available_mods_2_xml') do
-        modsxml.instance_variable_set(:@druid, 'tn629pk3948')
-        modsxml_model = modsxml.reload
-
-        expect(modsxml_model.sw_full_title).to eq('Lecture 1.')
-      end
-    end
-  end
 end
