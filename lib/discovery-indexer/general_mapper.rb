@@ -5,10 +5,6 @@ module DiscoveryIndexer
 
     # Initializes an instance from IndexMapper
     # @param [String] druid e.g. ab123cd4567
-    # @param [Stanford::Mods::Record] modsxml represents the MODS xml for the druid
-    # @param [DiscoveryIndexer::Reader::PurlxmlModel] purlxml represents the purlxml model
-    # @param [Hash] collection_data represents a hash of collection_druid and catkey
-    # collection_data = {'aa00bb0001'=>{:name=>'Test Collection Name',:ckey=>'000001'},'nt028fd5773'=>{:name=>'Revs Institute Archive',:ckey=>'000002'}}
     def initialize(druid)
       @druid = druid
     end
@@ -24,19 +20,24 @@ module DiscoveryIndexer
 
     # It converts collection_druids list to a hash with names. If the druid doesn't
     # have a collection name, it will be excluded from the hash
-    # @return [Hash] a hash for collection druid and its name
-    #   !{"ab123cd4567"=>"Collection 1", "ef123gh4567"=>"Collection 2"}
+    # @return [Hash] a hash with key of coll druid, and value as a hash of name and ckey
+    # e.g. {'aa00bb0001'=>{:name=>'Test Coll Name',:ckey=>'000001'},'nt028fd5773'=>{:name=>'Revs Institute Archive',:ckey=>'000002'}}
     def collection_data
       @collection_data ||= collection_druids.map do |cdruid|
         DiscoveryIndexer::Collection.new(cdruid)
       end
     end
+
     def collection_druids
       purlxml.collection_druids
     end
+
+    # @return [Stanford::Mods::Record] the MODS xml for the druid
     def modsxml
       @modsxml ||= DiscoveryIndexer::InputXml::Modsxml.new(druid).load
     end
+
+    # @return [DiscoveryIndexer::Reader::PurlxmlModel] the purlxml model
     def purlxml
       @purlxml ||= DiscoveryIndexer::InputXml::Purlxml.new(druid).load
     end

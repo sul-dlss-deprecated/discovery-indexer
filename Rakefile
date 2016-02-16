@@ -34,7 +34,7 @@ begin
   YARD::Rake::YardocTask.new(:doc) do |yt|
     yt.files = Dir.glob(File.join(project_root, 'lib', '**', '*.rb')) +
       [File.join(project_root, 'README.rdoc')]
-    yt.options = ['--output-dir', doc_dest_dir, '--readme', 'README.rdoc', '--title', 'Discovery Indexer Documentation']
+    yt.options = ['--output-dir', doc_dest_dir, '--readme', 'README.md', '--title', 'Discovery Indexer Gem']
   end
 rescue LoadError
   desc 'Generate YARD Documentation'
