@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe DiscoveryIndexer::InputXml::Purlxml do
   describe '.load' do
-    it 'should load mods xml from the purl to the stanford mods model' do
+    it 'loads mods xml from purl page to the stanford mods model' do
       VCR.use_cassette('available_mods_xml') do
         druid = 'tn629pk3948'
         modsxml = DiscoveryIndexer::InputXml::Modsxml.new(druid)
@@ -11,11 +11,11 @@ describe DiscoveryIndexer::InputXml::Purlxml do
       end
     end
 
-    it "shouldn't re-read public xml from the purl if it is already available" do
+    it "doesn't re-read public xml from the purl if it is already available" do
       VCR.use_cassette('available_mods_xml') do
         druid = 'tn629pk3948'
         modsxml = DiscoveryIndexer::InputXml::Modsxml.new(druid)
-        modsxml_model = modsxml.load
+        modsxml.load
 
         modsxml.instance_variable_set(:@druid, 'aa111aa1111')
         modsxml_model = modsxml.load

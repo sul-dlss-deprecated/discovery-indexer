@@ -19,7 +19,7 @@ module DiscoveryIndexer
       # @return [PurlxmlModel] represents the purlxml
       def load
         @purlxml_ng_doc = PurlxmlReader.read(@druid) if @purlxml_ng_doc.nil?
-        purlxml_parser = PurlxmlParserStrict.new(@druid, @purlxml_ng_doc).parse
+        PurlxmlParserStrict.new(@druid, @purlxml_ng_doc).parse
       end
     end
   end

@@ -29,7 +29,7 @@ describe DiscoveryIndexer::InputXml::Purlxml do
       VCR.use_cassette('available_purl_xml') do
         druid = 'tn629pk3948'
         p = DiscoveryIndexer::InputXml::Purlxml.new(druid)
-        model = p.load
+        p.load
 
         p.instance_variable_set(:@druid, 'aa111aa1111')
         model = p.load
