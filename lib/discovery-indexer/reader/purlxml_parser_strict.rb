@@ -43,17 +43,17 @@ module DiscoveryIndexer
       # @return [Nokogiri::XML::Document] the identityMetadata for the fedora object
       # @raise [DiscoveryIndexer::Errors::MissingIdentityMetadata] if there is no identity_metadata
       def parse_identity_metadata
-        ng_doc = Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/identityMetadata').to_xml)
-        fail DiscoveryIndexer::Errors::MissingIdentityMetadata.new(@purlxml_ng_doc.inspect) if !ng_doc || ng_doc.children.empty?
-        ng_doc
+        @idmd_ng_doc ||= Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/identityMetadata').to_xml)
+        fail DiscoveryIndexer::Errors::MissingIdentityMetadata.new(@purlxml_ng_doc.inspect) if !@idmd_ng_doc || @idmd_ng_doc.children.empty?
+        @idmd_ng_doc
       rescue
         raise DiscoveryIndexer::Errors::MissingIdentityMetadata.new(@purlxml_ng_doc.inspect)
       end
 
       def parse_rights_metadata
-        ng_doc = Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/rightsMetadata').to_xml)
-        fail DiscoveryIndexer::Errors::MissingRightsMetadata.new(@purlxml_ng_doc.inspect) if !ng_doc || ng_doc.children.empty?
-        ng_doc
+        @rmd_ng_doc ||= Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/rightsMetadata').to_xml)
+        fail DiscoveryIndexer::Errors::MissingRightsMetadata.new(@purlxml_ng_doc.inspect) if !@rmd_ng_doc || @rmd_ng_doc.children.empty?
+        @rmd_ng_doc
       rescue
         raise DiscoveryIndexer::Errors::MissingRightsMetadata.new(@purlxml_ng_doc.inspect)
       end
@@ -62,9 +62,9 @@ module DiscoveryIndexer
       # @return [Nokogiri::XML::Document] the dc for the fedora object
       # @raise [DiscoveryIndexer::Errors::MissingDC] if there is no dc element
       def parse_dc
-        ng_doc = Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/dc:dc', 'dc' => OAI_DC_NAMESPACE).to_xml(encoding: 'utf-8'))
-        fail DiscoveryIndexer::Errors::MissingDC.new(@purlxml_ng_doc.inspect) if !ng_doc || ng_doc.children.empty?
-        ng_doc
+        @dc_ng_doc ||= Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/dc:dc', 'dc' => OAI_DC_NAMESPACE).to_xml(encoding: 'utf-8'))
+        fail DiscoveryIndexer::Errors::MissingDC.new(@purlxml_ng_doc.inspect) if !@dc_ng_doc || @dc_ng_doc.children.empty?
+        @dc_ng_doc
       rescue
         raise DiscoveryIndexer::Errors::MissingDC.new(@purlxml_ng_doc.inspect)
       end
@@ -73,9 +73,9 @@ module DiscoveryIndexer
       # @return [Nokogiri::XML::Document] the rdf for the fedora object
       # @raise [DiscoveryIndexer::Errors::MissingRDF] if there is no rdf element
       def parse_rdf
-        ng_doc = Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/rdf:RDF', 'rdf' => RDF_NAMESPACE).to_xml)
-        fail DiscoveryIndexer::Errors::MissingRDF.new(@purlxml_ng_doc.inspect) if !ng_doc || ng_doc.children.empty?
-        ng_doc
+        @rdf_ng_doc ||= Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/rdf:RDF', 'rdf' => RDF_NAMESPACE).to_xml)
+        fail DiscoveryIndexer::Errors::MissingRDF.new(@purlxml_ng_doc.inspect) if !@rdf_ng_doc || @rdf_ng_doc.children.empty?
+        @rdf_ng_doc
       rescue
         raise DiscoveryIndexer::Errors::MissingRDF.new(@purlxml_ng_doc.inspect)
       end
@@ -101,9 +101,9 @@ module DiscoveryIndexer
       # @return [Nokogiri::XML::Document] the contentMetadata for the fedora object
       # @raise [DiscoveryIndexer::Errors::MissingContentMetadata] if there is no contentMetadata
       def parse_content_metadata
-        ng_doc = Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/contentMetadata').to_xml)
-        ng_doc = nil if !ng_doc || ng_doc.children.empty?
-        ng_doc
+        @cntmd_ng_doc ||= Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/contentMetadata').to_xml)
+        @cntmd_ng_doc = nil if !@cntmd_ng_doc || @cntmd_ng_doc.children.empty?
+        @cntmd_ng_doc
       end
 
       # @return true if the identityMetadata has <objectType>collection</objectType>, false otherwise
