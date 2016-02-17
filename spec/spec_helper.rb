@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require 'webmock/rspec'
 require 'equivalent-xml'
 require 'discovery-indexer'

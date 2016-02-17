@@ -18,12 +18,17 @@ end
 task default: :ci
 
 desc 'run continuous integration suite (tests, coverage, docs)'
-task ci: [:rspec, :doc]
+task ci: [:rspec, :rubocop]
 
 task spec: :rspec
 
 RSpec::Core::RakeTask.new(:rspec) do |spec|
   spec.rspec_opts = ['-c', '-f progress', '--tty', '-r ./spec/spec_helper.rb']
+end
+
+require 'rubocop/rake_task'
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.options = ['-l'] # run lint cops only
 end
 
 # Use yard to build docs
@@ -34,7 +39,7 @@ begin
   YARD::Rake::YardocTask.new(:doc) do |yt|
     yt.files = Dir.glob(File.join(project_root, 'lib', '**', '*.rb')) +
       [File.join(project_root, 'README.rdoc')]
-    yt.options = ['--output-dir', doc_dest_dir, '--readme', 'README.rdoc', '--title', 'Discovery Indexer Documentation']
+    yt.options = ['--output-dir', doc_dest_dir, '--readme', 'README.md', '--title', 'Discovery Indexer Gem']
   end
 rescue LoadError
   desc 'Generate YARD Documentation'

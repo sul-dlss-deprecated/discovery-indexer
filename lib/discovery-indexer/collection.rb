@@ -22,14 +22,11 @@ module DiscoveryIndexer
 
     # Returns the collection name from cache, otherwise will fetch it from PURL.
     #
-    # @param collection_druid [String]  is the druid for a collection e.g., ab123cd4567
-    # @return [Array<String>] the collection data or [] if there is no name and catkey or the object
-    #   is not a collection
+    # @return [Hash] the collection data or [] if there is no name and catkey or the object is not a collection
     def collection_info
       from_purl || {}
     end
 
-    # @param [String] collection_druid is the druid for a collection e.g., ab123cd4567
     # @return [String] return the collection label from purl if available, nil otherwise
     def from_purl
       return unless purl_model
