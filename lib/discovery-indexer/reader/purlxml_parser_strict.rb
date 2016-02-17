@@ -129,6 +129,17 @@ module DiscoveryIndexer
         end
       end
 
+      # get the druids from predicate relationships in rels-ext from public_xml
+      # @return [Array<String>, nil] the druids (e.g. ww123yy1234) from the rdf:resource of the predicate relationships, or nil if none
+      def parse_predicate_druids(predicate, predicate_ns)
+        ns_hash = { 'rdf' => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'pred_ns' => predicate_ns }
+        xpth = "/publicObject/rdf:RDF/rdf:Description/pred_ns:#{predicate}/@rdf:resource"
+        pred_nodes = @purlxml_ng_doc.xpath(xpth, ns_hash)
+        pred_nodes.reject { |n| n.value.empty? }.map do |n|
+          n.value.split('druid:').last
+        end
+      end
+
       # the value of the type attribute for a DOR object's contentMetadata
       #  more info about these values is here:
       #    https://consul.stanford.edu/display/chimera/DOR+content+types%2C+resource+types+and+interpretive+metadata

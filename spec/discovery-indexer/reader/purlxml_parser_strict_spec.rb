@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
 
+  let(:fake_druid) { 'oo000oo0000' }
+  let(:fedora_ns) { 'info:fedora/fedora-system:def/relations-external#' }
+  let(:parser) { DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(fake_druid, nil) }
+
   before :all do
     @available_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item.xml'), nil, 'UTF-8')
     @identity_metadata = '  <identityMetadata>    <sourceId source="sul">V0401_b1_1.01</sourceId>    <objectId>druid:tn629pk3948</objectId>    <objectCreator>DOR</objectCreator>    <objectLabel>Lecture 1</objectLabel>    <objectType>item</objectType>    <adminPolicy>druid:ww057vk7675</adminPolicy>    <displayType>image</displayType>    <otherId name="label"/>    <otherId name="uuid">08d544da-d459-11e2-8afb-0050569b3c3c</otherId>    <tag>Project:V0401 mccarthyism:vhs</tag>    <tag> Process:Content Type:Media</tag>    <tag> JIRA:DIGREQ-592</tag>    <tag> SMPL:video:ua</tag>    <tag> Registered By:gwillard</tag>    <tag>Remediated By : 4.6.6.2</tag>  </identityMetadata>'
@@ -228,6 +232,34 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       public_xml_no_display_type = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{im_no_display_type}#{@content_metadata}</publicObject>"
       display_type = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', Nokogiri::XML(public_xml_no_display_type)).send(:parse_dor_display_type)
       expect(display_type).to be_empty
+    end
+  end
+
+  describe '#parse_predicate_druids' do
+    let(:public_xml_ng) do
+      Nokogiri::XML <<-EOF
+        <publicObject id='druid:#{fake_druid}'>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:fedora="#{fedora_ns}">
+          <rdf:Description rdf:about="info:fedora/druid:#{fake_druid}">
+            <fedora:isMemberOf rdf:resource="info:fedora/druid:xh235dd9059"/>
+            <fedora:isMemberOfCollection rdf:resource="info:fedora/druid:xh235dd9059"/>
+            <fedora:isMemberOfCollection rdf:resource="info:fedora/druid:aa097bm8879"/>
+            <fedora:isConstituentOf rdf:resource="info:fedora/druid:hj097bm8879"/>
+            <fedora:isEmpty/>
+          </rdf:Description>
+        </rdf:RDF>
+        EOF
+    end
+    let(:parser) { DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', public_xml_ng) }
+    it 'gets all druids for the desired predicate and only that predicate' do
+      expect(parser.send(:parse_predicate_druids, 'isMemberOfCollection', fedora_ns)).to eq ['xh235dd9059', 'aa097bm8879']
+      expect(parser.send(:parse_predicate_druids, 'isConstituentOf', fedora_ns)).to eq ['hj097bm8879']
+    end
+    it 'returns nil when there are no matching predicates' do
+      expect(parser.send(:parse_predicate_druids, 'hasConstituent', fedora_ns)).to eq []
+    end
+    it 'ignores predicate matches that have no object' do
+      expect(parser.send(:parse_predicate_druids, 'isEmpty', fedora_ns)).to eq []
     end
   end
 
