@@ -18,10 +18,7 @@ module DiscoveryIndexer
       solr_doc
     end
 
-    # For each collection druid, return a Hash of coll name (as :title) and ckey. If the druid doesn't
-    # have a collection title, it will be excluded from the hash
-    # @return [Hash] keys are coll druids, and values are a hash of title and ckey for the coll druid
-    # e.g. {'aa00bb0001'=>{:title=>'my coll',:ckey=>'652'},'nt028fd5773'=>{:title=>'Revs coll',:ckey=>'88'}}
+    # @return [DiscoveryIndexer::Collection] for each collection druid, or [] if no collection druids
     def collection_data
       @collection_data ||= collection_druids.map do |cdruid|
         DiscoveryIndexer::Collection.new(cdruid)
