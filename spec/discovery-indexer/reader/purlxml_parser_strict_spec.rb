@@ -31,7 +31,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_dc) { 'dc' }
       allow(parser).to receive(:parse_rdf) { 'rdf' }
       allow(parser).to receive(:parse_is_collection) { false }
-      allow(parser).to receive(:parse_collection_druids) { ['druid:ab123cd4567'] }
+      allow(parser).to receive(:parse_predicate_druids).with('isMemberOfCollection', fedora_ns) { ['ab123cd4567'] }
       allow(parser).to receive(:parse_dor_content_type) { 'image' }
       allow(parser).to receive(:parse_dor_display_type) { 'image' }
       allow(parser).to receive(:parse_release_tags_hash) { '' }
@@ -61,10 +61,13 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_copyright)
       allow(parser).to receive(:parse_use_and_reproduction)
       allow(parser).to receive(:parse_sourceid)
+      allow(parser).to receive(:parse_is_collection)
+      allow(parser).to receive(:parse_dor_content_type)
+      allow(parser).to receive(:parse_file_ids)
+      allow(parser).to receive(:parse_image_ids)
 
       coll_druids = ['ab123cd4567']
-      expect(parser).to receive(:parse_collection_druids).and_return(coll_druids)
-#      expect(parser).to receive(:parse_predicate_druids).with('isMemberOfCollection', fedora_ns).and_return(coll_druids)
+      expect(parser).to receive(:parse_predicate_druids).with('isMemberOfCollection', fedora_ns).and_return(coll_druids)
       model = parser.parse
       expect(model.collection_druids).to eq coll_druids
     end
@@ -261,10 +264,6 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     it 'ignores predicate matches that have no object' do
       expect(parser.send(:parse_predicate_druids, 'isEmpty', fedora_ns)).to eq []
     end
-  end
-
-  describe '#parse_collection_druids' do
-    pending
   end
 
   describe '#parse_is_collection' do

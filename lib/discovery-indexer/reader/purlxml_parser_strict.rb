@@ -6,6 +6,7 @@ module DiscoveryIndexer
       RDF_NAMESPACE = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
       OAI_DC_NAMESPACE = 'http://www.openarchives.org/OAI/2.0/oai_dc/'
       MODS_NAMESPACE = 'http://www.loc.gov/mods/v3'
+      FEDORA_NAMESPACE = 'info:fedora/fedora-system:def/relations-external#'
 
       def initialize(druid, purlxml_ng_doc)
         @purlxml_ng_doc = purlxml_ng_doc
@@ -21,10 +22,10 @@ module DiscoveryIndexer
         purlxml_model.content_metadata  = parse_content_metadata
         purlxml_model.identity_metadata = parse_identity_metadata
         purlxml_model.rights_metadata   = parse_rights_metadata
-        purlxml_model.dc                = parse_dc
+        purlxml_model.dc                = parse_dc # why do we care?
         purlxml_model.rdf               = parse_rdf
         purlxml_model.is_collection     = parse_is_collection
-        purlxml_model.collection_druids = parse_collection_druids
+        purlxml_model.collection_druids = parse_predicate_druids('isMemberOfCollection', FEDORA_NAMESPACE)
         purlxml_model.dor_content_type  = parse_dor_content_type
         purlxml_model.dor_display_type  = parse_dor_display_type
         purlxml_model.release_tags_hash = parse_release_tags_hash
@@ -116,17 +117,6 @@ module DiscoveryIndexer
           return true if object_type_nodes.find_index { |n| %w(collection set).include? n.text.downcase }
         end
         false
-      end
-
-      # get the druids from isMemberOfCollection relationships in rels-ext from public_xml
-      # @return [Array<String>] the druids (e.g. ww123yy1234) this object has isMemberOfColletion relationship with, or nil if none
-      def parse_collection_druids
-        ns_hash = { 'rdf' => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'fedora' => 'info:fedora/fedora-system:def/relations-external#', '' => '' }
-        is_member_of_nodes ||= @purlxml_ng_doc.xpath('/publicObject/rdf:RDF/rdf:Description/fedora:isMemberOfCollection/@rdf:resource', ns_hash)
-        # from public_xml rels-ext
-        is_member_of_nodes.reject { |n| n.value.empty? }.map do |n|
-          n.value.split('druid:').last
-        end
       end
 
       # get the druids from predicate relationships in rels-ext from public_xml
