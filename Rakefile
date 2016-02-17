@@ -18,12 +18,17 @@ end
 task default: :ci
 
 desc 'run continuous integration suite (tests, coverage, docs)'
-task ci: [:rspec, :doc]
+task ci: [:rspec, :rubocop]
 
 task spec: :rspec
 
 RSpec::Core::RakeTask.new(:rspec) do |spec|
   spec.rspec_opts = ['-c', '-f progress', '--tty', '-r ./spec/spec_helper.rb']
+end
+
+require 'rubocop/rake_task'
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.options = ['-l'] # run lint cops only
 end
 
 # Use yard to build docs
