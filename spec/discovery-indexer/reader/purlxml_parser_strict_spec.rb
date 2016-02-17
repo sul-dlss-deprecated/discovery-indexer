@@ -13,7 +13,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     @rdf = '<rdf:RDF xmlns:fedora="info:fedora/fedora-system:def/relations-external#" xmlns:fedora-model="info:fedora/fedora-system:def/model#" xmlns:hydra="http://projecthydra.org/ns/relations#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">    <rdf:Description rdf:about="info:fedora/druid:tn629pk3948">      <fedora:isMemberOf rdf:resource="info:fedora/druid:yk804rq1656"/>      <fedora:isMemberOfCollection rdf:resource="info:fedora/druid:yk804rq1656"/>    </rdf:Description>  </rdf:RDF>'
   end
 
-  describe '.parse' do
+  describe '#parse' do
     it 'should call all methods and fill the require fields in the model' do
       parser = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('aa111aa1111', nil)
       allow(parser).to receive(:parse_content_metadata) { 'contentMetadata' }
@@ -47,7 +47,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
   end
 
-  describe '.parse_identity_metadata' do
+  describe '#parse_identity_metadata' do
     it 'should returnt the identity metadata stream for the valid public xml' do
       im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', @available_purl_xml_ng_doc).parse_identity_metadata
       expect(im).to be_kind_of(Nokogiri::XML::Document)
@@ -62,7 +62,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
   end
 
-  describe '.parse_rights_metadata' do
+  describe '#parse_rights_metadata' do
     it 'should returnt the rights metadata stream for the valid public xml' do
       im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', @available_purl_xml_ng_doc).parse_rights_metadata
       expect(im).to be_kind_of(Nokogiri::XML::Document)
@@ -76,7 +76,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
   end
 
-  describe '.parse_dc' do
+  describe '#parse_dc' do
     it 'should returnt the dc metadata stream for the valid public xml' do
       im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', @available_purl_xml_ng_doc).parse_dc
       expect(im).to be_kind_of(Nokogiri::XML::Document)
@@ -90,7 +90,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
   end
 
-  describe '.parse_rdf' do
+  describe '#parse_rdf' do
     it 'should return the rdf for the valid public xml' do
       im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', @available_purl_xml_ng_doc).parse_rdf
       expect(im).to be_kind_of(Nokogiri::XML::Document)
@@ -104,7 +104,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
   end
 
-  describe '.parse_release_tags_hash' do
+  describe '#parse_release_tags_hash' do
     it 'parses the release tags from ReleaseData in public XML' do
       release_tags_hash = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', @available_purl_xml_ng_doc).parse_release_tags_hash
       expect(release_tags_hash).to eq('revs_stage' => true, 'sw_prod' => false, 'sw_preview' => false)
@@ -121,21 +121,21 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
   end
 
-  describe '.parse_copyright' do
+  describe '#parse_copyright' do
     it 'should parse the copyright statement correctly' do
       copyright = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', @available_purl_xml_ng_doc).parse_copyright
       expect(copyright).to eq('Test copyright statement. All rights reserved unless otherwise indicated.')
     end
   end
 
-  describe '.parse_use_and_reproduction' do
+  describe '#parse_use_and_reproduction' do
     it 'should parse the use and reproduction statement correctly' do
       use_and_reproduction = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', @available_purl_xml_ng_doc).parse_use_and_reproduction
       expect(use_and_reproduction).to eq('Digital recordings from this collection may be accessed freely. These files may not be reproduced or used for any purpose without permission. For permission requests, please contact Stanford University Department of Special Collections  University Archives (speccollref@stanford.edu).')
     end
   end
 
-  describe '.parse_content_metadata' do
+  describe '#parse_content_metadata' do
     it 'should return the content metadata stream for the valid public xml' do
       im = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', @available_purl_xml_ng_doc).parse_content_metadata
       expect(im).to be_kind_of(Nokogiri::XML::Document)
@@ -172,19 +172,19 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
   end
 
-  describe '.parse_catkey' do
+  describe '#parse_catkey' do
     pending
   end
 
-  describe '.parse_barcode' do
+  describe '#parse_barcode' do
     pending
   end
 
-  describe '.parse_label' do
+  describe '#parse_label' do
     pending
   end
 
-  describe '.parse_dor_content_type' do
+  describe '#parse_dor_content_type' do
     it 'should return valid dor content type for valid druid' do
       content_type = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', @available_purl_xml_ng_doc).parse_dor_content_type
       expect(content_type).to eq('media')
@@ -197,7 +197,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
   end
 
-  describe '.parse_dor_display_type' do
+  describe '#parse_dor_display_type' do
     it 'should return valid dor displayTypeype for valid druid' do
       public_xml_display_type = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@content_metadata}</publicObject>"
       display_type = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('', Nokogiri::XML(public_xml_display_type)).parse_dor_display_type
@@ -212,11 +212,11 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
   end
 
-  describe '.parse_collection_druids' do
+  describe '#parse_collection_druids' do
     pending
   end
 
-  describe '.parse_is_collection' do
+  describe '#parse_is_collection' do
     pending
   end
 
