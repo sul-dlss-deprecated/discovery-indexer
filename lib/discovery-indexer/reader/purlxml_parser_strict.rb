@@ -39,6 +39,8 @@ module DiscoveryIndexer
         purlxml_model
       end
 
+      private
+
       # extracts the identityMetadata for this fedora object, from the purl xml
       # @return [Nokogiri::XML::Document] the identityMetadata for the fedora object
       # @raise [DiscoveryIndexer::Errors::MissingIdentityMetadata] if there is no identity_metadata
