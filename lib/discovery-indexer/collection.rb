@@ -1,10 +1,9 @@
 module DiscoveryIndexer
 
-  # It caches the collection information such as name and catkey
+  # Collection information such as name (title/label) and catkey
   class Collection
 
     attr_reader :druid
-    delegate :present?, to: :collection_info
 
     def initialize(druid)
       @druid = druid
@@ -20,17 +19,11 @@ module DiscoveryIndexer
 
     private
 
-    # Returns the collection name from cache, otherwise will fetch it from PURL.
-    #
-    # @return [Hash] the collection data or [] if there is no name and catkey or the object is not a collection
+    # @return [Hash] the collection data as { title: 'coll title', ckey: catkey'}
     def collection_info
-      from_purl || {}
-    end
-
-    # @return [String] return the collection label from purl if available, nil otherwise
-    def from_purl
-      return unless purl_model
-      { title: purl_model.label, ckey: purl_model.catkey }
+      return {} unless purl_model
+      @info = {}
+      @info = { title: purl_model.label, ckey: purl_model.catkey } if @info.empty?
     end
 
     def purl_model

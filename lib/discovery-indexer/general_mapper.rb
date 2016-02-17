@@ -18,10 +18,10 @@ module DiscoveryIndexer
       solr_doc
     end
 
-    # It converts collection_druids list to a hash with names. If the druid doesn't
-    # have a collection name, it will be excluded from the hash
-    # @return [Hash] a hash with key of coll druid, and value as a hash of name and ckey
-    # e.g. {'aa00bb0001'=>{:name=>'Test Coll Name',:ckey=>'000001'},'nt028fd5773'=>{:name=>'Revs Institute Archive',:ckey=>'000002'}}
+    # For each collection druid, return a Hash of coll name (as :title) and ckey. If the druid doesn't
+    # have a collection title, it will be excluded from the hash
+    # @return [Hash] keys are coll druids, and values are a hash of title and ckey for the coll druid
+    # e.g. {'aa00bb0001'=>{:title=>'my coll',:ckey=>'652'},'nt028fd5773'=>{:title=>'Revs coll',:ckey=>'88'}}
     def collection_data
       @collection_data ||= collection_druids.map do |cdruid|
         DiscoveryIndexer::Collection.new(cdruid)
