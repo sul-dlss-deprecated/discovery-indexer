@@ -14,6 +14,13 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
   end
 
   describe '#parse' do
+    before(:each) do |*args|
+      allow(parser).to receive(:parse_content_metadata).and_return(@content_metadata)
+      allow(parser).to receive(:parse_identity_metadata)
+      allow(parser).to receive(:parse_rights_metadata)
+      allow(parser).to receive(:parse_dc)
+      allow(parser).to receive(:parse_rdf)
+    end
     it 'should call all methods and fill the require fields in the model' do
       parser = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('aa111aa1111', nil)
       allow(parser).to receive(:parse_content_metadata) { 'contentMetadata' }
@@ -36,7 +43,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_sourceid) { 'sourceid' }
 
       model = parser.parse
-      expect(model.druid).to eq('aa111aa1111')
+      expect(model.druid).to eq(fake_druid)
       expect(model.public_xml).to be_nil
       expect(model.content_metadata).to eq('contentMetadata')
       expect(model.identity_metadata).to eq('identityMetadata')
@@ -44,6 +51,20 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       expect(model.dc).to eq('dc')
       expect(model.rdf).to eq('rdf')
       expect(model.label).to eq('label')
+    end
+    it 'collection_druids' do
+      allow(parser).to receive(:parse_catkey)
+      allow(parser).to receive(:parse_barcode)
+      allow(parser).to receive(:parse_label)
+      allow(parser).to receive(:parse_copyright)
+      allow(parser).to receive(:parse_use_and_reproduction)
+      allow(parser).to receive(:parse_sourceid)
+
+      coll_druids = ['ab123cd4567']
+      expect(parser).to receive(:parse_collection_druids).and_return(coll_druids)
+#      expect(parser).to receive(:parse_predicate_druids).with('isMemberOfCollection', fedora_ns).and_return(coll_druids)
+      model = parser.parse
+      expect(model.collection_druids).to eq coll_druids
     end
   end
 
