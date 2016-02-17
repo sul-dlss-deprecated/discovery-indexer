@@ -14,7 +14,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
   end
 
   describe '#parse' do
-    before(:each) do |*args|
+    before(:each) do
       allow(parser).to receive(:parse_content_metadata).and_return(@content_metadata)
       allow(parser).to receive(:parse_identity_metadata)
       allow(parser).to receive(:parse_rights_metadata)
@@ -22,8 +22,6 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_rdf)
     end
     it 'should call all methods and fill the require fields in the model' do
-      parser = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new('aa111aa1111', nil)
-      allow(parser).to receive(:parse_content_metadata) { 'contentMetadata' }
       allow(parser).to receive(:parse_identity_metadata) { 'identityMetadata' }
       allow(parser).to receive(:parse_rights_metadata) { 'rightsMetadata' }
       allow(parser).to receive(:parse_dc) { 'dc' }
@@ -45,7 +43,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       model = parser.parse
       expect(model.druid).to eq(fake_druid)
       expect(model.public_xml).to be_nil
-      expect(model.content_metadata).to eq('contentMetadata')
+      expect(model.content_metadata).to eq(@content_metadata)
       expect(model.identity_metadata).to eq('identityMetadata')
       expect(model.rights_metadata).to eq('rightsMetadata')
       expect(model.dc).to eq('dc')
