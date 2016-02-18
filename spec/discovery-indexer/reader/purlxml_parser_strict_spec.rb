@@ -56,9 +56,17 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
     it 'collection_druids populated from #parse_predicate_druids with isMemberOfCollection' do
       coll_druids = ['ab123cd4567', '666']
+      allow(parser).to receive(:parse_predicate_druids).with('isConsituentOf', fedora_ns)
       expect(parser).to receive(:parse_predicate_druids).with('isMemberOfCollection', fedora_ns).and_return(coll_druids)
       model = parser.parse
       expect(model.collection_druids).to eq coll_druids
+    end
+    it 'consituent_druids populated from #parse_predicate_druids with isConsituentOf' do
+      constituent_druids = ['666', '777', '888']
+      allow(parser).to receive(:parse_predicate_druids).with('isMemberOfCollection', fedora_ns)
+      expect(parser).to receive(:parse_predicate_druids).with('isConstituentOf', fedora_ns).and_return(constituent_druids)
+      model = parser.parse
+      expect(model.constituent_druids).to eq constituent_druids
     end
   end
 

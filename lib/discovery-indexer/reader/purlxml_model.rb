@@ -51,10 +51,16 @@ module DiscoveryIndexer
       attr_accessor :is_collection
 
       # @!attribute [rw] collection_druids
-      # @return [Array] a list of the collections that this is druid belongs to
+      # @return [Array<String>] bare druids of the collections that this druid is a member of
       # @example
       #  ["aa11aaa1111","bb111bb1111"]
       attr_accessor :collection_druids
+
+      # @!attribute [rw] constituent_druids
+      # @return [Array<String>] bare druids of the objects that this druid is a constituent of
+      # @example
+      #  ["aa11aaa1111","bb111bb1111"]
+      attr_accessor :constituent_druids
 
       # @!attribute [rw] file_ids
       # @return [Array] a list of the file ids in the content_metadata

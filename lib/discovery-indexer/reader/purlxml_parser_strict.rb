@@ -26,6 +26,7 @@ module DiscoveryIndexer
         purlxml_model.rdf               = parse_rdf
         purlxml_model.is_collection     = parse_is_collection
         purlxml_model.collection_druids = parse_predicate_druids('isMemberOfCollection', FEDORA_NAMESPACE)
+        purlxml_model.constituent_druids = parse_predicate_druids('isConstituentOf', FEDORA_NAMESPACE)
         purlxml_model.dor_content_type  = parse_dor_content_type
         purlxml_model.dor_display_type  = parse_dor_display_type
         purlxml_model.release_tags_hash = parse_release_tags_hash
