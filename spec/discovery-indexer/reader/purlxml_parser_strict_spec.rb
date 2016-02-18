@@ -24,25 +24,25 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_rights_metadata)
       allow(parser).to receive(:parse_dc)
       allow(parser).to receive(:parse_rdf)
+      allow(parser).to receive(:parse_catkey)
+      allow(parser).to receive(:parse_barcode)
+      allow(parser).to receive(:parse_label)
+      allow(parser).to receive(:parse_copyright)
+      allow(parser).to receive(:parse_use_and_reproduction)
+      allow(parser).to receive(:parse_sourceid)
+      allow(parser).to receive(:parse_is_collection)
+      allow(parser).to receive(:parse_predicate_druids)
+      allow(parser).to receive(:parse_dor_content_type)
+      allow(parser).to receive(:parse_dor_display_type)
+      allow(parser).to receive(:parse_file_ids)
+      allow(parser).to receive(:parse_image_ids)
     end
     it 'calls parse methods to popuplate the required fields in the model' do
       allow(parser).to receive(:parse_identity_metadata) { 'identityMetadata' }
       allow(parser).to receive(:parse_rights_metadata) { 'rightsMetadata' }
       allow(parser).to receive(:parse_dc) { 'dc' }
       allow(parser).to receive(:parse_rdf) { 'rdf' }
-      allow(parser).to receive(:parse_is_collection) { false }
-      allow(parser).to receive(:parse_predicate_druids).with('isMemberOfCollection', fedora_ns) { ['ab123cd4567'] }
-      allow(parser).to receive(:parse_dor_content_type) { 'image' }
-      allow(parser).to receive(:parse_dor_display_type) { 'image' }
-      allow(parser).to receive(:parse_release_tags_hash) { '' }
-      allow(parser).to receive(:parse_file_ids) { ['aa111aa1111_1'] }
-      allow(parser).to receive(:parse_image_ids) { ['aa111aa1111_1'] }
-      allow(parser).to receive(:parse_catkey) { '123456' }
-      allow(parser).to receive(:parse_barcode) { '123456' }
       allow(parser).to receive(:parse_label) { 'label' }
-      allow(parser).to receive(:parse_copyright) { 'copyright' }
-      allow(parser).to receive(:parse_use_and_reproduction) { 'use_and_reproduction' }
-      allow(parser).to receive(:parse_sourceid) { 'sourceid' }
 
       model = parser.parse
       expect(model.druid).to eq(fake_druid)
@@ -54,22 +54,19 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       expect(model.rdf).to eq('rdf')
       expect(model.label).to eq('label')
     end
-    it 'collection_druids' do
-      allow(parser).to receive(:parse_catkey)
-      allow(parser).to receive(:parse_barcode)
-      allow(parser).to receive(:parse_label)
-      allow(parser).to receive(:parse_copyright)
-      allow(parser).to receive(:parse_use_and_reproduction)
-      allow(parser).to receive(:parse_sourceid)
-      allow(parser).to receive(:parse_is_collection)
-      allow(parser).to receive(:parse_dor_content_type)
-      allow(parser).to receive(:parse_file_ids)
-      allow(parser).to receive(:parse_image_ids)
-
+    it 'collection_druids populated from #parse_predicate_druids with isMemberOfCollection' do
       coll_druids = ['ab123cd4567', '666']
+      allow(parser).to receive(:parse_predicate_druids).with('isConsituentOf', fedora_ns)
       expect(parser).to receive(:parse_predicate_druids).with('isMemberOfCollection', fedora_ns).and_return(coll_druids)
       model = parser.parse
       expect(model.collection_druids).to eq coll_druids
+    end
+    it 'consituent_druids populated from #parse_predicate_druids with isConsituentOf' do
+      constituent_druids = ['666', '777', '888']
+      allow(parser).to receive(:parse_predicate_druids).with('isMemberOfCollection', fedora_ns)
+      expect(parser).to receive(:parse_predicate_druids).with('isConstituentOf', fedora_ns).and_return(constituent_druids)
+      model = parser.parse
+      expect(model.constituent_druids).to eq constituent_druids
     end
   end
 

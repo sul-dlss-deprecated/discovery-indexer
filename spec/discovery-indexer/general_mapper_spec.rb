@@ -125,4 +125,107 @@ describe DiscoveryIndexer::GeneralMapper do
       expect(mapper.collection_data).to eq []
     end
   end
+
+  context '#constituent_druids' do
+    it 'calls purlxml.constituent_druids' do
+      purlxml = double('purlxml')
+      expect(purlxml).to receive(:constituent_druids)
+      expect(mapper).to receive(:purlxml).and_return(purlxml)
+      mapper.constituent_druids
+    end
+    it 'Array of bare constituent druids from rels-ext in public xml' do
+      public_xml_ng =
+        Nokogiri::XML <<-EOF
+          <publicObject id='druid:#{fake_druid}'>
+            <identityMetadata />
+            <rightsMetadata />
+            <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" />
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:fedora="#{fedora_ns}">
+              <rdf:Description rdf:about="info:fedora/druid:#{fake_druid}">
+                <fedora:isMemberOf rdf:resource="info:fedora/druid:xh235dd9059"/>
+                <fedora:isMemberOfCollection rdf:resource="info:fedora/druid:xh235dd9059"/>
+                <fedora:isConstituentOf rdf:resource="info:fedora/druid:hj097bm8879"/>
+                <fedora:isConstituentOf rdf:resource="info:fedora/druid:aa097bm8879"/>
+              </rdf:Description>
+            </rdf:RDF>
+          </publicObject>
+          EOF
+      parser = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(fake_druid, public_xml_ng)
+      allow(mapper).to receive(:purlxml).and_return(parser.parse)
+      expect(mapper.constituent_druids).to eq ['hj097bm8879', 'aa097bm8879']
+    end
+    it 'empty Array if there are no constituent druids' do
+      public_xml_ng =
+        Nokogiri::XML <<-EOF
+          <publicObject id='druid:#{fake_druid}'>
+            <identityMetadata />
+            <rightsMetadata />
+            <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" />
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:fedora="#{fedora_ns}">
+              <rdf:Description rdf:about="info:fedora/druid:#{fake_druid}">
+                <fedora:isMemberOf rdf:resource="info:fedora/druid:xh235dd9059"/>
+                <fedora:isMemberOfCollection rdf:resource="info:fedora/druid:xh235dd9059"/>
+              </rdf:Description>
+            </rdf:RDF>
+          </publicObject>
+          EOF
+      parser = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(fake_druid, public_xml_ng)
+      allow(mapper).to receive(:purlxml).and_return(parser.parse)
+      expect(mapper.constituent_druids).to eq []
+    end
+  end
+
+  context '#constituent_data' do
+    it 'creates DiscoveryIndexer::Collection for each constituent druid' do
+      allow(mapper).to receive(:constituent_druids).and_return(['1', '2', '3'])
+      expect(DiscoveryIndexer::Collection).to receive(:new).exactly(3).times
+      mapper.constituent_data
+    end
+    it 'Array of DiscoveryIndexer::Collection objects for each constituent druid from rels-ext in public xml' do
+      public_xml_ng =
+        Nokogiri::XML <<-EOF
+          <publicObject id='druid:#{fake_druid}'>
+            <identityMetadata />
+            <rightsMetadata />
+            <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" />
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:fedora="#{DiscoveryIndexer::InputXml::PurlxmlParserStrict::FEDORA_NAMESPACE}">
+              <rdf:Description rdf:about="info:fedora/druid:#{fake_druid}">
+                <fedora:isMemberOf rdf:resource="info:fedora/druid:xh235dd9059"/>
+                <fedora:isMemberOfCollection rdf:resource="info:fedora/druid:xh235dd9059"/>
+                <fedora:isConstituentOf rdf:resource="info:fedora/druid:hj097bm8879"/>
+                <fedora:isConstituentOf rdf:resource="info:fedora/druid:aa097bm8879"/>
+                <fedora:isEmpty/>
+              </rdf:Description>
+            </rdf:RDF>
+          </publicObject>
+          EOF
+      parser = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(fake_druid, public_xml_ng)
+      allow(mapper).to receive(:purlxml).and_return(parser.parse)
+      const_data = mapper.constituent_data
+      expect(const_data.size).to eq 2
+      expect(const_data[0]).to be_an_instance_of(DiscoveryIndexer::Collection)
+      expect(const_data[0].druid).to eq 'hj097bm8879'
+      expect(const_data[1]).to be_an_instance_of(DiscoveryIndexer::Collection)
+      expect(const_data[1].druid).to eq 'aa097bm8879'
+    end
+    it 'empty Array when there are no constituent druids' do
+      public_xml_ng =
+        Nokogiri::XML <<-EOF
+          <publicObject id='druid:#{fake_druid}'>
+            <identityMetadata />
+            <rightsMetadata />
+            <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" />
+            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:fedora="#{fedora_ns}">
+              <rdf:Description rdf:about="info:fedora/druid:#{fake_druid}">
+                <fedora:isMemberOf rdf:resource="info:fedora/druid:xh235dd9059"/>
+                <fedora:isMemberOfCollection rdf:resource="info:fedora/druid:xh235dd9059"/>
+              </rdf:Description>
+            </rdf:RDF>
+          </publicObject>
+          EOF
+      parser = DiscoveryIndexer::InputXml::PurlxmlParserStrict.new(fake_druid, public_xml_ng)
+      allow(mapper).to receive(:purlxml).and_return(parser.parse)
+      expect(mapper.constituent_data).to eq []
+    end
+  end
 end
