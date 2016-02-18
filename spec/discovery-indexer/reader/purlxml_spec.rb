@@ -34,6 +34,7 @@ describe DiscoveryIndexer::InputXml::Purlxml do
         p.instance_variable_set(:@druid, 'aa111aa1111')
         model = p.load
 
+        # if the model was reloaded, then the below wouldn't be true because the data would change to match the druid
         expect(model.content_metadata).to be_equivalent_to(@content_metadata)
         expect(model.identity_metadata).to be_equivalent_to(@identity_metadata)
         expect(model.rights_metadata).to be_equivalent_to(@rights_metadata)
