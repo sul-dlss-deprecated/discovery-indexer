@@ -25,8 +25,21 @@ module DiscoveryIndexer
       end
     end
 
+    # @return [Array<String>] Array of bare druids from rels-ext isMemberOfCollection in public xml (e.g. ['oo000oo0000'])
     def collection_druids
       purlxml.collection_druids
+    end
+
+    # @return [DiscoveryIndexer::Collection] for each constituent druid, or [] if no constituent druids
+    def constituent_data
+      @constituent_data ||= constituent_druids.map do |cdruid|
+        DiscoveryIndexer::Collection.new(cdruid)
+      end
+    end
+
+    # @return [Array<String>] Array of bare druids from rels-ext isConstituentOf in public xml (e.g. ['oo000oo0000'])
+    def constituent_druids
+      purlxml.constituent_druids
     end
 
     # @return [Stanford::Mods::Record] the MODS xml for the druid
