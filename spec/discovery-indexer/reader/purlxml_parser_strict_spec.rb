@@ -33,7 +33,6 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_is_collection)
       allow(parser).to receive(:parse_predicate_druids)
       allow(parser).to receive(:parse_dor_content_type)
-      allow(parser).to receive(:parse_dor_display_type)
       allow(parser).to receive(:parse_file_ids)
       allow(parser).to receive(:parse_image_ids)
     end
@@ -217,21 +216,6 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       public_xml_no_content = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}</publicObject>"
       content_type = described_class.new('', Nokogiri::XML(public_xml_no_content)).send(:parse_dor_content_type)
       expect(content_type).to be_nil
-    end
-  end
-
-  describe '#parse_dor_display_type' do
-    it 'returns valid dor displayTypeype for valid druid' do
-      public_xml_display_type = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@content_metadata}</publicObject>"
-      display_type = described_class.new('', Nokogiri::XML(public_xml_display_type)).send(:parse_dor_display_type)
-      expect(display_type).to eq('image')
-    end
-
-    it 'returns nil dor displayType if there is no displayType in the identity metadata' do
-      im_no_display_type = '  <identityMetadata>    <sourceId source="sul">V0401_b1_1.01</sourceId>    <objectId>druid:tn629pk3948</objectId>    <objectCreator>DOR</objectCreator>    <objectLabel>Lecture 1</objectLabel>    <objectType>item</objectType>    <adminPolicy>druid:ww057vk7675</adminPolicy>    <otherId name="label"/>    <otherId name="uuid">08d544da-d459-11e2-8afb-0050569b3c3c</otherId>    <tag>Project:V0401 mccarthyism:vhs</tag>    <tag> Process:Content Type:Media</tag>    <tag> JIRA:DIGREQ-592</tag>    <tag> SMPL:video:ua</tag>    <tag> Registered By:gwillard</tag>    <tag>Remediated By : 4.6.6.2</tag>  </identityMetadata>'
-      public_xml_no_display_type = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{im_no_display_type}#{@content_metadata}</publicObject>"
-      display_type = described_class.new('', Nokogiri::XML(public_xml_no_display_type)).send(:parse_dor_display_type)
-      expect(display_type).to be_empty
     end
   end
 

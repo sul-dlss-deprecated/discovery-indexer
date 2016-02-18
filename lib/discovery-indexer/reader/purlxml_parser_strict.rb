@@ -28,7 +28,6 @@ module DiscoveryIndexer
         purlxml_model.collection_druids = parse_predicate_druids('isMemberOfCollection', FEDORA_NAMESPACE)
         purlxml_model.constituent_druids = parse_predicate_druids('isConstituentOf', FEDORA_NAMESPACE)
         purlxml_model.dor_content_type  = parse_dor_content_type
-        purlxml_model.dor_display_type  = parse_dor_display_type
         purlxml_model.release_tags_hash = parse_release_tags_hash
         purlxml_model.file_ids          = parse_file_ids
         purlxml_model.image_ids         = parse_image_ids
@@ -141,15 +140,6 @@ module DiscoveryIndexer
         dct = content_md ? content_md.xpath('contentMetadata/@type').text : nil
         DiscoveryIndexer::Logging.logger.debug "#{@druid} has no DOR content type (<contentMetadata> element may be missing type attribute)" if !dct || dct.empty?
         dct
-      end
-
-      # the value of the displyType tag from a DOR collection's identityMetadata
-      # @return [String]
-      def parse_dor_display_type
-        identity_md = parse_identity_metadata
-        ddt = identity_md ? identity_md.xpath('//displayType').text : nil
-        DiscoveryIndexer::Logging.logger.debug "#{@druid} has no DOR display type (<identityMetadata> element may be missing displayType tag)" if !ddt || ddt.empty?
-        ddt
       end
 
       # the @id attribute of resource/file elements that match the image type, including extension
