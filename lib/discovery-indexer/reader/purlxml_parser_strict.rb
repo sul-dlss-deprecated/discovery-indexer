@@ -147,7 +147,7 @@ module DiscoveryIndexer
       def parse_image_ids
         content_md = parse_content_metadata
         return nil if content_md.nil?
-        content_md.xpath('//resource[@type="page" or @type="image"]/file[@mimetype="image/jp2"]/@id').map(&:to_s)
+        content_md.xpath('//resource[@type="page" or @type="image" or @type="thumb"]/file[@mimetype="image/jp2"]/@id').map(&:to_s)
       end
 
       def parse_sourceid

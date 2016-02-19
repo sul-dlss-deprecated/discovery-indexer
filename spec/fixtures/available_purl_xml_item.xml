@@ -56,6 +56,18 @@
         <imageData width="1547" height="1379"/>
       </file>
     </resource>
+    <resource sequence="7" id="tn629pk3948_7" type="thumb">
+      <label>Thumbnail</label>
+      <file id="tn629pk3948_thumb_1.jp2" mimetype="image/jp2" size="411054">
+        <imageData width="1547" height="1379"/>
+      </file>
+    </resource>
+    <resource sequence="8" id="tn629pk3948_8" type="thumb">
+      <label>Thumbnail</label>
+      <file id="tn629pk3948_thumb_2.jp2" mimetype="image/jp2" size="411054">
+        <imageData width="1547" height="1379"/>
+      </file>
+    </resource>
   </contentMetadata>
   <rightsMetadata>
     <copyright><human type="copyright">Test copyright statement. All rights reserved unless otherwise indicated.</human></copyright>
