@@ -1,4 +1,3 @@
-
 <publicObject id="druid:tn629pk3948" published="2014-08-09T11:20:13-07:00">
   <identityMetadata>
     <sourceId source="sul">V0401_b1_1.01</sourceId>
@@ -67,6 +66,27 @@
       <file id="tn629pk3948_thumb_2.jp2" mimetype="image/jp2" size="411054">
         <imageData width="1547" height="1379"/>
       </file>
+    </resource>
+    <resource id="tn629pk3948_9" sequence="9" type="page">
+      <label>Cover: Carey's American atlas.</label>
+      <externalFile fileId="2542A.jp2" mimetype="image/jp2" objectId="druid:cg767mn6478" resourceId="cg767mn6478_1">
+        <imageData width="6475" height="4747"/>
+      </externalFile>
+      <relationship objectId="druid:cg767mn6478" type="alsoAvailableAs"/>
+    </resource>
+    <resource id="tn629pk3948_10" sequence="10" thumb="yes" type="page">
+      <label>Title Page: Carey's American atlas.</label>
+      <externalFile fileId="2542B.jp2" mimetype="image/jp2" objectId="druid:jw923xn5254" resourceId="jw923xn5254_1">
+        <imageData width="3139" height="4675"/>
+      </externalFile>
+      <relationship objectId="druid:jw923xn5254" type="alsoAvailableAs"/>
+    </resource>
+    <resource id="tn629pk3948_11" sequence="11" type="image">
+      <label>British Possessions in North America.</label>
+      <externalFile fileId="2542001.jp2" mimetype="image/jp2" objectId="druid:wn461xh4882" resourceId="wn461xh4882_1">
+        <imageData width="6633" height="5305"/>
+      </externalFile>
+      <relationship objectId="druid:wn461xh4882" type="alsoAvailableAs"/>
     </resource>
   </contentMetadata>
   <rightsMetadata>

@@ -31,6 +31,7 @@ module DiscoveryIndexer
         purlxml_model.release_tags_hash = parse_release_tags_hash
         purlxml_model.file_ids          = parse_file_ids
         purlxml_model.image_ids         = parse_image_ids
+        purlxml_model.sw_image_ids      = parse_sw_image_ids
         purlxml_model.catkey            = parse_catkey
         purlxml_model.barcode           = parse_barcode
         purlxml_model.label             = parse_label
@@ -142,12 +143,26 @@ module DiscoveryIndexer
         dct
       end
 
-      # the @id attribute of resource/file elements that match the image type, including extension
+      # the @id attribute of resource/file elements that match the image, page, or thumb resource type, including extension
       # @return [Array<String>] filenames
       def parse_image_ids
         content_md = parse_content_metadata
-        return nil if content_md.nil?
+        return [] if content_md.nil?
         content_md.xpath('//resource[@type="page" or @type="image" or @type="thumb"]/file[@mimetype="image/jp2"]/@id').map(&:to_s)
+      end
+
+      # the druid and id attribute of resource/file and objectId and fileId of the
+      # resource/externalFile elements that match the image, page, or thumb resource type, including extension
+      # Also, prepends the corresponding druid and %2F specifically for Searchworks use
+      # @return [Array<String>] filenames
+      def parse_sw_image_ids
+        content_md = parse_content_metadata
+        return [] if content_md.nil?
+        content_md.xpath('//resource[@type="page" or @type="image" or @type="thumb"]').map do |node|
+          node.xpath('./file[@mimetype="image/jp2"]/@id').map{ |x| "#{@druid}%2F" + x } << node.xpath('./externalFile[@mimetype="image/jp2"]').map do |y|
+            "#{y.attributes['objectId'].text.split(':').last}" + "%2F" + "#{y.attributes['fileId']}"
+          end
+        end.flatten
       end
 
       def parse_sourceid
@@ -165,14 +180,9 @@ module DiscoveryIndexer
       # the @id attribute of resource/file elements, including extension
       # @return [Array<String>] filenames
       def parse_file_ids
-        ids = []
         content_md = parse_content_metadata
-        return nil if content_md.nil?
-        content_md.xpath('//resource/file/@id').each do |node|
-          ids << node.text unless node.text.empty?
-        end
-        return nil if ids.empty?
-        ids
+        return [] if content_md.nil?
+        content_md.xpath('//resource/file/@id').map { |x| x.text }.compact
       end
 
       # @return catkey value from the DOR identity_metadata, or nil if there is no catkey

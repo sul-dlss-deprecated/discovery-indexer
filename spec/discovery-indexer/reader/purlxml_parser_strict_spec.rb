@@ -10,7 +10,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     @available_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item.xml'), nil, 'UTF-8')
     @identity_metadata = '  <identityMetadata>    <sourceId source="sul">V0401_b1_1.01</sourceId>    <objectId>druid:tn629pk3948</objectId>    <objectCreator>DOR</objectCreator>    <objectLabel>Lecture 1</objectLabel>    <objectType>item</objectType>    <adminPolicy>druid:ww057vk7675</adminPolicy>    <displayType>image</displayType>    <otherId name="label"/>    <otherId name="uuid">08d544da-d459-11e2-8afb-0050569b3c3c</otherId>    <tag>Project:V0401 mccarthyism:vhs</tag>    <tag> Process:Content Type:Media</tag>    <tag> JIRA:DIGREQ-592</tag>    <tag> SMPL:video:ua</tag>    <tag> Registered By:gwillard</tag>    <tag>Remediated By : 4.6.6.2</tag>  </identityMetadata>'
     @rights_metadata = ' <rightsMetadata>   <copyright><human type="copyright">Test copyright statement. All rights reserved unless otherwise indicated.</human></copyright>  <access type="discover">      <machine>        <world/>      </machine>    </access>    <access type="read">      <machine>        <world/>      </machine>    </access>    <use>      <human type="useAndReproduction">Digital recordings from this collection may be accessed freely. These files may not be reproduced or used for any purpose without permission. For permission requests, please contact Stanford University Department of Special Collections  University Archives (speccollref@stanford.edu).</human>    </use>    <use>      <human type="creativeCommons"/>      <machine type="creativeCommons"/>    </use>  </rightsMetadata>'
-    @content_metadata = ' <contentMetadata objectId="tn629pk3948" type="media">    <resource sequence="1" id="tn629pk3948_1" type="video">      <label>Tape 1</label>      <file id="tn629pk3948_sl.mp4" mimetype="video/mp4" size="3615267858">                </file>    </resource>    <resource sequence="2" id="tn629pk3948_2" type="image">      <label>Image of media (1 of 3)</label>      <file id="tn629pk3948_img_1.jp2" mimetype="image/jp2" size="919945">        <imageData width="1777" height="2723"/>      </file>    </resource>    <resource sequence="3" id="tn629pk3948_3" type="image">      <label>Image of media (2 of 3)</label>      <file id="tn629pk3948_img_2.jp2" mimetype="image/jp2" size="719940">        <imageData width="2560" height="1475"/>      </file>    </resource>    <resource sequence="4" id="tn629pk3948_4" type="image">      <label>Image of media (3 of 3)</label>      <file id="tn629pk3948_img_3.jp2" mimetype="image/jp2" size="411054">        <imageData width="1547" height="1379"/>      </file>    </resource>  <resource sequence="5" id="tn629pk3948_5" type="page">      <label>Page with Media Information</label>      <file id="tn629pk3948_pg_1.pdf" mimetype="application/pdf" size="411054"><imageData width="1547" height="1379"/></file> <file id="tn629pk3948_pg_1.jp2" mimetype="image/jp2" size="411054">        <imageData width="1547" height="1379"/>      </file>    </resource> <resource sequence="6" id="tn629pk3948_6" type="page">      <label>PDF with Media Information</label>      <file id="tn629pk3948_pg_1.pdf" mimetype="application/pdf" size="411054">        <imageData width="1547" height="1379"/>      </file>    </resource><resource sequence="7" id="tn629pk3948_7" type="thumb"><label>Thumbnail</label><file id="tn629pk3948_thumb_1.jp2" mimetype="image/jp2" size="411054"><imageData width="1547" height="1379"/></file></resource><resource sequence="8" id="tn629pk3948_8" type="thumb"><label>Thumbnail</label><file id="tn629pk3948_thumb_2.jp2" mimetype="image/jp2" size="411054"><imageData width="1547" height="1379"/></file></resource></contentMetadata>'
+    @content_metadata = ' <contentMetadata objectId="tn629pk3948" type="media">    <resource sequence="1" id="tn629pk3948_1" type="video">      <label>Tape 1</label>      <file id="tn629pk3948_sl.mp4" mimetype="video/mp4" size="3615267858">                </file>    </resource>    <resource sequence="2" id="tn629pk3948_2" type="image">      <label>Image of media (1 of 3)</label>      <file id="tn629pk3948_img_1.jp2" mimetype="image/jp2" size="919945">        <imageData width="1777" height="2723"/>      </file>    </resource>    <resource sequence="3" id="tn629pk3948_3" type="image">      <label>Image of media (2 of 3)</label>      <file id="tn629pk3948_img_2.jp2" mimetype="image/jp2" size="719940">        <imageData width="2560" height="1475"/>      </file>    </resource>    <resource sequence="4" id="tn629pk3948_4" type="image">      <label>Image of media (3 of 3)</label>      <file id="tn629pk3948_img_3.jp2" mimetype="image/jp2" size="411054">        <imageData width="1547" height="1379"/>      </file>    </resource>  <resource sequence="5" id="tn629pk3948_5" type="page">      <label>Page with Media Information</label>      <file id="tn629pk3948_pg_1.pdf" mimetype="application/pdf" size="411054"><imageData width="1547" height="1379"/></file> <file id="tn629pk3948_pg_1.jp2" mimetype="image/jp2" size="411054">        <imageData width="1547" height="1379"/>      </file>    </resource> <resource sequence="6" id="tn629pk3948_6" type="page">      <label>PDF with Media Information</label>      <file id="tn629pk3948_pg_1.pdf" mimetype="application/pdf" size="411054">        <imageData width="1547" height="1379"/>      </file>    </resource><resource sequence="7" id="tn629pk3948_7" type="thumb"><label>Thumbnail</label><file id="tn629pk3948_thumb_1.jp2" mimetype="image/jp2" size="411054"><imageData width="1547" height="1379"/></file></resource><resource sequence="8" id="tn629pk3948_8" type="thumb"><label>Thumbnail</label><file id="tn629pk3948_thumb_2.jp2" mimetype="image/jp2" size="411054"><imageData width="1547" height="1379"/></file></resource><resource id="tn629pk3948_9" sequence="9" type="page"><label>Cover: Carey\'s American atlas.</label><externalFile fileId="2542A.jp2" mimetype="image/jp2" objectId="druid:cg767mn6478" resourceId="cg767mn6478_1"><imageData width="6475" height="4747"/></externalFile><relationship objectId="druid:cg767mn6478" type="alsoAvailableAs"/></resource><resource id="tn629pk3948_10" sequence="10" thumb="yes" type="page"><label>Title Page: Carey\'s American atlas.</label><externalFile fileId="2542B.jp2" mimetype="image/jp2" objectId="druid:jw923xn5254" resourceId="jw923xn5254_1"><imageData width="3139" height="4675"/></externalFile><relationship objectId="druid:jw923xn5254" type="alsoAvailableAs"/></resource><resource id="tn629pk3948_11" sequence="11" type="image"><label>British Possessions in North America.</label><externalFile fileId="2542001.jp2" mimetype="image/jp2" objectId="druid:wn461xh4882" resourceId="wn461xh4882_1"><imageData width="6633" height="5305"/></externalFile><relationship objectId="druid:wn461xh4882" type="alsoAvailableAs"/></resource></contentMetadata>'
     @blank_content_metadata = ' <contentMetadata objectId="tn629pk3948" type="media">    <resource sequence="1" id="tn629pk3948_1" type="video">      <label>Tape 1</label>    </resource></contentMetadata>'
     @dc = '<oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:srw_dc="info:srw/schema/1/dc-schema" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">    <dc:identifier>V0401_b1_1.01</dc:identifier>    <dc:identifier>V0401</dc:identifier>    <dc:title>Lecture 1</dc:title>    <dc:date>2003-01-27</dc:date>    <dc:format>1 tape</dc:format>    <dc:format>VHS</dc:format>    <dc:format>video/mpeg</dc:format>    <dc:type>MovingImage</dc:type>    <dc:contributor>Frantz, Marge (Speaker)</dc:contributor>    <dc:subject>Anti-Communist Movements--United States</dc:subject>    <dc:subject>McCarthy, Joseph, 1908-1957</dc:subject>    <dc:relation type="repository">Stanford University. Libraries. Department of Special Collections and University Archives https://purl.stanford.edu/tn629pk3948</dc:relation>    <dc:rights>Digital recordings from this collection may be accessed freely. These files may not be reproduced or used for any purpose without permission. For permission requests, please contact Stanford University Department of Special Collections  University Archives (speccollref@stanford.edu).     </dc:rights>    <dc:language>eng</dc:language>    <dc:relation type="collection">Marge Frantz lectures on McCarthyism, 2003</dc:relation>  </oai_dc:dc>'
     @rdf = '<rdf:RDF xmlns:fedora="info:fedora/fedora-system:def/relations-external#" xmlns:fedora-model="info:fedora/fedora-system:def/model#" xmlns:hydra="http://projecthydra.org/ns/relations#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">    <rdf:Description rdf:about="info:fedora/druid:tn629pk3948">      <fedora:isMemberOf rdf:resource="info:fedora/druid:yk804rq1656"/>      <fedora:isMemberOfCollection rdf:resource="info:fedora/druid:yk804rq1656"/>    </rdf:Description>  </rdf:RDF>'
@@ -34,8 +34,9 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_dor_content_type)
       allow(parser).to receive(:parse_file_ids)
       allow(parser).to receive(:parse_image_ids)
+      allow(parser).to receive(:parse_sw_image_ids)
     end
-    it 'calls parse methods to popuplate the required fields in the model' do
+    it 'calls parse methods to populate the required fields in the model' do
       allow(parser).to receive(:parse_identity_metadata) { 'identityMetadata' }
       allow(parser).to receive(:parse_rights_metadata) { 'rightsMetadata' }
       allow(parser).to receive(:parse_dc) { 'dc' }
@@ -172,24 +173,40 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
   end
 
   describe 'Parse File and Image IDs' do
-    it 'returns nil when no content metadata is present' do
+    it 'returns empty array when no content metadata is present' do
       public_xml_no_content = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}</publicObject>"
       pm = described_class.new('', Nokogiri::XML(public_xml_no_content))
-      expect(pm.send(:parse_image_ids)).to be_nil
-      expect(pm.send(:parse_file_ids)).to be_nil
+      expect(pm.send(:parse_image_ids)).to be_empty
+      expect(pm.send(:parse_file_ids)).to be_empty
+      expect(pm.send(:parse_sw_image_ids)).to be_empty
     end
 
-    it 'returns nil when content metadata is present but no image or page ids are present' do
+    it 'returns nil when content metadata is present but no image, page, or thumb resource types are present' do
       public_xml_no_content = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@blank_content_metadata}</publicObject>"
       pm = described_class.new('', Nokogiri::XML(public_xml_no_content))
       expect(pm.send(:parse_image_ids)).to be_empty
-      expect(pm.send(:parse_file_ids)).to be_nil
     end
 
-    it 'returns image and page ids when present' do
-      pm = described_class.new('', @available_purl_xml_ng_doc)
-      expect(pm.send(:parse_image_ids)).to eq(['tn629pk3948_img_1.jp2', 'tn629pk3948_img_2.jp2', 'tn629pk3948_img_3.jp2', 'tn629pk3948_pg_1.jp2', 'tn629pk3948_thumb_1.jp2', 'tn629pk3948_thumb_2.jp2'])
-      expect(pm.send(:parse_file_ids)).to eq(["tn629pk3948_sl.mp4", "tn629pk3948_img_1.jp2", "tn629pk3948_img_2.jp2", "tn629pk3948_img_3.jp2", "tn629pk3948_pg_1.pdf", "tn629pk3948_pg_1.jp2", "tn629pk3948_pg_1.pdf", 'tn629pk3948_thumb_1.jp2', 'tn629pk3948_thumb_2.jp2'])
+    it 'returns nil when content metadata is present but no image, page, or thumb resource types are present' do
+      public_xml_no_content = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@blank_content_metadata}</publicObject>"
+      pm = described_class.new('', Nokogiri::XML(public_xml_no_content))
+      expect(pm.send(:parse_sw_image_ids)).to be_empty
+    end
+
+    it 'returns nil when content metadata is present but no ids are present in the file tags' do
+      public_xml_no_content = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@blank_content_metadata}</publicObject>"
+      pm = described_class.new('', Nokogiri::XML(public_xml_no_content))
+      expect(pm.send(:parse_file_ids)).to be_empty
+    end
+
+    it 'returns ids from resource/file tag when present if resource type is image, page, or thumb' do
+      pm = described_class.new('tn629pk3948', @available_purl_xml_ng_doc)
+      expect(pm.send(:parse_image_ids)).to eq(["tn629pk3948_img_1.jp2", "tn629pk3948_img_2.jp2", "tn629pk3948_img_3.jp2", "tn629pk3948_pg_1.jp2", "tn629pk3948_thumb_1.jp2", "tn629pk3948_thumb_2.jp2"])
+    end
+
+    it 'returns objectIds and fileIds from resource/externalFile tag if resource type is image, page, or thumb' do
+      pm = described_class.new('tn629pk3948', @available_purl_xml_ng_doc)
+      expect(pm.send(:parse_sw_image_ids)).to eq(["tn629pk3948%2Ftn629pk3948_img_1.jp2", "tn629pk3948%2Ftn629pk3948_img_2.jp2", "tn629pk3948%2Ftn629pk3948_img_3.jp2", "tn629pk3948%2Ftn629pk3948_pg_1.jp2", "tn629pk3948%2Ftn629pk3948_thumb_1.jp2", "tn629pk3948%2Ftn629pk3948_thumb_2.jp2", "cg767mn6478%2F2542A.jp2", "jw923xn5254%2F2542B.jp2", "wn461xh4882%2F2542001.jp2"])
     end
   end
 
