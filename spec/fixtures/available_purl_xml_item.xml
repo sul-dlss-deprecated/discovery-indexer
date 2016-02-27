@@ -67,14 +67,14 @@
         <imageData width="1547" height="1379"/>
       </file>
     </resource>
-    <resource id="tn629pk3948_9" sequence="9" type="image">
+    <resource id="tn629pk3948_9" sequence="9" type="page">
       <label>Cover: Carey's American atlas.</label>
       <externalFile fileId="2542A.jp2" mimetype="image/jp2" objectId="druid:cg767mn6478" resourceId="cg767mn6478_1">
         <imageData width="6475" height="4747"/>
       </externalFile>
       <relationship objectId="druid:cg767mn6478" type="alsoAvailableAs"/>
     </resource>
-    <resource id="tn629pk3948_10" sequence="10" thumb="yes" type="image">
+    <resource id="tn629pk3948_10" sequence="10" thumb="yes" type="page">
       <label>Title Page: Carey's American atlas.</label>
       <externalFile fileId="2542B.jp2" mimetype="image/jp2" objectId="druid:jw923xn5254" resourceId="jw923xn5254_1">
         <imageData width="3139" height="4675"/>

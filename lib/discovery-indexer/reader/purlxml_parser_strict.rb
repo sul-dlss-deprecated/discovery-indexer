@@ -158,14 +158,11 @@ module DiscoveryIndexer
       def parse_sw_image_ids
         content_md = parse_content_metadata
         return [] if content_md.nil?
-        ids = []
-        content_md.xpath('//resource[@type="page" or @type="image" or @type="thumb"]').each do |node|
-          ids = node.xpath('//file[@mimetype="image/jp2"]/@id').map{ |x| "#{@druid}%2F" + x }
-          node.xpath('//externalFile[@mimetype="image/jp2"]').each do |y|
-            ids << "#{y.attributes['objectId'].text.split(':').last}" + "%2F" + "#{y.attributes['fileId']}"
+        content_md.xpath('//resource[@type="page" or @type="image" or @type="thumb"]').map do |node|
+          node.xpath('./file[@mimetype="image/jp2"]/@id').map{ |x| "#{@druid}%2F" + x } << node.xpath('./externalFile[@mimetype="image/jp2"]').map do |y|
+            "#{y.attributes['objectId'].text.split(':').last}" + "%2F" + "#{y.attributes['fileId']}"
           end
-        end
-        ids
+        end.flatten
       end
 
       def parse_sourceid
@@ -185,11 +182,7 @@ module DiscoveryIndexer
       def parse_file_ids
         content_md = parse_content_metadata
         return [] if content_md.nil?
-        ids = []
-        content_md.xpath('//resource/file/@id').each do |node|
-          ids << node.text unless node.text.empty?
-        end
-        ids
+        content_md.xpath('//resource/file/@id').map { |x| x.text }.compact
       end
 
       # @return catkey value from the DOR identity_metadata, or nil if there is no catkey
