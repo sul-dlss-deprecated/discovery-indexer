@@ -78,9 +78,10 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       expect(im).to be_equivalent_to(Nokogiri::XML(@identity_metadata))
     end
 
-    it "raises an error when the public xml doesn't have identity metadata" do
-      public_xml_no_identity = "<publicObject id='druid:aa111aa1111'>#{@content_metadata}#{@rights_metadata}</publicObject>"
-      expect { described_class.new('', public_xml_no_identity).send(:parse_identity_metadata) }.to raise_error(DiscoveryIndexer::Errors::MissingIdentityMetadata)
+    it "returns nil when the public xml doesn't have identity metadata" do
+      public_xml_no_identity = Nokogiri::XML("<publicObject id='druid:aa111aa1111'>#{@content_metadata}#{@rights_metadata}</publicObject>")
+      im = described_class.new('', public_xml_no_identity).send(:parse_identity_metadata)
+      expect(im).to be_nil
     end
   end
 
@@ -92,9 +93,10 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       expect(im).to be_equivalent_to(Nokogiri::XML(@rights_metadata))
     end
 
-    it "raises an error when the public xml doesn't have rights metadata" do
-      public_xml_no_rights = "<publicObject id='druid:aa111aa1111'>#{@content_metadata}#{@identity_metadata}</publicObject>"
-      expect { described_class.new('', public_xml_no_rights).send(:parse_rights_metadata) }.to raise_error(DiscoveryIndexer::Errors::MissingRightsMetadata)
+    it "returns nil when the public xml doesn't have rights metadata" do
+      public_xml_no_rights = Nokogiri::XML("<publicObject id='druid:aa111aa1111'>#{@content_metadata}#{@identity_metadata}</publicObject>")
+      rm = described_class.new('', public_xml_no_rights).send(:parse_rights_metadata)
+      expect(rm).to be_nil
     end
   end
 
@@ -106,9 +108,10 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       expect(im).to be_equivalent_to(Nokogiri::XML(@dc))
     end
 
-    it 'raises an error for the metadata without dc' do
-      public_xml_no_dc = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@content_metadata}</publicObject>"
-      expect { described_class.new('', public_xml_no_dc).send(:parse_dc) }.to raise_error(DiscoveryIndexer::Errors::MissingDC)
+    it 'returns nil for the metadata without dc' do
+      public_xml_no_dc = Nokogiri::XML("<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@content_metadata}</publicObject>")
+      dcm = described_class.new('', public_xml_no_dc).send(:parse_dc)
+      expect(dcm).to be_nil
     end
   end
 
@@ -120,9 +123,10 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       expect(im).to be_equivalent_to(Nokogiri::XML(@rdf))
     end
 
-    it 'raises an error for the metadata without dc' do
-      public_xml_no_dc = "<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@content_metadata}</publicObject>"
-      expect { described_class.new('', public_xml_no_dc).send(:parse_rdf) }.to raise_error(DiscoveryIndexer::Errors::MissingRDF)
+    it 'returns nil for the metadata without rdf' do
+      public_xml_no_rdf = Nokogiri::XML("<publicObject id='druid:aa111aa1111'>#{@rights_metadata}#{@identity_metadata}#{@content_metadata}</publicObject>")
+      rdfm = described_class.new('', public_xml_no_rdf).send(:parse_rdf)
+      expect(rdfm).to be_nil
     end
   end
 

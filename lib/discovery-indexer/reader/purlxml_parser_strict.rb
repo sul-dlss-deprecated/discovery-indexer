@@ -45,43 +45,34 @@ module DiscoveryIndexer
 
       # extracts the identityMetadata for this fedora object, from the purl xml
       # @return [Nokogiri::XML::Document] the identityMetadata for the fedora object
-      # @raise [DiscoveryIndexer::Errors::MissingIdentityMetadata] if there is no identity_metadata
       def parse_identity_metadata
         @idmd_ng_doc ||= Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/identityMetadata').to_xml)
-        fail DiscoveryIndexer::Errors::MissingIdentityMetadata.new(@purlxml_ng_doc.inspect) if !@idmd_ng_doc || @idmd_ng_doc.children.empty?
+        @idmd_ng_doc = nil if !@idmd_ng_doc || @idmd_ng_doc.children.empty?
         @idmd_ng_doc
-      rescue
-        raise DiscoveryIndexer::Errors::MissingIdentityMetadata.new(@purlxml_ng_doc.inspect)
       end
 
+      # extracts the rightsMetadata for this fedora object, from the purl xml
+      # @return [Nokogiri::XML::Document] the rightsMetadata for the fedora object or nil
       def parse_rights_metadata
         @rmd_ng_doc ||= Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/rightsMetadata').to_xml)
-        fail DiscoveryIndexer::Errors::MissingRightsMetadata.new(@purlxml_ng_doc.inspect) if !@rmd_ng_doc || @rmd_ng_doc.children.empty?
+        @rmd_ng_doc = nil if !@rmd_ng_doc || @rmd_ng_doc.children.empty?
         @rmd_ng_doc
-      rescue
-        raise DiscoveryIndexer::Errors::MissingRightsMetadata.new(@purlxml_ng_doc.inspect)
       end
 
       # extracts the dc field for this fedora object, from the purl xml
-      # @return [Nokogiri::XML::Document] the dc for the fedora object
-      # @raise [DiscoveryIndexer::Errors::MissingDC] if there is no dc element
+      # @return [Nokogiri::XML::Document] the dc for the fedora object or nil
       def parse_dc
         @dc_ng_doc ||= Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/dc:dc', 'dc' => OAI_DC_NAMESPACE).to_xml(encoding: 'utf-8'))
-        fail DiscoveryIndexer::Errors::MissingDC.new(@purlxml_ng_doc.inspect) if !@dc_ng_doc || @dc_ng_doc.children.empty?
+        @dc_ng_doc = nil if !@dc_ng_doc || @dc_ng_doc.children.empty?
         @dc_ng_doc
-      rescue
-        raise DiscoveryIndexer::Errors::MissingDC.new(@purlxml_ng_doc.inspect)
       end
 
       # extracts the rdf field for this fedora object, from the purl xml
-      # @return [Nokogiri::XML::Document] the rdf for the fedora object
-      # @raise [DiscoveryIndexer::Errors::MissingRDF] if there is no rdf element
+      # @return [Nokogiri::XML::Document] the rdf for the fedora object or nil
       def parse_rdf
         @rdf_ng_doc ||= Nokogiri::XML(@purlxml_ng_doc.root.xpath('/publicObject/rdf:RDF', 'rdf' => RDF_NAMESPACE).to_xml)
-        fail DiscoveryIndexer::Errors::MissingRDF.new(@purlxml_ng_doc.inspect) if !@rdf_ng_doc || @rdf_ng_doc.children.empty?
+        @rdf_ng_doc = nil if !@rdf_ng_doc || @rdf_ng_doc.children.empty?
         @rdf_ng_doc
-      rescue
-        raise DiscoveryIndexer::Errors::MissingRDF.new(@purlxml_ng_doc.inspect)
       end
 
       # extracts the release tag element for this fedora object, from the the ReleaseData element in purl xml
