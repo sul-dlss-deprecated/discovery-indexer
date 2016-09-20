@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.require_path = 'lib'
 
   gem.add_dependency 'nokogiri'
-  gem.add_dependency 'stanford-mods', '~>2.1'
+  gem.add_dependency 'stanford-mods', '>= 2.2.2'
   gem.add_dependency 'retries'
   gem.add_dependency 'rsolr'
   gem.add_dependency 'rest-client'
