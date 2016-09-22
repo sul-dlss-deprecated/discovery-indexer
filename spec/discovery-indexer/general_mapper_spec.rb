@@ -24,6 +24,23 @@ describe DiscoveryIndexer::GeneralMapper do
     end
   end
 
+  context '#blank_titles' do
+    let(:smods_rec) { Stanford::Mods::Record.new }
+    it 'gets nil for the title if the title cannot be found in the mods' do
+      mods=<<-EOF
+        <mods xmlns="#{Mods::MODS_NS}">
+          <titleInfo>
+            <title></title>
+          </titleInfo>
+        </mods>
+        EOF
+      allow(mapper).to receive(:modsxml).and_return(smods_rec.from_str(mods))
+      solr_doc = mapper.convert_to_solr_doc
+      expect(solr_doc[:id]).to eq(fake_druid)
+      expect(solr_doc[:title]).to eq(nil)
+    end
+  end
+  
   context '#collection_druids' do
     it 'calls purlxml.collection_druids' do
       purlxml = double('purlxml')
