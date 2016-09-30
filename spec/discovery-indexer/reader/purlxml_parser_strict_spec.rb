@@ -115,6 +115,32 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     end
   end
 
+  describe '#parse_thumb' do
+    it 'returns the thumb from publicxml' do
+      purlxml = described_class.new('tn629pk3948', @available_purl_xml_ng_doc)
+      expect(purlxml.send(:parse_thumb)).to eq 'tn629pk3948/tn629pk3948_thumb_1.jp2'
+      expect(purlxml.send(:encoded_thumb)).to eq 'tn629pk3948%2Ftn629pk3948_thumb_1.jp2'
+    end
+    it 'returns the first image when there is no thumb in publicxml' do
+      alternate_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item_2.xml'), nil, 'UTF-8')
+      purlxml = described_class.new('druid:bg210vm0680', alternate_purl_xml_ng_doc)
+      expect(purlxml.send(:parse_thumb)).to eq 'bg210vm0680/bookCover.jp2'
+      expect(purlxml.send(:encoded_thumb)).to eq 'bg210vm0680%2FbookCover.jp2'
+    end 
+    it 'returns the first image with an encoded space' do
+      alternate_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item_image_with_space.xml'), nil, 'UTF-8')
+      purlxml = described_class.new('druid:bg210vm0680', alternate_purl_xml_ng_doc)
+      expect(purlxml.send(:parse_thumb)).to eq 'bg210vm0680/bookCover withspace.jp2'
+      expect(purlxml.send(:encoded_thumb)).to eq 'bg210vm0680%2FbookCover%20withspace.jp2'
+    end   
+    it 'returns nil when there are no images in publicxml' do
+      alternate_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item_no_image.xml'), nil, 'UTF-8')
+      purlxml=described_class.new('bg210vm0680', alternate_purl_xml_ng_doc)
+      expect(purlxml.send(:parse_thumb)).to be_nil
+      expect(purlxml.send(:encoded_thumb)).to be_nil
+    end      
+  end
+  
   describe '#parse_rdf' do
     it 'returns the rdf for the valid public xml' do
       im = described_class.new('', @available_purl_xml_ng_doc).send(:parse_rdf)
@@ -210,7 +236,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
 
     it 'returns objectIds and fileIds from resource/externalFile tag if resource type is image, page, or thumb' do
       pm = described_class.new('tn629pk3948', @available_purl_xml_ng_doc)
-      expect(pm.send(:parse_sw_image_ids)).to eq(["tn629pk3948%2Ftn629pk3948_img_1.jp2", "tn629pk3948%2Ftn629pk3948_img_2.jp2", "tn629pk3948%2Ftn629pk3948_img_3.jp2", "tn629pk3948%2Ftn629pk3948_pg_1.jp2", "tn629pk3948%2Ftn629pk3948_thumb_1.jp2", "tn629pk3948%2Ftn629pk3948_thumb_2.jp2", "cg767mn6478%2F2542A.jp2", "jw923xn5254%2F2542B.jp2", "wn461xh4882%2F2542001.jp2"])
+      expect(pm.send(:parse_sw_image_ids)).to eq(["tn629pk3948/tn629pk3948_img_1.jp2", "tn629pk3948/tn629pk3948_img_2.jp2", "tn629pk3948/tn629pk3948_img_3.jp2", "tn629pk3948/tn629pk3948_pg_1.jp2", "tn629pk3948/tn629pk3948_thumb_1.jp2", "tn629pk3948/tn629pk3948_thumb_2.jp2", "cg767mn6478/2542A.jp2", "jw923xn5254/2542B.jp2", "wn461xh4882/2542001.jp2"])
     end
   end
 
