@@ -1,0 +1,59 @@
+<publicObject id="druid:bg210vm0680" published="2015-02-06T11:21:51-08:00">
+<identityMetadata>
+<sourceId source="sul">osdgn_01</sourceId>
+<objectId>druid:bg210vm0680</objectId>
+<objectCreator>DOR</objectCreator>
+<objectLabel>PrincetonTIFF</objectLabel>
+<objectType>item</objectType>
+<adminPolicy>druid:yg077np2529</adminPolicy>
+<otherId name="label"/>
+<otherId name="uuid">742eaa5e-a214-11e2-8d85-0050569b3c4a</otherId>
+<tag>Project : openseadragon test images</tag>
+<tag>Process : Content Type : Image</tag>
+<tag>Project : openseadragon test images</tag>
+<tag>Registered By : awinget</tag>
+<tag>Remediated By : 3.24.3</tag>
+<release to="Robot_Testing_Feb_5_2015">true</release>
+</identityMetadata>
+<contentMetadata type="file" objectId="bg210vm0680">
+<resource type="file" sequence="1" id="bg210vm0680_1">
+<label>PDF</label>
+<file id="bookCover.pdf" mimetype="file/pdf" size="111555">
+</file>
+</resource>
+</contentMetadata>
+<rightsMetadata>
+<access type="discover">
+<machine>
+<world/>
+</machine>
+</access>
+<access type="read">
+<machine>
+<group>stanford</group>
+</machine>
+</access>
+<use>
+<human type="useAndReproduction">
+Property rights reside with the repository. Literary rights reside with the creators of the documents or their heirs. To obtain permission to publish or reproduce, please contact the Special Collections Public Services Librarian at
+<a href="mailto:speccollref@stanford.edu">speccollref@stanford.edu</a>
+.
+</human>
+</use>
+</rightsMetadata>
+<rdf:RDF xmlns:fedora="info:fedora/fedora-system:def/relations-external#" xmlns:fedora-model="info:fedora/fedora-system:def/model#" xmlns:hydra="http://projecthydra.org/ns/relations#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="info:fedora/druid:bg210vm0680">
+<fedora:isMemberOf rdf:resource="info:fedora/druid:sk373nx0013"/>
+<fedora:isMemberOfCollection rdf:resource="info:fedora/druid:sk373nx0013"/>
+</rdf:Description>
+</rdf:RDF>
+<oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:srw_dc="info:srw/schema/1/dc-schema" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+<dc:title>PrincetonTIFF</dc:title>
+<dc:relation type="collection">
+Stanford University Libraries Special Collections, Manuscripts Division
+</dc:relation>
+</oai_dc:dc>
+<ReleaseDigest>
+<release to="Robot_Testing_Feb_5_2015">true</release>
+</ReleaseDigest>
+</publicObject>

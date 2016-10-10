@@ -30,6 +30,7 @@ module DiscoveryIndexer
         purlxml_model.dor_content_type  = parse_dor_content_type
         purlxml_model.release_tags_hash = parse_release_tags_hash
         purlxml_model.file_ids          = parse_file_ids
+        purlxml_model.thumb             = parse_thumb
         purlxml_model.image_ids         = parse_image_ids
         purlxml_model.sw_image_ids      = parse_sw_image_ids
         purlxml_model.catkey            = parse_catkey
@@ -142,16 +143,42 @@ module DiscoveryIndexer
         content_md.xpath('//resource[@type="page" or @type="image" or @type="thumb"]/file[@mimetype="image/jp2"]/@id').map(&:to_s)
       end
 
+      # the thumbnail in publicXML, falling back to the first image if no thumb node is found
+      # @return [String] thumb filename with druid prepended, e.g. oo000oo0001/filename withspace.jp2
+      def parse_thumb
+        unless @purlxml_ng_doc.nil?
+          thumb = @purlxml_ng_doc.xpath('//thumb')
+          # first try and parse what is in the thumb node of publicXML, but fallback to the first image if needed
+          if thumb.size == 1
+            thumb.first.content
+          elsif thumb.size == 0 && parse_sw_image_ids.size > 0
+            parse_sw_image_ids.first
+          else
+            nil
+          end
+        end
+      end
+
+      # the thumbnail in publicXML properly URI encoded, including the slash separator 
+      # @return [String] thumb filename with druid prepended, e.g. oo000oo0001%2Ffilename%20withspace.jp2
+      def encoded_thumb
+        thumb=parse_thumb
+        return unless thumb
+        thumb_druid=thumb.split('/').first # the druid (before the first slash)
+        thumb_filename=thumb.split(/[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}[0-9]{4}[\/]/).last # everything after the druid
+        "#{thumb_druid}%2F#{URI.escape(thumb_filename)}"
+      end
+      
       # the druid and id attribute of resource/file and objectId and fileId of the
       # resource/externalFile elements that match the image, page, or thumb resource type, including extension
-      # Also, prepends the corresponding druid and %2F specifically for Searchworks use
+      # Also, prepends the corresponding druid and / specifically for Searchworks use
       # @return [Array<String>] filenames
       def parse_sw_image_ids
         content_md = parse_content_metadata
         return [] if content_md.nil?
         content_md.xpath('//resource[@type="page" or @type="image" or @type="thumb"]').map do |node|
-          node.xpath('./file[@mimetype="image/jp2"]/@id').map{ |x| "#{@druid}%2F" + x } << node.xpath('./externalFile[@mimetype="image/jp2"]').map do |y|
-            "#{y.attributes['objectId'].text.split(':').last}" + "%2F" + "#{y.attributes['fileId']}"
+          node.xpath('./file[@mimetype="image/jp2"]/@id').map{ |x| "#{@druid.gsub('druid:','')}/" + x } << node.xpath('./externalFile[@mimetype="image/jp2"]').map do |y|
+            "#{y.attributes['objectId'].text.split(':').last}" + "/" + "#{y.attributes['fileId']}"
           end
         end.flatten
       end
