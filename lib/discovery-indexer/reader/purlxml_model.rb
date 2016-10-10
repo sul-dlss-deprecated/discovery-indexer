@@ -82,11 +82,11 @@ module DiscoveryIndexer
       attr_accessor :encoded_thumb
       
       # @!attribute [rw] sw_image_ids
-      # @return [Array] a list of the image ids and corresponding druids with %2F
+      # @return [Array] a list of the image ids and corresponding druids
       #  separator from the file and externalFile tags in the content_metadata
       #  specifically for Searchworks
       # @example
-      #  ["xx888yy9999%2Fpc0065_b08_f10_i031.jp2","aa111bb2222%2Fpc0065_b08_f10_i032.jp2"]
+      #  ["xx888yy9999/pc0065_b08_f10_i031.jp2","aa111bb2222/pc0065_b08_f10_i032.jp2"]
       attr_accessor :sw_image_ids
 
       # @!attribute [rw] catkey
