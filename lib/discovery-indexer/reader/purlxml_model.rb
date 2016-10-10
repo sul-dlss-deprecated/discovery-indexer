@@ -75,6 +75,12 @@ module DiscoveryIndexer
       #  "oo000oo0001/pc0065_b08_f10_i031.jp2"
       attr_accessor :thumb
 
+      # @!attribute [rw] thumb
+      # @return [String] a thumbnail image if it exists in the PURL, encoded as necessary
+      # @example
+      #  "oo000oo0001%2Fpc0065_b08_f10_i031.jp2"
+      attr_accessor :encoded_thumb
+      
       # @!attribute [rw] sw_image_ids
       # @return [Array] a list of the image ids and corresponding druids with %2F
       #  separator from the file and externalFile tags in the content_metadata

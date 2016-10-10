@@ -119,25 +119,25 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
     it 'returns the thumb from publicxml' do
       purlxml = described_class.new('tn629pk3948', @available_purl_xml_ng_doc)
       expect(purlxml.send(:parse_thumb)).to eq 'tn629pk3948/tn629pk3948_thumb_1.jp2'
-      expect(purlxml.send(:encoded_thumb)).to eq 'tn629pk3948%2Ftn629pk3948_thumb_1.jp2'
+      expect(purlxml.send(:parse_encoded_thumb)).to eq 'tn629pk3948%2Ftn629pk3948_thumb_1.jp2'
     end
     it 'returns the first image when there is no thumb in publicxml' do
       alternate_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item_2.xml'), nil, 'UTF-8')
       purlxml = described_class.new('druid:bg210vm0680', alternate_purl_xml_ng_doc)
       expect(purlxml.send(:parse_thumb)).to eq 'bg210vm0680/bookCover.jp2'
-      expect(purlxml.send(:encoded_thumb)).to eq 'bg210vm0680%2FbookCover.jp2'
+      expect(purlxml.send(:parse_encoded_thumb)).to eq 'bg210vm0680%2FbookCover.jp2'
     end 
     it 'returns the first image with an encoded space' do
       alternate_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item_image_with_space.xml'), nil, 'UTF-8')
       purlxml = described_class.new('druid:bg210vm0680', alternate_purl_xml_ng_doc)
       expect(purlxml.send(:parse_thumb)).to eq 'bg210vm0680/bookCover withspace.jp2'
-      expect(purlxml.send(:encoded_thumb)).to eq 'bg210vm0680%2FbookCover%20withspace.jp2'
+      expect(purlxml.send(:parse_encoded_thumb)).to eq 'bg210vm0680%2FbookCover%20withspace.jp2'
     end   
     it 'returns nil when there are no images in publicxml' do
       alternate_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item_no_image.xml'), nil, 'UTF-8')
       purlxml=described_class.new('bg210vm0680', alternate_purl_xml_ng_doc)
       expect(purlxml.send(:parse_thumb)).to be_nil
-      expect(purlxml.send(:encoded_thumb)).to be_nil
+      expect(purlxml.send(:parse_encoded_thumb)).to be_nil
     end      
   end
   
