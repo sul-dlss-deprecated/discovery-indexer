@@ -22,6 +22,8 @@ describe DiscoveryIndexer::InputXml::Purlxml do
         expect(model.rights_metadata).to be_equivalent_to(@rights_metadata)
         expect(model.rdf).to be_equivalent_to(@rdf)
         expect(model.dc).to be_equivalent_to(@dc)
+        expect(model.thumb).to eq "tn629pk3948/tn629pk3948_img_1.jp2"
+        expect(model.encoded_thumb).to eq "tn629pk3948%2Ftn629pk3948_img_1.jp2"
       end
     end
 

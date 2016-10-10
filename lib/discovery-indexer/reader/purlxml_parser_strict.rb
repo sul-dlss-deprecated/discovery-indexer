@@ -31,6 +31,7 @@ module DiscoveryIndexer
         purlxml_model.release_tags_hash = parse_release_tags_hash
         purlxml_model.file_ids          = parse_file_ids
         purlxml_model.thumb             = parse_thumb
+        purlxml_model.encoded_thumb     = parse_encoded_thumb
         purlxml_model.image_ids         = parse_image_ids
         purlxml_model.sw_image_ids      = parse_sw_image_ids
         purlxml_model.catkey            = parse_catkey
@@ -161,7 +162,7 @@ module DiscoveryIndexer
 
       # the thumbnail in publicXML properly URI encoded, including the slash separator 
       # @return [String] thumb filename with druid prepended, e.g. oo000oo0001%2Ffilename%20withspace.jp2
-      def encoded_thumb
+      def parse_encoded_thumb
         thumb=parse_thumb
         return unless thumb
         thumb_druid=thumb.split('/').first # the druid (before the first slash)
