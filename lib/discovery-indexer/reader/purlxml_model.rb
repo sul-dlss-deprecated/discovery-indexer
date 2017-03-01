@@ -80,7 +80,7 @@ module DiscoveryIndexer
       # @example
       #  "oo000oo0001%2Fpc0065_b08_f10_i031.jp2"
       attr_accessor :encoded_thumb
-      
+
       # @!attribute [rw] sw_image_ids
       # @return [Array] a list of the image ids and corresponding druids
       #  separator from the file and externalFile tags in the content_metadata
@@ -92,6 +92,10 @@ module DiscoveryIndexer
       # @!attribute [rw] catkey
       # @return [String] the catkey attribute in identity_metadata
       attr_accessor :catkey
+
+      # @!attribute [rw] previous_catkeys
+      # @return [Array] the previous catkey attribute in identity_metadata
+      attr_accessor :previous_catkeys
 
       # @!attribute [rw] barcode
       # @return [String] the barcode attribute in identity_metadata

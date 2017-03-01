@@ -8,7 +8,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
 
   before :all do
     @available_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item.xml'), nil, 'UTF-8')
-    @identity_metadata = '  <identityMetadata>    <sourceId source="sul">V0401_b1_1.01</sourceId>    <objectId>druid:tn629pk3948</objectId>    <objectCreator>DOR</objectCreator>    <objectLabel>Lecture 1</objectLabel>    <objectType>item</objectType>    <adminPolicy>druid:ww057vk7675</adminPolicy>    <displayType>image</displayType>    <otherId name="label"/>    <otherId name="uuid">08d544da-d459-11e2-8afb-0050569b3c3c</otherId>    <tag>Project:V0401 mccarthyism:vhs</tag>    <tag> Process:Content Type:Media</tag>    <tag> JIRA:DIGREQ-592</tag>    <tag> SMPL:video:ua</tag>    <tag> Registered By:gwillard</tag>    <tag>Remediated By : 4.6.6.2</tag>  </identityMetadata>'
+    @identity_metadata = '  <identityMetadata>    <sourceId source="sul">V0401_b1_1.01</sourceId>    <objectId>druid:tn629pk3948</objectId>    <objectCreator>DOR</objectCreator>    <objectLabel>Lecture 1</objectLabel>    <objectType>item</objectType>    <adminPolicy>druid:ww057vk7675</adminPolicy>    <displayType>image</displayType>    <otherId name="label">Lecture 1</otherId> <otherId name="barcode">barcodey</otherId> <otherId name="catkey">12345</otherId> <otherId name="previous_catkey">000</otherId> <otherId name="previous_catkey">999</otherId>    <otherId name="uuid">08d544da-d459-11e2-8afb-0050569b3c3c</otherId>    <tag>Project:V0401 mccarthyism:vhs</tag>    <tag> Process:Content Type:Media</tag>    <tag> JIRA:DIGREQ-592</tag>    <tag> SMPL:video:ua</tag>    <tag> Registered By:gwillard</tag>    <tag>Remediated By : 4.6.6.2</tag>  </identityMetadata>'
     @rights_metadata = ' <rightsMetadata>   <copyright><human type="copyright">Test copyright statement. All rights reserved unless otherwise indicated.</human></copyright>  <access type="discover">      <machine>        <world/>      </machine>    </access>    <access type="read">      <machine>        <world/>      </machine>    </access>    <use>      <human type="useAndReproduction">Digital recordings from this collection may be accessed freely. These files may not be reproduced or used for any purpose without permission. For permission requests, please contact Stanford University Department of Special Collections  University Archives (speccollref@stanford.edu).</human>    </use>    <use>      <human type="creativeCommons"/>      <machine type="creativeCommons"/>    </use>  </rightsMetadata>'
     @content_metadata = ' <contentMetadata objectId="tn629pk3948" type="media">    <resource sequence="1" id="tn629pk3948_1" type="video">      <label>Tape 1</label>      <file id="tn629pk3948_sl.mp4" mimetype="video/mp4" size="3615267858">                </file>    </resource>    <resource sequence="2" id="tn629pk3948_2" type="image">      <label>Image of media (1 of 3)</label>      <file id="tn629pk3948_img_1.jp2" mimetype="image/jp2" size="919945">        <imageData width="1777" height="2723"/>      </file>    </resource>    <resource sequence="3" id="tn629pk3948_3" type="image">      <label>Image of media (2 of 3)</label>      <file id="tn629pk3948_img_2.jp2" mimetype="image/jp2" size="719940">        <imageData width="2560" height="1475"/>      </file>    </resource>    <resource sequence="4" id="tn629pk3948_4" type="image">      <label>Image of media (3 of 3)</label>      <file id="tn629pk3948_img_3.jp2" mimetype="image/jp2" size="411054">        <imageData width="1547" height="1379"/>      </file>    </resource>  <resource sequence="5" id="tn629pk3948_5" type="page">      <label>Page with Media Information</label>      <file id="tn629pk3948_pg_1.pdf" mimetype="application/pdf" size="411054"><imageData width="1547" height="1379"/></file> <file id="tn629pk3948_pg_1.jp2" mimetype="image/jp2" size="411054">        <imageData width="1547" height="1379"/>      </file>    </resource> <resource sequence="6" id="tn629pk3948_6" type="page">      <label>PDF with Media Information</label>      <file id="tn629pk3948_pg_1.pdf" mimetype="application/pdf" size="411054">        <imageData width="1547" height="1379"/>      </file>    </resource><resource sequence="7" id="tn629pk3948_7" type="thumb"><label>Thumbnail</label><file id="tn629pk3948_thumb_1.jp2" mimetype="image/jp2" size="411054"><imageData width="1547" height="1379"/></file></resource><resource sequence="8" id="tn629pk3948_8" type="thumb"><label>Thumbnail</label><file id="tn629pk3948_thumb_2.jp2" mimetype="image/jp2" size="411054"><imageData width="1547" height="1379"/></file></resource><resource id="tn629pk3948_9" sequence="9" type="page"><label>Cover: Carey\'s American atlas.</label><externalFile fileId="2542A.jp2" mimetype="image/jp2" objectId="druid:cg767mn6478" resourceId="cg767mn6478_1"><imageData width="6475" height="4747"/></externalFile><relationship objectId="druid:cg767mn6478" type="alsoAvailableAs"/></resource><resource id="tn629pk3948_10" sequence="10" thumb="yes" type="page"><label>Title Page: Carey\'s American atlas.</label><externalFile fileId="2542B.jp2" mimetype="image/jp2" objectId="druid:jw923xn5254" resourceId="jw923xn5254_1"><imageData width="3139" height="4675"/></externalFile><relationship objectId="druid:jw923xn5254" type="alsoAvailableAs"/></resource><resource id="tn629pk3948_11" sequence="11" type="image"><label>British Possessions in North America.</label><externalFile fileId="2542001.jp2" mimetype="image/jp2" objectId="druid:wn461xh4882" resourceId="wn461xh4882_1"><imageData width="6633" height="5305"/></externalFile><relationship objectId="druid:wn461xh4882" type="alsoAvailableAs"/></resource></contentMetadata>'
     @blank_content_metadata = ' <contentMetadata objectId="tn629pk3948" type="media">    <resource sequence="1" id="tn629pk3948_1" type="video">      <label>Tape 1</label>    </resource></contentMetadata>'
@@ -24,6 +24,7 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       allow(parser).to receive(:parse_dc)
       allow(parser).to receive(:parse_rdf)
       allow(parser).to receive(:parse_catkey)
+      allow(parser).to receive(:parse_previous_catkeys)
       allow(parser).to receive(:parse_barcode)
       allow(parser).to receive(:parse_label)
       allow(parser).to receive(:parse_copyright)
@@ -126,21 +127,21 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
       purlxml = described_class.new('druid:bg210vm0680', alternate_purl_xml_ng_doc)
       expect(purlxml.send(:parse_thumb)).to eq 'bg210vm0680/bookCover.jp2'
       expect(purlxml.send(:parse_encoded_thumb)).to eq 'bg210vm0680%2FbookCover.jp2'
-    end 
+    end
     it 'returns the first image with an encoded space' do
       alternate_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item_image_with_space.xml'), nil, 'UTF-8')
       purlxml = described_class.new('druid:bg210vm0680', alternate_purl_xml_ng_doc)
       expect(purlxml.send(:parse_thumb)).to eq 'bg210vm0680/bookCover withspace.jp2'
       expect(purlxml.send(:parse_encoded_thumb)).to eq 'bg210vm0680%2FbookCover%20withspace.jp2'
-    end   
+    end
     it 'returns nil when there are no images in publicxml' do
       alternate_purl_xml_ng_doc = Nokogiri::XML(open('spec/fixtures/available_purl_xml_item_no_image.xml'), nil, 'UTF-8')
       purlxml=described_class.new('bg210vm0680', alternate_purl_xml_ng_doc)
       expect(purlxml.send(:parse_thumb)).to be_nil
       expect(purlxml.send(:parse_encoded_thumb)).to be_nil
-    end      
+    end
   end
-  
+
   describe '#parse_rdf' do
     it 'returns the rdf for the valid public xml' do
       im = described_class.new('', @available_purl_xml_ng_doc).send(:parse_rdf)
@@ -241,15 +242,31 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
   end
 
   describe '#parse_catkey' do
-    pending
+    it 'parses the catkey correctly' do
+      catkey = described_class.new('tn629pk3948', @available_purl_xml_ng_doc).send(:parse_catkey)
+      expect(catkey).to eq('12345')
+    end
+  end
+
+  describe '#parse_previous_catkeys' do
+    it 'parses the previous catkeys correctly' do
+      previous_catkeys = described_class.new('tn629pk3948', @available_purl_xml_ng_doc).send(:parse_previous_catkeys)
+      expect(previous_catkeys).to eq(['000','999'])
+    end
   end
 
   describe '#parse_barcode' do
-    pending
+    it 'parses the barcode correctly' do
+      barcode = described_class.new('tn629pk3948', @available_purl_xml_ng_doc).send(:parse_barcode)
+      expect(barcode).to eq('barcodey')
+    end
   end
 
   describe '#parse_label' do
-    pending
+    it 'parses the label correctly' do
+      label = described_class.new('tn629pk3948', @available_purl_xml_ng_doc).send(:parse_label)
+      expect(label).to eq('Lecture 1')
+    end
   end
 
   describe '#parse_dor_content_type' do
@@ -295,7 +312,10 @@ describe DiscoveryIndexer::InputXml::PurlxmlParserStrict do
   end
 
   describe '#parse_is_collection' do
-    pending
+    it 'parses the is_collection correctly' do
+      is_collection = described_class.new('tn629pk3948', @available_purl_xml_ng_doc).send(:parse_is_collection)
+      expect(is_collection).to be_falsey
+    end
   end
 
 end
