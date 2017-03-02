@@ -7,7 +7,11 @@
     <objectType>item</objectType>
     <displayType>image</displayType>
     <adminPolicy>druid:ww057vk7675</adminPolicy>
-    <otherId name="label"/>
+    <otherId name="label">Lecture 1</otherId>
+    <otherId name="barcode">barcodey</otherId>
+    <otherId name="catkey">12345</otherId>
+    <otherId name="previous_catkey">000</otherId>
+    <otherId name="previous_catkey">999</otherId>
     <otherId name="uuid">08d544da-d459-11e2-8afb-0050569b3c3c</otherId>
     <tag>Project:V0401 mccarthyism:vhs</tag>
     <tag> Process:Content Type:Media</tag>

@@ -35,6 +35,7 @@ module DiscoveryIndexer
         purlxml_model.image_ids         = parse_image_ids
         purlxml_model.sw_image_ids      = parse_sw_image_ids
         purlxml_model.catkey            = parse_catkey
+        purlxml_model.previous_catkeys  = parse_previous_catkeys
         purlxml_model.barcode           = parse_barcode
         purlxml_model.label             = parse_label
         purlxml_model.copyright         = parse_copyright
@@ -160,7 +161,7 @@ module DiscoveryIndexer
         end
       end
 
-      # the thumbnail in publicXML properly URI encoded, including the slash separator 
+      # the thumbnail in publicXML properly URI encoded, including the slash separator
       # @return [String] thumb filename with druid prepended, e.g. oo000oo0001%2Ffilename%20withspace.jp2
       def parse_encoded_thumb
         thumb=parse_thumb
@@ -169,7 +170,7 @@ module DiscoveryIndexer
         thumb_filename=thumb.split(/[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}[0-9]{4}[\/]/).last # everything after the druid
         "#{thumb_druid}%2F#{URI.escape(thumb_filename)}"
       end
-      
+
       # the druid and id attribute of resource/file and objectId and fileId of the
       # resource/externalFile elements that match the image, page, or thumb resource type, including extension
       # Also, prepends the corresponding druid and / specifically for Searchworks use
@@ -207,6 +208,11 @@ module DiscoveryIndexer
       # @return catkey value from the DOR identity_metadata, or nil if there is no catkey
       def parse_catkey
         get_value(@purlxml_ng_doc.xpath("/publicObject/identityMetadata/otherId[@name='catkey']"))
+      end
+
+      # @return previous catkey values from the DOR identity_metadata as an array, or empty array if there are no previous catkeys
+      def parse_previous_catkeys
+        @purlxml_ng_doc.xpath("/publicObject/identityMetadata/otherId[@name='previous_catkey']").map { |node| node.content }
       end
 
       # @return barcode value from the DOR identity_metadata, or nil if there is no barcode
